@@ -4,6 +4,6 @@ public class Block{
 	//Methods
 	
 	//Constructor
-
-
+	public Block(){
+	}  
 }
