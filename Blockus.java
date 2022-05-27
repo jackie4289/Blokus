@@ -9,6 +9,7 @@ public class Blockus implements ActionListener{
 	JFrame theFrame = new JFrame("Blockus");
 	BlockusPanel thePanel = new BlockusPanel();
 	Timer theTimer = new Timer(1000/60, this);
+	Block BlockModel;
 	
 	//Methods
 	public void actionPerformed(ActionEvent evt){
