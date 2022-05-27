@@ -7,7 +7,7 @@ import java.io.*;
 public class Blockus implements ActionListener{
 	//Properties
 	JFrame theFrame = new JFrame("Blockus");
-	JPanel thePanel = new JPanel();
+	BlockusPanel thePanel = new BlockusPanel();
 	Timer theTimer = new Timer(1000/60, this);
 	
 	//Methods
