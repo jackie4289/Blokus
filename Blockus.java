@@ -23,6 +23,7 @@ public class Blockus implements ActionListener{
 		thePanel.setPreferredSize(new Dimension(1280, 720));
 		theFrame.setContentPane(thePanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		theFrame.setResizable(false);
 		theFrame.pack();
 		theFrame.setVisible(true);
 		theTimer.start();
