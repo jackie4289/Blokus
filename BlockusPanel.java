@@ -11,7 +11,9 @@ public class BlockusPanel extends JPanel{
 	
 	//Methods
 	public void paintComponent(Graphics g){
-		
+		super.paintComponent(g);
+		g.setColor(Color.BLACK);
+		g.drawRect(280, 1, 720, 718);
 	}
 	
 	//Constructor
