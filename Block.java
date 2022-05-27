@@ -10,7 +10,7 @@ public class Block{
 		int intCol;
 		for(intRow = 0; intRow < 20; intRow++){
 			for(intCol = 0; intCol < 20; intCol++){
-				System.out.println("a");
+				intBoard[intRow][intCol] = 0;
 			}
 		}
 	}
