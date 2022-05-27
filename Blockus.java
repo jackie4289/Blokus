@@ -13,6 +13,7 @@ public class Blockus{
 		
 		
 	}
+	//System println
 	
 	//Main Program
 	public static void main(String[] args){
