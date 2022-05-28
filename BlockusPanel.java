@@ -8,17 +8,26 @@ import javax.imageio.*;
 
 public class BlockusPanel extends JPanel{
 	//Properties
-	String intBoard[][] = new String[20][20];
-	// 0 = EMPTY
-	// 1 = RED (P1)
-	// 2 = BLUE (P2)
+		// Arrays
+	String strBoard[][] = new String[20][20];
+	String intARow[];
+												// 0 = EMPTY
+												// 1 = RED (P1)
+												// 2 = BLUE (P2)
+		// Booleans
+	boolean boolStartGame = false;
+	
+		// Integers
 	int intRow;
 	int intCol;
 	int intCount;
 	int intCount2;
+	
+		// Strings
 	String intLine;
-	String intARow[];
 	String strRow;
+	
+		// Images
 	BufferedImage white = null;
 	BufferedImage red = null;
 	BufferedImage blue = null;
@@ -31,36 +40,71 @@ public class BlockusPanel extends JPanel{
 		g.setColor(Color.WHITE);
 		g.fillRect(281,2,719,717);
 		
-		//Import Array
-		BufferedReader board = null;
-		try{
-			board = new BufferedReader(new FileReader("board.csv"));
-		}catch(FileNotFoundException e){
-			System.out.println("File not found!!!");
-		}
+		if(boolStartGame == false){
+			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
+				// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
 		
-		//read array
-		for(intCount = 0; intCount < 20; intCount++){
+			//Import Array
+			BufferedReader board = null;
 			try{
-				intLine = board.readLine();
-				intARow = intLine.split(",");
-			}catch(IOException e){
-				intLine = "0";
+				board = new BufferedReader(new FileReader("board.csv"));
+			}catch(FileNotFoundException e){
+				System.out.println("File not found!!!");
 			}
-			for(intCount2 = 0; intCount2 < 20; intCount2++){
-				intBoard[intCount][intCount2] = intARow[intCount2];
-			}
-		}
 			
-		//Draw array
-		for(intRow = 0; intRow < 20; intRow++){
-			for(intCol = 0; intCol < 20; intCol++){
-				if(intBoard[intRow][intCol].equals("0")){
-					g.drawImage(white, 280 + intCol * 36, intRow * 36, null);
-				}else if(intBoard[intRow][intCol].equals("1")){
-					g.drawImage(red, 280 + intCol * 36, intRow * 36, null);
-				}else if(intBoard[intRow][intCol].equals("2")){
-					g.drawImage(blue, 280 + intCol * 36, intRow * 36, null);
+			//read array
+			for(intCount = 0; intCount < 20; intCount++){
+				try{
+					intLine = board.readLine();
+					intARow = intLine.split(",");
+				}catch(IOException e){
+					intLine = "0";
+				}
+				for(intCount2 = 0; intCount2 < 20; intCount2++){
+					strBoard[intCount][intCount2] = intARow[intCount2];
+				}
+			}
+			
+			//Draw array
+			for(intRow = 0; intRow < 20; intRow++){
+				for(intCol = 0; intCol < 20; intCol++){
+					if(strBoard[intRow][intCol].equals("0")){
+						g.drawImage(white, 280 + intCol * 36, intRow * 36, null);
+					}else if(strBoard[intRow][intCol].equals("1")){
+						g.drawImage(red, 280 + intCol * 36, intRow * 36, null);
+					}else if(strBoard[intRow][intCol].equals("2")){
+						g.drawImage(blue, 280 + intCol * 36, intRow * 36, null);
+					}
+				}
+			}
+			// this is just to test, will remove it later and replace with button
+			boolStartGame = true;
+		}else{
+			// NOW THE GAME STARTS
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			//Draw array
+			for(intRow = 0; intRow < 20; intRow++){
+				for(intCol = 0; intCol < 20; intCol++){
+					if(strBoard[intRow][intCol].equals("0")){
+						g.drawImage(white, 280 + intCol * 36, intRow * 36, null);
+					}else if(strBoard[intRow][intCol].equals("1")){
+						g.drawImage(red, 280 + intCol * 36, intRow * 36, null);
+					}else if(strBoard[intRow][intCol].equals("2")){
+						g.drawImage(blue, 280 + intCol * 36, intRow * 36, null);
+					}
 				}
 			}
 		}
@@ -69,7 +113,7 @@ public class BlockusPanel extends JPanel{
 	//Constructor
 	public BlockusPanel(){
 		super();
-		//import image
+		//import images
 		try{
 			white = ImageIO.read(new File("whiteblock.png"));
 		}catch(IOException e){
