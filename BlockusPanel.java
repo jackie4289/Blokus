@@ -89,12 +89,6 @@ public class BlockusPanel extends JPanel{
 
 
 
-
-
-
-
-
-
 			//Draw array
 			for(intRow = 0; intRow < 20; intRow++){
 				for(intCol = 0; intCol < 20; intCol++){

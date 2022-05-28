@@ -1,3 +1,4 @@
+//
 public class Block{
 	//Properties
 
@@ -7,5 +8,5 @@ public class Block{
 	}
 	//Constructor
 	public Block(){
-	}  
+	}
 }

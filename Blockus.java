@@ -1,3 +1,4 @@
+//
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -10,15 +11,15 @@ public class Blockus implements ActionListener{
 	BlockusPanel thePanel = new BlockusPanel();
 	Timer theTimer = new Timer(1000/60, this);
 	Block BlockModel;
-	
+
 	//Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
 		}
 	}
-	
-	//Constuctor 
+
+	//Constuctor
 	public Blockus(){
 		thePanel.setLayout(null);
 		thePanel.setPreferredSize(new Dimension(1280, 720));
@@ -29,11 +30,9 @@ public class Blockus implements ActionListener{
 		theFrame.setVisible(true);
 		theTimer.start();
 	}
-	
+
 	//Main Program
 	public static void main(String[] args){
 		Blockus Block = new Blockus();
-	}  
+	}
 }
-	
-
