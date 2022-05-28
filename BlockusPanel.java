@@ -16,34 +16,34 @@ public class BlockusPanel extends JPanel{
 												// 2 = BLUE (P2)
 		// Booleans
 	boolean boolStartGame = false;
-	
+
 		// Integers
 	int intRow;
 	int intCol;
 	int intCount;
 	int intCount2;
-	
+
 		// Strings
 	String intLine;
 	String strRow;
-	
+
 		// Images
 	BufferedImage white = null;
 	BufferedImage red = null;
 	BufferedImage blue = null;
-	
+
 	//Methods
-	public void paintComponent(Graphics g){
+	public void paintComponent(/*graphics variable*/Graphics g){
 		super.paintComponent(g);
 		g.setColor(Color.BLACK);
 		g.drawRect(279, 1, 721, 718);
 		g.setColor(Color.WHITE);
 		g.fillRect(281,2,719,717);
-		
+
 		if(boolStartGame == false){
 			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
 				// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
-		
+
 			//Import Array
 			BufferedReader board = null;
 			try{
@@ -51,7 +51,7 @@ public class BlockusPanel extends JPanel{
 			}catch(FileNotFoundException e){
 				System.out.println("File not found!!!");
 			}
-			
+
 			//read array
 			for(intCount = 0; intCount < 20; intCount++){
 				try{
@@ -64,7 +64,7 @@ public class BlockusPanel extends JPanel{
 					strBoard[intCount][intCount2] = intARow[intCount2];
 				}
 			}
-			
+
 			//Draw array
 			for(intRow = 0; intRow < 20; intRow++){
 				for(intCol = 0; intCol < 20; intCol++){
@@ -81,20 +81,20 @@ public class BlockusPanel extends JPanel{
 			boolStartGame = true;
 		}else{
 			// NOW THE GAME STARTS
-				
-			
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			//Draw array
 			for(intRow = 0; intRow < 20; intRow++){
 				for(intCol = 0; intCol < 20; intCol++){
@@ -109,7 +109,7 @@ public class BlockusPanel extends JPanel{
 			}
 		}
 	}
-	
+
 	//Constructor
 	public BlockusPanel(){
 		super();
@@ -128,6 +128,6 @@ public class BlockusPanel extends JPanel{
 			blue = ImageIO.read(new File("blueblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(blueblock.png)");
-		} 
+		}
 	}
 }
