@@ -9,8 +9,7 @@ import javax.imageio.*;
 
 public class BlockusMenuPanel extends JPanel{
 	//Properties
-	JButton startButton = new JButton("Start");
-	JButton quitButton = new JButton("Quit");
+
 	
 	
 	//Methods
