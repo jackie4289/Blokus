@@ -9,26 +9,26 @@ import javax.imageio.*;
 
 public class BlockusPanel extends JPanel{
 	//Properties
-		// Arrays
+	// Arrays
 	String strBoard[][] = new String[20][20];
 	String intARow[];
-												// 0 = EMPTY
-												// 1 = RED (P1)
-												// 2 = BLUE (P2)
-		// Booleans
+	// 0 = EMPTY
+	// 1 = RED (P1)
+	// 2 = BLUE (P2)
+	// Booleans
 	boolean boolStartGame = false;
 
-		// Integers
+	// Integers
 	int intRow;
 	int intCol;
 	int intCount;
 	int intCount2;
 
-		// Strings
+	// Strings
 	String intLine;
 	String strRow;
 
-		// Images
+	// Images
 	BufferedImage white = null;
 	BufferedImage red = null;
 	BufferedImage blue = null;
@@ -43,7 +43,7 @@ public class BlockusPanel extends JPanel{
 
 		if(boolStartGame == false){
 			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
-				// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
+			// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
 
 			//Import Array
 			BufferedReader board = null;
