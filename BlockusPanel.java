@@ -1,4 +1,4 @@
-// 
+//
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -23,6 +23,16 @@ public class BlockusPanel extends JPanel{
 	int intCol;
 	int intCount;
 	int intCount2;
+
+	//Player coords
+	int P1X;
+	int P1Y;
+	int P2X;
+	int P2Y;
+	int P3X;
+	int P3Y;
+	int P4X;
+	int P4Y;
 
 	// Strings
 	String intLine;
