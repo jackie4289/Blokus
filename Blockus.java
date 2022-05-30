@@ -9,11 +9,12 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 	//Properties
 	JFrame theFrame = new JFrame("Blockus");
 	BlockusPanel thePanel = new BlockusPanel();
+	BlockusMenuPanel theMenuPanel = new BlockusMenuPanel();
 	Timer theTimer = new Timer(1000/60, this);
 	Block BlockModel;
 
 	//J Properties
-	JButton StartButton;
+	JButton startButton = new JButton("Start");
 
 
 	//Methods
@@ -52,14 +53,18 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 	public Blockus(){
 		thePanel.setLayout(null);
 		thePanel.setPreferredSize(new Dimension(1280, 720));
+		theMenuPanel.setLayout(null);
+		theMenuPanel.setPreferredSize(new Dimension(1280, 720));
 		theFrame.setContentPane(thePanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		theFrame.setResizable(false);
-
-		StartButton.setSize(300, 50);
-		StartButton.setLocation(330, 120);
-		StartButton.addActionListener(this);
-		thePanel.add(StartButton);
+		
+	
+		
+		startButton.setSize(300, 50);
+		startButton.setLocation(330, 120);
+		startButton.addActionListener(this);
+		theMenuPanel.add(startButton);
 
 		theFrame.pack();
 		theFrame.setVisible(true);
