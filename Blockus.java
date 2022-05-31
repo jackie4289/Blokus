@@ -8,8 +8,12 @@ import java.io.*;
 public class Blockus implements ActionListener, MouseListener, KeyListener{
 	//Properties
 	JFrame theFrame = new JFrame("Blockus");
+	JTextField usernameField = new JTextField();
+	JTextField ipField = new JTextField();
+	JTextField portField = new JTextField();
 	BlockusPanel thePanel = new BlockusPanel();
 	BlockusMenuPanel theMenuPanel = new BlockusMenuPanel();
+	BlockusLoginPanel theLoginPanel = new BlockusLoginPanel();
 	Timer theTimer = new Timer(1000/60, this);
 	Block BlockModel;
 
@@ -25,9 +29,9 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 			System.exit(0);
 		}else if(evt.getSource() == startButton){
 			theMenuPanel.setVisible(false);
-			thePanel.setVisible(true);
-			theFrame.setContentPane(thePanel);
-			thePanel.boolStartGame = true;			
+			theLoginPanel.setVisible(true);
+			//FOR TESTING CHANGE TO (thePanel)
+			theFrame.setContentPane(theLoginPanel);		
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -67,6 +71,11 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 		theMenuPanel.setLayout(null);
 		theMenuPanel.setPreferredSize(new Dimension(1280, 720));
 		theMenuPanel.setVisible(true);
+		
+		//Login Panel
+		theLoginPanel.setLayout(null);
+		theLoginPanel.setPreferredSize(new Dimension(1280, 720));
+		theLoginPanel.setVisible(false);
 		
 		theFrame.setContentPane(theMenuPanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
