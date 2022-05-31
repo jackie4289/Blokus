@@ -51,7 +51,7 @@ public class BlockusPanel extends JPanel{
 		g.setColor(Color.WHITE);
 		g.fillRect(281,2,719,717);
 
-		if(boolStartGame == false){
+		if(boolStartGame == true){
 			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
 			// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
 

@@ -15,12 +15,19 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 
 	//J Properties
 	JButton startButton = new JButton("Start");
-
+	JButton quitButton = new JButton("Quit");
 
 	//Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			thePanel.repaint();
+		}else if(evt.getSource() == quitButton){
+			System.exit(0);
+		}else if(evt.getSource() == startButton){
+			theMenuPanel.setVisible(false);
+			thePanel.setVisible(true);
+			theFrame.setContentPane(thePanel);
+			thePanel.boolStartGame = true;			
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -51,20 +58,31 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 
 	//Constuctor
 	public Blockus(){
+		//Game panel
 		thePanel.setLayout(null);
 		thePanel.setPreferredSize(new Dimension(1280, 720));
+		thePanel.setVisible(false);
+		
+		//Menu Panel
 		theMenuPanel.setLayout(null);
 		theMenuPanel.setPreferredSize(new Dimension(1280, 720));
-		theFrame.setContentPane(thePanel);
+		theMenuPanel.setVisible(true);
+		
+		theFrame.setContentPane(theMenuPanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		theFrame.setResizable(false);
 		
-	
-		
+		//Start Button Menu
 		startButton.setSize(300, 50);
-		startButton.setLocation(330, 120);
+		startButton.setLocation(170, 500);
 		startButton.addActionListener(this);
 		theMenuPanel.add(startButton);
+		
+		//Quit Button Menu
+		quitButton.setSize(300, 50);
+		quitButton.setLocation(170, 555);
+		quitButton.addActionListener(this);
+		theMenuPanel.add(quitButton);
 
 		theFrame.pack();
 		theFrame.setVisible(true);
