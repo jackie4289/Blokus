@@ -170,6 +170,12 @@ public class Block{
 				tempBoard[intCount][intCount2] = intBoard[intCount2][4-intCount];
 			}
 		}
+		for(intCount = 0;intCount < 4;intCount++){
+			for(intCount2 = 0;intCount2 < 4; intCount++){
+				intBoard[intCount][intCount2] = tempBoard[intCount][intCount2];
+			}
+		}
+		
 		
 		
 		
