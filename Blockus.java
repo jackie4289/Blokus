@@ -18,12 +18,14 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 	BlockusMenuPanel theMenuPanel = new BlockusMenuPanel();
 	BlockusLoginPanel theLoginPanel = new BlockusLoginPanel();
 	Timer theTimer = new Timer(1000/60, this);
+	SuperSocketMaster ssm;
 	Block BlockModel;
 
 	//J Properties
 	JButton startButton = new JButton("Start");
 	JButton quitButton = new JButton("Quit");
-
+	JButton connectButton = new JButton ("Connect!");
+	
 	//Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
@@ -35,7 +37,9 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 			theLoginPanel.setVisible(true);
 			//FOR TESTING CHANGE TO (thePanel)
 			theFrame.setContentPane(theLoginPanel);		
-		}
+			//theFrame.setContentPane(thePanel);		
+		}else if(evt.getSource() == connectButton){
+	}
 	}
 	public void mouseExited(MouseEvent evt){
 
@@ -96,33 +100,39 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 		quitButton.addActionListener(this);
 		theMenuPanel.add(quitButton);
 		
+		//Connect Button Login
+		connectButton.setSize(200, 25);
+		connectButton.setLocation(556, 510);
+		connectButton.addActionListener(this);
+		theLoginPanel.add(connectButton);
+		
 		//username Textfield
 		usernameField = new JTextField();
-		usernameField.setSize(174, 35);
-		usernameField.setLocation(560, 315);
+		usernameField.setSize(175, 35);
+		usernameField.setLocation(561, 314);
 		theLoginPanel.add(usernameField);
 		
 		//ip Textfield
 		ipField = new JTextField();
-		ipField.setSize(214, 35);
-		ipField.setLocation(449, 389);
+		ipField.setSize(216, 36);
+		ipField.setLocation(447, 392);
 		theLoginPanel.add(ipField);
 		
 		//port Textfield
 		portField = new JTextField();
-		portField.setSize(114, 35);
-		portField.setLocation(712, 389);
+		portField.setSize(116, 36);
+		portField.setLocation(713, 392);
 		theLoginPanel.add(portField);
 		
 		//ServerMode RadioButton
 		serverRButton.setSize(100,25);
-		serverRButton.setLocation(552, 459);
+		serverRButton.setLocation(552, 468);
 		serverRButton.setOpaque(false);
 		theLoginPanel.add(serverRButton);
 		
 		//ClientMode RadioButton
 		clientRButton.setSize(100,25);
-		clientRButton.setLocation(687,459);
+		clientRButton.setLocation(687,468);
 		clientRButton.setOpaque(false);
 		theLoginPanel.add(clientRButton);
 		
