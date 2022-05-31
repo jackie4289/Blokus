@@ -11,6 +11,9 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 	JTextField usernameField = new JTextField();
 	JTextField ipField = new JTextField();
 	JTextField portField = new JTextField();
+	JRadioButton serverRButton = new JRadioButton("Server");
+	JRadioButton clientRButton = new JRadioButton("Client");
+	ButtonGroup buttonGroup = new ButtonGroup();
 	BlockusPanel thePanel = new BlockusPanel();
 	BlockusMenuPanel theMenuPanel = new BlockusMenuPanel();
 	BlockusLoginPanel theLoginPanel = new BlockusLoginPanel();
@@ -92,7 +95,41 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 		quitButton.setLocation(170, 555);
 		quitButton.addActionListener(this);
 		theMenuPanel.add(quitButton);
-
+		
+		//username Textfield
+		usernameField = new JTextField();
+		usernameField.setSize(174, 35);
+		usernameField.setLocation(553, 301);
+		theLoginPanel.add(usernameField);
+		
+		//ip Textfield
+		ipField = new JTextField();
+		ipField.setSize(214, 35);
+		ipField.setLocation(442, 375);
+		theLoginPanel.add(ipField);
+		
+		//port Textfield
+		portField = new JTextField();
+		portField.setSize(114, 35);
+		portField.setLocation(705, 375);
+		theLoginPanel.add(portField);
+		
+		//ServerMode RadioButton
+		serverRButton.setSize(100,25);
+		serverRButton.setLocation(545, 445);
+		serverRButton.setOpaque(false);
+		theLoginPanel.add(serverRButton);
+		
+		//ClientMode RadioButton
+		clientRButton.setSize(100,25);
+		clientRButton.setLocation(680,445);
+		clientRButton.setOpaque(false);
+		theLoginPanel.add(clientRButton);
+		
+		//buttonGroups
+		buttonGroup.add(clientRButton);
+		buttonGroup.add(serverRButton);
+		
 		theFrame.pack();
 		theFrame.setVisible(true);
 		theTimer.start();
