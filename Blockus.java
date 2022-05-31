@@ -99,30 +99,30 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 		//username Textfield
 		usernameField = new JTextField();
 		usernameField.setSize(174, 35);
-		usernameField.setLocation(553, 301);
+		usernameField.setLocation(560, 315);
 		theLoginPanel.add(usernameField);
 		
 		//ip Textfield
 		ipField = new JTextField();
 		ipField.setSize(214, 35);
-		ipField.setLocation(442, 375);
+		ipField.setLocation(449, 389);
 		theLoginPanel.add(ipField);
 		
 		//port Textfield
 		portField = new JTextField();
 		portField.setSize(114, 35);
-		portField.setLocation(705, 375);
+		portField.setLocation(712, 389);
 		theLoginPanel.add(portField);
 		
 		//ServerMode RadioButton
 		serverRButton.setSize(100,25);
-		serverRButton.setLocation(545, 445);
+		serverRButton.setLocation(552, 459);
 		serverRButton.setOpaque(false);
 		theLoginPanel.add(serverRButton);
 		
 		//ClientMode RadioButton
 		clientRButton.setSize(100,25);
-		clientRButton.setLocation(680,445);
+		clientRButton.setLocation(687,459);
 		clientRButton.setOpaque(false);
 		theLoginPanel.add(clientRButton);
 		
