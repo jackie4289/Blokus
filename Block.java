@@ -9,6 +9,7 @@ public class Block{
 	int intCount;
 	int intCount2;
 	int intBoard[][] = new int[4][4];
+	int tempBoard[][] = new int[4][4];
 	
 	
 	//Methods
@@ -147,6 +148,31 @@ public class Block{
 			intBoard[0][2] = 1;
 			intBoard[1][2] = 1;
 		}
+	}
+	public void rotatePiece(){
+		for(intCount = 0;intCount < 4;intCount++){
+			for(intCount2 = 0;intCount2 < 4; intCount++){
+				tempBoard[intCount][intCount2] = 0;
+			}
+		}
+		// Rotate Piece
+		/*  1 2 3 4 5
+		 1* 0 0 0 0 0
+		 2* 0 0 0 0 0 
+		 3* 0 0 0 0 0
+		 4* 0 0 0 0 0
+		 5* 0 0 0 0 0
+		 */
+		 
+		//rotate loop
+		for(intCount2 = 0;intCount < 4;intCount++){
+			for(intCount = 0;intCount < 4;intCount++){
+				tempBoard[intCount][intCount2] = intBoard[intCount2][4-intCount];
+			}
+		}
+		
+		
+		
 	}
 	
 	
