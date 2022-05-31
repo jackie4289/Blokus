@@ -47,10 +47,11 @@ public class BlockusPanel extends JPanel{
 	public void paintComponent(/*graphics variable*/Graphics g){
 		super.paintComponent(g);
 		g.setColor(Color.BLACK);
-		g.drawRect(279, 1, 721, 718);
-		g.setColor(Color.WHITE);
-		g.fillRect(281,2,719,717);
-
+		g.drawRect(369, 26, 541, 541);
+		//ChatBox
+		g.drawRoundRect(370, 580, 540, 135, 20, 20);
+		boolStartGame = true;
+		
 		if(boolStartGame == true){
 			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
 			// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
@@ -80,41 +81,19 @@ public class BlockusPanel extends JPanel{
 			for(intRow = 0; intRow < 20; intRow++){
 				for(intCol = 0; intCol < 20; intCol++){
 					if(strBoard[intRow][intCol].equals("0")){
-						g.drawImage(white, 280 + intCol * 36, intRow * 36, null);
+						g.drawImage(white, 370 + intCol * 27, 27 + intRow * 27, null);
 					}else if(strBoard[intRow][intCol].equals("1")){
-						g.drawImage(red, 280 + intCol * 36, intRow * 36, null);
+						g.drawImage(red, 370 + intCol * 27, 27 + intRow * 27, null);
 					}else if(strBoard[intRow][intCol].equals("2")){
-						g.drawImage(blue, 280 + intCol * 36, intRow * 36, null);
+						g.drawImage(blue, 370 + intCol * 27, 27 + intRow * 27, null);
 					}
 				}
 			}
-			// this is just to test, will remove it later and replace with button
-			boolStartGame = true;
+			
 		}else{
-			// NOW THE GAME STARTS
-
-
-
-
-
-
-
-
-			//Draw array
-			for(intRow = 0; intRow < 20; intRow++){
-				for(intCol = 0; intCol < 20; intCol++){
-					if(strBoard[intRow][intCol].equals("0")){
-						g.drawImage(white, 280 + intCol * 36, intRow * 36, null);
-					}else if(strBoard[intRow][intCol].equals("1")){
-						g.drawImage(red, 280 + intCol * 36, intRow * 36, null);
-					}else if(strBoard[intRow][intCol].equals("2")){
-						g.drawImage(blue, 280 + intCol * 36, intRow * 36, null);
-					}
-				}
-			}
+			//game not started
 		}
 	}
-
 	//Constructor
 	public BlockusPanel(){
 		super();
