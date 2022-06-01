@@ -84,7 +84,7 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 					System.out.println("starting client....");
 					ssm = new SuperSocketMaster(strIp, intPort, this);
 					boolean boolConnect = ssm.connect();
-					System.out.println(ssm.connect());
+					System.out.println(boolConnect);
 					//if client connection true
 					if(boolConnect){
 						theLoginPanel.setVisible(false);
@@ -102,7 +102,7 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 					System.out.println("starting server....");
 					ssm = new SuperSocketMaster(intPort, this);
 					boolean boolConnect = ssm.connect();
-					System.out.println(ssm.connect());
+					System.out.println(boolConnect);
 					//if server connection true	
 					if(boolConnect){
 						theLoginPanel.setVisible(false);
