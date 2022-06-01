@@ -17,7 +17,6 @@ public class BlockusMenuPanel extends JPanel{
 		super.paintComponent(g);
 		//Draw words and image
 		g.drawImage(menu, 0, 0, null);
-		System.out.println("MenuScreen");
 	}
 	
 	

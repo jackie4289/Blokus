@@ -17,7 +17,6 @@ public class BlockusLoginPanel extends JPanel{
 		super.paintComponent(g);
 		//Draw words and image
 		g.drawImage(login, 0, 0, null);
-		System.out.println("Login screen");
 	}
 	
 	
