@@ -5,7 +5,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.io.*;
 
-public class Blockus implements ActionListener, MouseListener, KeyListener{
+public class Blockus implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
 	//Properties
 	JFrame theFrame = new JFrame("Blockus");
 	JTextField usernameField = new JTextField();
@@ -133,6 +133,15 @@ public class Blockus implements ActionListener, MouseListener, KeyListener{
 	}
 	public void mouseClicked(MouseEvent evt){
 
+	}
+	public void mouseMoved(MouseEvent evt){
+		if(theGamePanel.boolStartGame == true){
+			theGamePanelf.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+		}
+	}
+	public void mouseDragged(MouseEvent evt){
+		
 	}
 	public void keyReleased(KeyEvent evt){
 

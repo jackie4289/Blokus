@@ -33,6 +33,9 @@ public class BlockusPanel extends JPanel{
 	int P3Y;
 	int P4X;
 	int P4Y;
+	
+	int mouseX = 0;
+	int mouseY = 0;
 
 	// Strings
 	String intLine;
