@@ -7,29 +7,29 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.imageio.*;
 
-public class BlockusLoginPanel extends JPanel{
+public class BlokusMenuPanel extends JPanel{
 	//Properties
-	BufferedImage login = null;
+	BufferedImage menu = null;
 	
 	
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		//Draw words and image
-		g.drawImage(login, 0, 0, null);
+		g.drawImage(menu, 0, 0, null);
 	}
 	
 	
 	
 	
 	//Constructor
-	public BlockusLoginPanel(){
+	public BlokusMenuPanel(){
 		super();
 		//import images
 		try{
-			login = ImageIO.read(this.getClass().getResourceAsStream("login.png"));
+			menu = ImageIO.read(this.getClass().getResourceAsStream("menu.png"));
 		}catch(IOException e){
-			System.out.println("Invalid picture(login.png)");
+			System.out.println("Invalid picture(menu.png)");
 		}
 	}
 }
