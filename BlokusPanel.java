@@ -45,6 +45,8 @@ public class BlokusPanel extends JPanel{
 	BufferedImage white = null;
 	BufferedImage red = null;
 	BufferedImage blue = null;
+	BufferedImage green = null;
+	BufferedImage yellow = null;
 
 	//Methods
 	public void paintComponent(/*graphics variable*/Graphics g){
@@ -89,6 +91,10 @@ public class BlokusPanel extends JPanel{
 						g.drawImage(red, 370 + intCol * 27, 27 + intRow * 27, null);
 					}else if(strBoard[intRow][intCol].equals("2")){
 						g.drawImage(blue, 370 + intCol * 27, 27 + intRow * 27, null);
+					}else if(strBoard[intRow][intCol].equals("2")){
+						g.drawImage(green, 370 + intCol * 27, 27 + intRow * 27, null);
+					}else if(strBoard[intRow][intCol].equals("2")){
+						g.drawImage(yellow, 370 + intCol * 27, 27 + intRow * 27, null);
 					}
 				}
 			}
@@ -113,6 +119,16 @@ public class BlokusPanel extends JPanel{
 		}
 		try{
 			blue = ImageIO.read(this.getClass().getResourceAsStream("blueblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(blueblock.png)");
+		}
+		try{
+			yellow = ImageIO.read(this.getClass().getResourceAsStream("yellowblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(blueblock.png)");
+		}
+		try{
+			green = ImageIO.read(this.getClass().getResourceAsStream("greenblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(blueblock.png)");
 		}
