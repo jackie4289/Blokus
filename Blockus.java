@@ -126,6 +126,8 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 			}
 		}else if(evt.getSource() == serverRButton){
 			ipField.setText("localhost");
+		}else if(evt.getSource() == clientRButton){
+			ipField.setText("127.0.0.1");
 		}else if(evt.getSource() == sendTextField){
 			//Send Text
 			if(ssm != null){
