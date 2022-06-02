@@ -27,7 +27,7 @@ public class BlockusMenuPanel extends JPanel{
 		super();
 		//import images
 		try{
-			menu = ImageIO.read(new File("menu.png"));
+			menu = ImageIO.read(this.getClass().getResourceAsStream("menu.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(menu.png)");
 		}

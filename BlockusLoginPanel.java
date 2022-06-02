@@ -27,7 +27,7 @@ public class BlockusLoginPanel extends JPanel{
 		super();
 		//import images
 		try{
-			login = ImageIO.read(new File("login.png"));
+			login = ImageIO.read(this.getClass().getResourceAsStream("login.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(login.png)");
 		}

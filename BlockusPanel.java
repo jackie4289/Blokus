@@ -102,17 +102,17 @@ public class BlockusPanel extends JPanel{
 		super();
 		//import images
 		try{
-			white = ImageIO.read(new File("whiteblock.png"));
+			white = ImageIO.read(this.getClass().getResourceAsStream("whiteblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(whiteblock.png)");
 		}
 		try{
-			red = ImageIO.read(new File("redblock.png"));
+			red = ImageIO.read(this.getClass().getResourceAsStream("redblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(redblock.png)");
 		}
 		try{
-			blue = ImageIO.read(new File("blueblock.png"));
+			blue = ImageIO.read(this.getClass().getResourceAsStream("blueblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(blueblock.png)");
 		}
