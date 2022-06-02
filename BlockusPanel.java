@@ -52,7 +52,7 @@ public class BlockusPanel extends JPanel{
 		g.setColor(Color.BLACK);
 		g.drawRect(369, 26, 541, 541);
 		//ChatBox
-		g.drawRoundRect(370, 580, 540, 135, 20, 20);
+		g.drawRect(369, 580, 541, 135);
 		boolStartGame = true;
 		
 		if(boolStartGame == true){

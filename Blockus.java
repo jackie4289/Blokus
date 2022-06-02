@@ -4,6 +4,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import java.io.*;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Blockus implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
 	//Properties
@@ -11,9 +13,12 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 	JTextField usernameField = new JTextField();
 	JTextField ipField = new JTextField();
 	JTextField portField = new JTextField();
+	JTextField sendTextField = new JTextField();
 	JRadioButton serverRButton = new JRadioButton("Server");
 	JRadioButton clientRButton = new JRadioButton("Client");
 	ButtonGroup buttonGroup = new ButtonGroup();
+	JTextArea chatArea = new JTextArea();
+	JScrollPane chatScroll = new JScrollPane(chatArea);
 	BlockusPanel theGamePanel = new BlockusPanel();
 	BlockusMenuPanel theMenuPanel = new BlockusMenuPanel();
 	BlockusLoginPanel theLoginPanel = new BlockusLoginPanel();
@@ -91,6 +96,8 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 						theGamePanel.setVisible(true);
 						theFrame.setContentPane(theGamePanel);	
 						theGamePanel.boolStartGame = true;
+						chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
+						chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
 						System.out.println("Client connected!");
 					}else{
 						System.out.println("Client connect failed!");
@@ -103,12 +110,14 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 					ssm = new SuperSocketMaster(intPort, this);
 					boolean boolConnect = ssm.connect();
 					System.out.println(boolConnect);
-					//if server connection true	
+					//if server connection true
 					if(boolConnect){
 						theLoginPanel.setVisible(false);
 						theGamePanel.setVisible(true);
-						theFrame.setContentPane(theGamePanel);	
+						theFrame.setContentPane(theGamePanel);
 						theGamePanel.boolStartGame = true;
+						chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
+						chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
 						System.out.println("Server connected!");
 					}else{
 						System.out.println("Server connect failed!");
@@ -117,6 +126,22 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 			}
 		}else if(evt.getSource() == serverRButton){
 			ipField.setText("localhost");
+		}else if(evt.getSource() == sendTextField){
+			//Send Text
+			if(ssm != null){
+				//get time
+				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+				LocalTime localTime = LocalTime.now();
+				System.out.println(dtf.format(localTime));
+				//Send with name + time
+				ssm.sendText(dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText());
+				chatArea.append(dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText() + "\n");
+				sendTextField.setText("");
+			}
+		}else if(evt.getSource() == ssm){
+			//Recieve Text
+			chatArea.append(ssm.readText() + "\n");
+			chatArea.setCaretPosition(chatArea.getDocument().getLength());
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -160,11 +185,13 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 		theGamePanel.setLayout(null);
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
 		theGamePanel.setVisible(false);
+		//theMenuPanel.setVisible(true);
 		
 		//Menu Panel
 		theMenuPanel.setLayout(null);
 		theMenuPanel.setPreferredSize(new Dimension(1280, 720));
 		theMenuPanel.setVisible(true);
+		//theMenuPanel.setVisible(false);
 		
 		//Login Panel
 		theLoginPanel.setLayout(null);
@@ -228,6 +255,21 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 		buttonGroup.add(clientRButton);
 		buttonGroup.add(serverRButton);
 		
+		//Chat Box
+		chatScroll.setSize(541,110);
+		chatScroll.setLocation(370, 581);
+		chatScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		chatArea.setLineWrap(true);
+		chatArea.setEditable(false);
+		theGamePanel.add(chatScroll); 
+		
+		//Chat TextField
+		sendTextField.setSize(541, 24);
+		sendTextField.setLocation(370, 691);
+		sendTextField.addActionListener(this);
+		theGamePanel.add(sendTextField);
+		
+		//Pack Frame
 		theFrame.pack();
 		theFrame.setVisible(true);
 		theTimer.start();
