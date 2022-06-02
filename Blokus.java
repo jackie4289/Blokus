@@ -195,23 +195,23 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		//Game panel
 		theGamePanel.setLayout(null);
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
-		//theGamePanel.setVisible(false);
-		theGamePanel.setVisible(true);
+		theGamePanel.setVisible(false);
+		//theGamePanel.setVisible(true);
 		theGamePanel.setFocusable(true);
 		
 		//Menu Panel
 		theMenuPanel.setLayout(null);
 		theMenuPanel.setPreferredSize(new Dimension(1280, 720));
-		//theMenuPanel.setVisible(true);
-		theMenuPanel.setVisible(false);
+		theMenuPanel.setVisible(true);
+		//theMenuPanel.setVisible(false);
 		
 		//Login Panel
 		theLoginPanel.setLayout(null);
 		theLoginPanel.setPreferredSize(new Dimension(1280, 720));
 		theLoginPanel.setVisible(false);
 		
-		theFrame.setContentPane(theGamePanel);
-		//theFrame.setContentPane(theMenuPanel);
+		//theFrame.setContentPane(theGamePanel);
+		theFrame.setContentPane(theMenuPanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		theFrame.setResizable(false);
 		

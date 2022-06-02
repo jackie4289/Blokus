@@ -109,7 +109,7 @@ public class BlokusPanel extends JPanel{
 					}
 				}
 			}
-			PieceGrid = BlokObject.PickPiece(intPiece);
+			//PieceGrid = BlokObject.PickPiece(intPiece);
 			
 		}else{
 			//game not started
