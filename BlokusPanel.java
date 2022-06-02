@@ -12,6 +12,7 @@ public class BlokusPanel extends JPanel{
 	// Arrays
 	String strBoard[][] = new String[20][20];
 	String intARow[];
+	int PieceGrid[][] = new int [4][4];
 	// 0 = EMPTY
 	// 1 = RED (P1)
 	// 2 = BLUE (P2)
@@ -52,6 +53,7 @@ public class BlokusPanel extends JPanel{
 
 	//Methods
 	public void paintComponent(/*graphics variable*/Graphics g){
+		Blok BlokObject = new Blok();
 		super.paintComponent(g);
 		g.setColor(Color.BLACK);
 		g.drawRect(369, 26, 541, 541);
@@ -100,6 +102,7 @@ public class BlokusPanel extends JPanel{
 					}
 				}
 			}
+			PieceGrid = BlokObject.PickPiece(intPiece);
 			
 		}else{
 			//game not started
