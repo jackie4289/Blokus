@@ -15,6 +15,8 @@ public class BlokusPanel extends JPanel{
 	// 0 = EMPTY
 	// 1 = RED (P1)
 	// 2 = BLUE (P2)
+	// 3 = GREEN (P3)
+	// 4 = YELLOW (P4)
 	// Booleans
 	boolean boolStartGame = false;
 	boolean boolYourTurn = true; // we can change this later so that bool value is decided within later code
@@ -93,9 +95,9 @@ public class BlokusPanel extends JPanel{
 						g.drawImage(red, 370 + intCol * 27, 27 + intRow * 27, null);
 					}else if(strBoard[intRow][intCol].equals("2")){
 						g.drawImage(blue, 370 + intCol * 27, 27 + intRow * 27, null);
-					}else if(strBoard[intRow][intCol].equals("2")){
+					}else if(strBoard[intRow][intCol].equals("3")){
 						g.drawImage(green, 370 + intCol * 27, 27 + intRow * 27, null);
-					}else if(strBoard[intRow][intCol].equals("2")){
+					}else if(strBoard[intRow][intCol].equals("4")){
 						g.drawImage(yellow, 370 + intCol * 27, 27 + intRow * 27, null);
 					}
 				}
