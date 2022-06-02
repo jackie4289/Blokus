@@ -7,9 +7,9 @@ import java.io.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Blockus implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
+public class Blokus implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
 	//Properties
-	JFrame theFrame = new JFrame("Blockus");
+	JFrame theFrame = new JFrame("Blokus");
 	JTextField usernameField = new JTextField();
 	JTextField ipField = new JTextField();
 	JTextField portField = new JTextField();
@@ -19,9 +19,9 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 	ButtonGroup buttonGroup = new ButtonGroup();
 	JTextArea chatArea = new JTextArea();
 	JScrollPane chatScroll = new JScrollPane(chatArea);
-	BlockusPanel theGamePanel = new BlockusPanel();
-	BlockusMenuPanel theMenuPanel = new BlockusMenuPanel();
-	BlockusLoginPanel theLoginPanel = new BlockusLoginPanel();
+	BlokusPanel theGamePanel = new BlokusPanel();
+	BlokusMenuPanel theMenuPanel = new BlokusMenuPanel();
+	BlokusLoginPanel theLoginPanel = new BlokusLoginPanel();
 	Timer theTimer = new Timer(1000/60, this);
 	SuperSocketMaster ssm;
 	Block BlockModel;
@@ -182,7 +182,7 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 
 
 	//Constuctor
-	public Blockus(){
+	public Blokus(){
 		//Game panel
 		theGamePanel.setLayout(null);
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
@@ -279,6 +279,6 @@ public class Blockus implements ActionListener, MouseListener, MouseMotionListen
 
 	//Main Program
 	public static void main(String[] args){
-		Blockus Block = new Blockus();
+		Blokus Block = new Blokus();
 	}
 }

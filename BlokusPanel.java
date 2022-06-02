@@ -7,7 +7,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.imageio.*;
 
-public class BlockusPanel extends JPanel{
+public class BlokusPanel extends JPanel{
 	//Properties
 	// Arrays
 	String strBoard[][] = new String[20][20];
@@ -98,7 +98,7 @@ public class BlockusPanel extends JPanel{
 		}
 	}
 	//Constructor
-	public BlockusPanel(){
+	public BlokusPanel(){
 		super();
 		//import images
 		try{
