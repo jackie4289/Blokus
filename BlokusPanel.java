@@ -60,6 +60,11 @@ public class BlokusPanel extends JPanel{
 		//ChatBox
 		g.drawRect(369, 580, 541, 135);
 		boolStartGame = true;
+		//Player Boxes 
+		//P1 (Red)
+		g.drawRect(5, 5, 360, 350);
+		//P2 (Blue)
+		g.drawRect(5, 370, 360, 350);
 		
 		if(boolStartGame == true){
 			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
