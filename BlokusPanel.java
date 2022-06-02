@@ -17,7 +17,8 @@ public class BlokusPanel extends JPanel{
 	// 2 = BLUE (P2)
 	// Booleans
 	boolean boolStartGame = false;
-
+	boolean boolYourTurn = true; // we can change this later so that bool value is decided within later code
+	
 	// Integers
 	int intRow;
 	int intCol;
@@ -36,6 +37,7 @@ public class BlokusPanel extends JPanel{
 	
 	int mouseX = 0;
 	int mouseY = 0;
+	int intPiece = 0;
 
 	// Strings
 	String intLine;

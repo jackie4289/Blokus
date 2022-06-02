@@ -162,9 +162,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 
 	}
 	public void mouseMoved(MouseEvent evt){
-		if(theGamePanel.boolStartGame == true){
-			theGamePanel.mouseX = evt.getX();
-			theGamePanel.mouseY = evt.getY();
+		if(theGamePanel.boolYourTurn == true){
+			if(theGamePanel.boolStartGame == true){
+				theGamePanel.mouseX = evt.getX();
+				theGamePanel.mouseY = evt.getY();
+			}
 		}
 	}
 	public void mouseDragged(MouseEvent evt){
