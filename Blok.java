@@ -1,8 +1,7 @@
 // 
-public class Block{
+public class Blok{
 	//Properties
 	int playerNum;
-	int pieceType;
 	int column;
 	int row;
 	int rotation;
@@ -16,7 +15,7 @@ public class Block{
 	public void Read_ResetBoard(){
 
 	}
-	public void PickPiece(){
+	public int[][] PickPiece(int pieceType){
 		for(intCount = 0;intCount < 4;intCount++){
 			for(intCount2 = 0;intCount2 < 4; intCount++){
 				intBoard[intCount][intCount2] = 0;
@@ -148,6 +147,7 @@ public class Block{
 			intBoard[0][2] = 1;
 			intBoard[1][2] = 1;
 		}
+		return intBoard;
 	}
 	public void rotatePiece(){
 		for(intCount = 0;intCount < 4;intCount++){
@@ -183,6 +183,6 @@ public class Block{
 	
 	
 	//Constructor
-	public Block(){
+	public Blok(){
 	}
 }
