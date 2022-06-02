@@ -7,7 +7,7 @@ import java.io.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Blokus implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
+public class Blokus implements ActionListener, MouseListener, MouseMotionListener, KeyListener, FocusListener{
 	//Properties
 	JFrame theFrame = new JFrame("Blokus");
 	JTextField usernameField = new JTextField();
@@ -66,14 +66,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			
 			//strIp value
 			strIp = ipField.getText();
-			System.out.println("IP: " + strIp);
 			if(strIp.length() != 0){
 				boolIp = true;
 			}
 			
 			//strUsername value
 			strUsername = usernameField.getText();
-			System.out.println("Username: " + strUsername);
 			if(strUsername.length() != 0){
 				boolUsername = true;
 			}
@@ -139,6 +137,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				ssm.sendText(dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText());
 				chatArea.append(dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText() + "\n");
 				sendTextField.setText("");
+				//Focus cycle
+				sendTextField.setFocusable(false);
+				sendTextField.setFocusable(true);
 			}
 		}else if(evt.getSource() == ssm){
 			//Recieve Text
@@ -181,6 +182,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	public void keyTyped(KeyEvent evt){
 
 	}
+	public void focusLost(FocusEvent evt){
+		
+	}
+	public void focusGained(FocusEvent evt){
+		
+	}
 
 
 	//Constuctor
@@ -188,21 +195,23 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		//Game panel
 		theGamePanel.setLayout(null);
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
-		theGamePanel.setVisible(false);
-		//theMenuPanel.setVisible(true);
+		//theGamePanel.setVisible(false);
+		theGamePanel.setVisible(true);
+		theGamePanel.setFocusable(true);
 		
 		//Menu Panel
 		theMenuPanel.setLayout(null);
 		theMenuPanel.setPreferredSize(new Dimension(1280, 720));
-		theMenuPanel.setVisible(true);
-		//theMenuPanel.setVisible(false);
+		//theMenuPanel.setVisible(true);
+		theMenuPanel.setVisible(false);
 		
 		//Login Panel
 		theLoginPanel.setLayout(null);
 		theLoginPanel.setPreferredSize(new Dimension(1280, 720));
 		theLoginPanel.setVisible(false);
 		
-		theFrame.setContentPane(theMenuPanel);
+		theFrame.setContentPane(theGamePanel);
+		//theFrame.setContentPane(theMenuPanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		theFrame.setResizable(false);
 		
@@ -270,6 +279,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		//Chat TextField
 		sendTextField.setSize(541, 24);
 		sendTextField.setLocation(370, 691);
+		sendTextField.setForeground(Color.BLACK);
+		sendTextField.setBackground(new Color(157, 156, 154));
+		sendTextField.addFocusListener(this);
 		sendTextField.addActionListener(this);
 		theGamePanel.add(sendTextField);
 		
