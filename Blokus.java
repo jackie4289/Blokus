@@ -18,6 +18,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	int intPort;
 	String strIp;
 	String strUsername;
+	String strTemp;
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
@@ -104,7 +105,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						portField.setEnabled(false);
 						serverRButton.setEnabled(false);
 						clientRButton.setEnabled(false);
-						theLoginPanel.intConnected = 1;
 						ssm.sendText(strUsername);
 					}else{
 						System.out.println("Client connect failed!");
@@ -160,6 +160,10 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				sendTextField.setFocusable(false);
 				sendTextField.setFocusable(true);
 			}else if(ssm!= null){
+				//Send players to clients
+						if(theLoginPanel.strName[0] != null){
+							ssm.sendText("P1. "+ theLoginPanel.strName[0]);
+						}
 			 }
 					
 				
@@ -168,7 +172,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				//Recieve Text
 				chatArea.append(ssm.readText() + "\n");
 				chatArea.setCaretPosition(chatArea.getDocument().getLength());
-			}else{
+			}else if(serverRButton.isSelected()){
+				//Recieve players to server
 				theLoginPanel.strName[theLoginPanel.intConnected] = ssm.readText();
 				theLoginPanel.intConnected++;
 			}
