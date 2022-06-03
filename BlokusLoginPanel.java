@@ -11,13 +11,16 @@ public class BlokusLoginPanel extends JPanel{
 	//Properties
 	BufferedImage login = null;
 	String strName[] = new String[3];
+	String strTemp = "P2: jackie";
 	int intConnected = 0;
+
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		//Draw words and image
 		g.drawImage(login, 0, 0, null);
 		g.setColor(Color.BLACK);
+		/*
 		if(intConnected == 1){
 			g.drawString("" + strName[0],1000, 290);
 		}else if(intConnected == 2){
@@ -33,7 +36,17 @@ public class BlokusLoginPanel extends JPanel{
 			g.drawString("" + strName[2],1000, 395);
 			g.drawString("" + strName[3],1000, 450);
 		}
-	
+		*/
+		
+		if(strTemp != null && strTemp.substring(0,3) == "P1: "){
+			g.drawString("" + strTemp,1000, 290);
+		}else if(strTemp != null && strTemp.substring(0,3) == "P2: "){
+			g.drawString("" + strTemp,1000, 340);
+		}else if(strTemp != null && strTemp.substring(0,3) == "P3: "){
+			g.drawString("" + strTemp,1000, 395);
+		}else if(strTemp != null && strTemp.substring(0,3) == "P4: "){
+			g.drawString("" + strTemp,1000, 450);
+		}
 	}
 	
 	

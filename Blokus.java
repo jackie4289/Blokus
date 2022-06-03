@@ -18,7 +18,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	int intPort;
 	String strIp;
 	String strUsername;
-	String strTemp;
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
@@ -160,10 +159,13 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				sendTextField.setFocusable(false);
 				sendTextField.setFocusable(true);
 			}else if(ssm!= null){
-				//Send players to clients
-						if(theLoginPanel.strName[0] != null){
-							ssm.sendText("P1. "+ theLoginPanel.strName[0]);
-						}
+				//Send player names to clients from server
+				if(serverRButton.isSelected() && theLoginPanel.strName[theLoginPanel.intConnected] != null){
+					ssm.sendText("P1. " + theLoginPanel.strName[0]);
+					ssm.sendText("P2. " + theLoginPanel.strName[1]);
+					ssm.sendText("P3. " + theLoginPanel.strName[2]);
+					ssm.sendText("P4. " + theLoginPanel.strName[3]);
+				}
 			 }
 					
 				
@@ -173,9 +175,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				chatArea.append(ssm.readText() + "\n");
 				chatArea.setCaretPosition(chatArea.getDocument().getLength());
 			}else if(serverRButton.isSelected()){
-				//Recieve players to server
+				//Recieve player names to server
 				theLoginPanel.strName[theLoginPanel.intConnected] = ssm.readText();
+			//	theLoginPanel.strTemp = theLoginPanel.strName[theLoginPanel.intConnected];
 				theLoginPanel.intConnected++;
+				//Recieve player names from server to clients
+			//	theLoginPanel.strTemp = ssm.readText();
 			}
 				
 				
