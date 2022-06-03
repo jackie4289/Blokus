@@ -9,16 +9,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Blokus implements ActionListener, MouseListener, MouseMotionListener, KeyListener, FocusListener{
 	//Properties
-	JFrame theFrame = new JFrame("Blokus");
-	JTextField usernameField = new JTextField();
-	JTextField ipField = new JTextField();
-	JTextField portField = new JTextField();
-	JTextField sendTextField = new JTextField();
-	JRadioButton serverRButton = new JRadioButton("Server");
-	JRadioButton clientRButton = new JRadioButton("Client");
-	ButtonGroup buttonGroup = new ButtonGroup();
-	JTextArea chatArea = new JTextArea();
-	JScrollPane chatScroll = new JScrollPane(chatArea);
 	BlokusPanel theGamePanel = new BlokusPanel();
 	BlokusMenuPanel theMenuPanel = new BlokusMenuPanel();
 	BlokusLoginPanel theLoginPanel = new BlokusLoginPanel();
@@ -33,9 +23,20 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	boolean boolUsername = false;
 
 	//J Properties
-	JButton startButton = new JButton("Start");
+	JButton loginButton = new JButton("Login");
 	JButton quitButton = new JButton("Quit");
 	JButton connectButton = new JButton ("Connect!");
+	JButton startButton = new JButton("Start!");
+	JFrame theFrame = new JFrame("Blokus");
+	JTextField usernameField = new JTextField();
+	JTextField ipField = new JTextField();
+	JTextField portField = new JTextField();
+	JTextField sendTextField = new JTextField();
+	JRadioButton serverRButton = new JRadioButton("Server");
+	JRadioButton clientRButton = new JRadioButton("Client");
+	ButtonGroup buttonGroup = new ButtonGroup();
+	JTextArea chatArea = new JTextArea();
+	JScrollPane chatScroll = new JScrollPane(chatArea);
 	
 	//Methods
 	public void actionPerformed(ActionEvent evt){
@@ -43,7 +44,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theGamePanel.repaint();
 		}else if(evt.getSource() == quitButton){
 			System.exit(0);
-		}else if(evt.getSource() == startButton){
+		}else if(evt.getSource() == loginButton){
 			theMenuPanel.setVisible(false);
 			theLoginPanel.setVisible(true);
 			//FOR TESTING CHANGE TO (theGamePanel)
@@ -90,13 +91,16 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					System.out.println(boolConnect);
 					//if client connection true
 					if(boolConnect){
-						theLoginPanel.setVisible(false);
-						theGamePanel.setVisible(true);
-						theFrame.setContentPane(theGamePanel);	
-						theGamePanel.boolStartGame = true;
-						chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
-						chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
+					//	theLoginPanel.setVisible(false);
+					//	theGamePanel.setVisible(true);
+					//	theFrame.setContentPane(theGamePanel);	
+					//	theGamePanel.boolStartGame = true;
+					//	chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
+					//	chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
 						System.out.println("Client connected!");
+						connectButton.setEnabled(false);
+						ssm.sendText("name." + strUsername);
+						
 					}else{
 						System.out.println("Client connect failed!");
 					}
@@ -110,13 +114,17 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					System.out.println(boolConnect);
 					//if server connection true
 					if(boolConnect){
-						theLoginPanel.setVisible(false);
-						theGamePanel.setVisible(true);
-						theFrame.setContentPane(theGamePanel);
-						theGamePanel.boolStartGame = true;
-						chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
-						chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
+					//	theLoginPanel.setVisible(false);
+					//	theGamePanel.setVisible(true);
+					//	theFrame.setContentPane(theGamePanel);
+					//	theGamePanel.boolStartGame = true;
+					//	chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
+					//	chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
 						System.out.println("Server connected!");
+						startButton.setVisible(true);
+						connectButton.setEnabled(false);
+						startButton.setEnabled(false);
+						
 					}else{
 						System.out.println("Server connect failed!");
 					}
@@ -215,11 +223,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		theFrame.setResizable(false);
 		
-		//Start Button Menu
-		startButton.setSize(300, 50);
-		startButton.setLocation(170, 500);
-		startButton.addActionListener(this);
-		theMenuPanel.add(startButton);
+		//Login Button Menu
+		loginButton.setSize(300, 50);
+		loginButton.setLocation(170, 500);
+		loginButton.addActionListener(this);
+		theMenuPanel.add(loginButton);
 		
 		//Quit Button Menu
 		quitButton.setSize(300, 50);
@@ -232,6 +240,13 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		connectButton.setLocation(556, 510);
 		connectButton.addActionListener(this);
 		theLoginPanel.add(connectButton);
+		
+		//Start Button Login
+		startButton.setSize(272, 42);
+		startButton.setLocation(947, 485);
+		startButton.addActionListener(this);
+		theLoginPanel.add(startButton);
+		startButton.setVisible(false);
 		
 		//username Textfield
 		usernameField = new JTextField();
@@ -262,6 +277,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		clientRButton.setSize(100,25);
 		clientRButton.setLocation(687,468);
 		clientRButton.setOpaque(false);
+		serverRButton.addActionListener(this);
 		theLoginPanel.add(clientRButton);
 		
 		//buttonGroups
@@ -269,7 +285,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		buttonGroup.add(serverRButton);
 		
 		//Chat Box
-		chatScroll.setSize(541,110);
+		chatScroll.setSize(540,110);
 		chatScroll.setLocation(370, 581);
 		chatScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		chatArea.setLineWrap(true);
@@ -277,7 +293,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theGamePanel.add(chatScroll); 
 		
 		//Chat TextField
-		sendTextField.setSize(541, 24);
+		sendTextField.setSize(540, 24);
 		sendTextField.setLocation(370, 691);
 		sendTextField.setForeground(Color.BLACK);
 		sendTextField.setBackground(new Color(157, 156, 154));

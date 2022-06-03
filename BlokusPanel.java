@@ -14,10 +14,10 @@ public class BlokusPanel extends JPanel{
 	String intARow[];
 	int PieceGrid[][] = new int [4][4];
 	// 0 = EMPTY
-	// 1 = RED (P1)
-	// 2 = BLUE (P2)
-	// 3 = GREEN (P3)
-	// 4 = YELLOW (P4)
+	// 1 = YELLOW (P1)
+	// 2 = GREEN (P2)
+	// 3 = BLUE (P3)
+	// 4 = RED (P4)
 	// Booleans
 	boolean boolStartGame = false;
 	boolean boolYourTurn = true; // we can change this later so that bool value is decided within later code
@@ -45,7 +45,11 @@ public class BlokusPanel extends JPanel{
 	// Strings
 	String intLine;
 	String strRow;
-
+	String strP1Name;
+	String strP2Name;
+	String strP3Name;
+	String strP4Name;
+	
 	// Images
 	BufferedImage white = null;
 	BufferedImage red = null;
@@ -57,17 +61,68 @@ public class BlokusPanel extends JPanel{
 	public void paintComponent(/*graphics variable*/Graphics g){
 		Blok BlokObject = new Blok();
 		super.paintComponent(g);
+		//UI
+		//P1 (Yellow)
+		g.setColor(new Color(255, 208, 132));
+		g.fillRect(0, 0, 640, 360);
+		g.setColor(new Color(204, 166, 105));
+		g.fillRect(350, 0, 290, 360);
+		//P1 NameCard
+		g.setColor(new Color(178, 145, 92));
+		g.fillRect(0, 0, 350, 40);
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+		g.drawString("P1: " + strP1Name, 15, 30);
+		
+		//P2 (Green)
+		g.setColor(new Color(98, 218, 166));
+		g.fillRect(640, 0, 640, 360);
+		g.setColor(new Color(75, 166, 127));
+		g.fillRect(640, 0, 290, 360);
+		//P2 NameCard
+		g.setColor(new Color(63, 140, 106));
+		g.fillRect(930, 0, 350, 40);
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+		g.drawString("P2: " + strP1Name, 945, 30);
+		
+		//P3 (Blue)
+		g.setColor(new Color(115, 217, 219));
+		g.fillRect(640, 360, 640, 360);
+		g.setColor(new Color(88, 166, 167));
+		g.fillRect(640, 360, 290, 360);
+		//P3 NameCard
+		g.setColor(new Color(74, 141, 142));
+		g.fillRect(930, 680, 350, 40);
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+		g.drawString("P3: " + strP4Name, 945, 710);
+		
+		//P4 (Red)
+		g.setColor(new Color(226, 97, 95));
+		g.fillRect(0, 360, 640, 360);
+		g.setColor(new Color(185, 94, 93));
+		g.fillRect(350, 360, 290, 360);
+		//P4 NameCard
+		g.setColor(new Color(149, 64, 62));
+		g.fillRect(0, 680, 350, 40);
+		g.setColor(Color.BLACK);
+		g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+		g.drawString("P4: " + strP4Name, 15, 710);
+		
+		//Board
 		g.setColor(Color.BLACK);
 		g.drawRect(369, 26, 541, 541);
+		g.drawRect(350, 0, 580, 719);
 		//ChatBox
 		g.drawRect(369, 580, 541, 135);
-		boolStartGame = true;
-		//Player Boxes 
-		//P1 (Red)
-		g.drawRect(5, 5, 360, 350);
-		//P2 (Blue)
-		g.drawRect(5, 370, 360, 350);
+		//Logo
+		g.drawString("BLOKUS", 588, 23);
 		
+
+		
+		//GAME
+		boolStartGame = true;
 		if(boolStartGame == true){
 			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
 			// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
@@ -99,13 +154,13 @@ public class BlokusPanel extends JPanel{
 					if(strBoard[intRow][intCol].equals("0")){
 						g.drawImage(white, 370 + intCol * 27, 27 + intRow * 27, null);
 					}else if(strBoard[intRow][intCol].equals("1")){
-						g.drawImage(red, 370 + intCol * 27, 27 + intRow * 27, null);
-					}else if(strBoard[intRow][intCol].equals("2")){
-						g.drawImage(blue, 370 + intCol * 27, 27 + intRow * 27, null);
-					}else if(strBoard[intRow][intCol].equals("3")){
-						g.drawImage(green, 370 + intCol * 27, 27 + intRow * 27, null);
-					}else if(strBoard[intRow][intCol].equals("4")){
 						g.drawImage(yellow, 370 + intCol * 27, 27 + intRow * 27, null);
+					}else if(strBoard[intRow][intCol].equals("2")){
+						g.drawImage(green, 370 + intCol * 27, 27 + intRow * 27, null);
+					}else if(strBoard[intRow][intCol].equals("3")){
+						g.drawImage(blue, 370 + intCol * 27, 27 + intRow * 27, null);
+					}else if(strBoard[intRow][intCol].equals("4")){
+						g.drawImage(red, 370 + intCol * 27, 27 + intRow * 27, null);
 					}
 				}
 			}
