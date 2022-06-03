@@ -1,2 +1,2 @@
-# Blockus
+# Blokus
  CPT-2022
