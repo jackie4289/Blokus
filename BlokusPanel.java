@@ -20,6 +20,7 @@ public class BlokusPanel extends JPanel{
 	// 4 = RED (P4)
 	// Booleans
 	boolean boolStartGame = false;
+	boolean boolDragAndDrop = false; // read below
 	boolean boolYourTurn = true; // we can change this later so that bool value is decided within later code
 	
 	// Integers
@@ -126,7 +127,7 @@ public class BlokusPanel extends JPanel{
 		if(boolStartGame == true){
 			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
 			// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
-
+			
 			//Import Array
 			BufferedReader board = null;
 			try{
@@ -164,7 +165,35 @@ public class BlokusPanel extends JPanel{
 					}
 				}
 			}
-			//PieceGrid = BlokObject.PickPiece(intPiece);
+			PieceGrid = BlokObject.PickPiece(intPiece);
+			
+			if(boolYourTurn == true){
+				if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
+					
+					// Corners for boarder: g.drawRect(369, 26, 541, 541);
+					// So all four: (369,26)            (910,26)
+					//              (369,567)           (910,567)
+					//
+					// CURSOR WILL CONTROL BOTTOM LEFT CORNER OF THE PIECE
+					// (54,81)
+					
+					if(mouseX < 369 || mouseX > 910){
+						if(mouseY < 26 || mouseY > 567){
+							for(intCount = 0; intCount < 4; intCount++){
+								System.out.println();
+								for(intCount2 = 0; intCount2 < 4; intCount2++){
+									System.out.print(PieceGrid[intCount][intCount2]);
+									if(PieceGrid[intCount][intCount2] == 1){
+										g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
+									}
+								}
+							}
+							
+						}
+					}
+					
+				}
+			}
 			
 		}else{
 			//game not started

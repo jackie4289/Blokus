@@ -228,6 +228,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theGamePanel.setLayout(null);
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
 		theGamePanel.setVisible(false);
+		theGamePanel.addMouseMotionListener(this);
+		theGamePanel.addMouseListener(this);
+		theGamePanel.addKeyListener(this);
 		//theGamePanel.setVisible(true);
 		
 		//Menu Panel
