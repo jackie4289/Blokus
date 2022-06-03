@@ -7,7 +7,7 @@ import java.io.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Blokus implements ActionListener, MouseListener, MouseMotionListener, KeyListener, FocusListener{
+public class Blokus implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
 	//Properties
 	BlokusPanel theGamePanel = new BlokusPanel();
 	BlokusMenuPanel theMenuPanel = new BlokusMenuPanel();
@@ -42,14 +42,13 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			theGamePanel.repaint();
+			theLoginPanel.repaint();
 		}else if(evt.getSource() == quitButton){
 			System.exit(0);
 		}else if(evt.getSource() == loginButton){
 			theMenuPanel.setVisible(false);
 			theLoginPanel.setVisible(true);
-			//FOR TESTING CHANGE TO (theGamePanel)
 			theFrame.setContentPane(theLoginPanel);		
-			//theFrame.setContentPane(theGamePanel);		
 		}else if(evt.getSource() == connectButton){
 			boolPort = false;
 			boolIp = false;
@@ -98,9 +97,15 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					//	chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
 					//	chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
 						System.out.println("Client connected!");
+						//disable all fields and buttons and wait for players
 						connectButton.setEnabled(false);
+						usernameField.setEnabled(false);
+						ipField.setEnabled(false);
+						portField.setEnabled(false);
+						serverRButton.setEnabled(false);
+						clientRButton.setEnabled(false);
+						theLoginPanel.intConnected++;
 						ssm.sendText("name." + strUsername);
-						
 					}else{
 						System.out.println("Client connect failed!");
 					}
@@ -121,10 +126,17 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					//	chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
 					//	chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
 						System.out.println("Server connected!");
-						startButton.setVisible(true);
 						connectButton.setEnabled(false);
+						usernameField.setEnabled(false);
+						ipField.setEnabled(false);
+						portField.setEnabled(false);
+						serverRButton.setEnabled(false);
+						clientRButton.setEnabled(false);
+						startButton.setVisible(true);
 						startButton.setEnabled(false);
-						
+						theLoginPanel.strP1Name = strUsername;
+						theGamePanel.strP1Name = strUsername;
+						theLoginPanel.intConnected++;
 					}else{
 						System.out.println("Server connect failed!");
 					}
@@ -136,7 +148,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			ipField.setText("127.0.0.1");
 		}else if(evt.getSource() == sendTextField){
 			//Send Text
-			if(ssm != null){
+			if(ssm != null && theGamePanel.boolStartGame == true){
 				//get time
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 				LocalTime localTime = LocalTime.now();
@@ -148,7 +160,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				//Focus cycle
 				sendTextField.setFocusable(false);
 				sendTextField.setFocusable(true);
-			}
+			}else if(ssm!= null){
+				
 		}else if(evt.getSource() == ssm){
 			//Recieve Text
 			chatArea.append(ssm.readText() + "\n");
@@ -190,13 +203,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	public void keyTyped(KeyEvent evt){
 
 	}
-	public void focusLost(FocusEvent evt){
-		
-	}
-	public void focusGained(FocusEvent evt){
-		
-	}
-
 
 	//Constuctor
 	public Blokus(){
@@ -205,7 +211,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
 		theGamePanel.setVisible(false);
 		//theGamePanel.setVisible(true);
-		theGamePanel.setFocusable(true);
 		
 		//Menu Panel
 		theMenuPanel.setLayout(null);
@@ -242,8 +247,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theLoginPanel.add(connectButton);
 		
 		//Start Button Login
-		startButton.setSize(272, 42);
-		startButton.setLocation(947, 485);
+		startButton.setSize(271, 42);
+		startButton.setLocation(948, 485);
 		startButton.addActionListener(this);
 		theLoginPanel.add(startButton);
 		startButton.setVisible(false);
@@ -277,7 +282,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		clientRButton.setSize(100,25);
 		clientRButton.setLocation(687,468);
 		clientRButton.setOpaque(false);
-		serverRButton.addActionListener(this);
+		clientRButton.addActionListener(this);
 		theLoginPanel.add(clientRButton);
 		
 		//buttonGroups
@@ -297,7 +302,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		sendTextField.setLocation(370, 691);
 		sendTextField.setForeground(Color.BLACK);
 		sendTextField.setBackground(new Color(157, 156, 154));
-		sendTextField.addFocusListener(this);
 		sendTextField.addActionListener(this);
 		theGamePanel.add(sendTextField);
 		
