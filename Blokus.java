@@ -104,8 +104,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						portField.setEnabled(false);
 						serverRButton.setEnabled(false);
 						clientRButton.setEnabled(false);
-						theLoginPanel.intConnected++;
-						ssm.sendText("name." + strUsername);
+						theLoginPanel.intConnected = 1;
+						ssm.sendText(strUsername);
 					}else{
 						System.out.println("Client connect failed!");
 					}
@@ -134,8 +134,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						clientRButton.setEnabled(false);
 						startButton.setVisible(true);
 						startButton.setEnabled(false);
-						theLoginPanel.strP1Name = strUsername;
-						theGamePanel.strP1Name = strUsername;
+						theLoginPanel.strName[0] = strUsername;
 						theLoginPanel.intConnected++;
 					}else{
 						System.out.println("Server connect failed!");
@@ -161,11 +160,20 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				sendTextField.setFocusable(false);
 				sendTextField.setFocusable(true);
 			}else if(ssm!= null){
+			 }
+					
 				
 		}else if(evt.getSource() == ssm){
-			//Recieve Text
-			chatArea.append(ssm.readText() + "\n");
-			chatArea.setCaretPosition(chatArea.getDocument().getLength());
+			if(theGamePanel.boolStartGame == true){
+				//Recieve Text
+				chatArea.append(ssm.readText() + "\n");
+				chatArea.setCaretPosition(chatArea.getDocument().getLength());
+			}else{
+				theLoginPanel.strName[theLoginPanel.intConnected] = ssm.readText();
+				theLoginPanel.intConnected++;
+			}
+				
+				
 		}
 	}
 	public void mouseExited(MouseEvent evt){
