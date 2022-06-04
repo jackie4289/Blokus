@@ -10,8 +10,8 @@ import javax.imageio.*;
 public class BlokusLoginPanel extends JPanel{
 	//Properties
 	BufferedImage login = null;
-	String strName[] = new String[3];
-	String strTemp = "P2: jackie";
+	String strName[] = new String[4];
+	String strTemp;
 	int intConnected = 0;
 
 	//Methods
@@ -20,37 +20,21 @@ public class BlokusLoginPanel extends JPanel{
 		//Draw words and image
 		g.drawImage(login, 0, 0, null);
 		g.setColor(Color.BLACK);
-		/*
-		if(intConnected == 1){
-			g.drawString("" + strName[0],1000, 290);
-		}else if(intConnected == 2){
-			g.drawString("" + strName[0],1000, 290);
-			g.drawString("" + strName[1],1000, 340);
-		}else if(intConnected == 3){
-			g.drawString("" + strName[0],1000, 290);
-			g.drawString("" + strName[1],1000, 340);
-			g.drawString("" + strName[2],1000, 395);
-		}else if(intConnected == 4){
-			g.drawString("" + strName[0],1000, 290);
-			g.drawString("" + strName[1],1000, 340);
-			g.drawString("" + strName[2],1000, 395);
-			g.drawString("" + strName[3],1000, 450);
+		//Print player list
+		g.setFont(new Font("TimesRoman", Font.BOLD, 25));
+		if(strName[0] != null){
+			g.drawString("" + strName[0],1000, 310);
 		}
-		*/
-		
-		if(strTemp != null && strTemp.substring(0,3) == "P1: "){
-			g.drawString("" + strTemp,1000, 290);
-		}else if(strTemp != null && strTemp.substring(0,3) == "P2: "){
-			g.drawString("" + strTemp,1000, 340);
-		}else if(strTemp != null && strTemp.substring(0,3) == "P3: "){
-			g.drawString("" + strTemp,1000, 395);
-		}else if(strTemp != null && strTemp.substring(0,3) == "P4: "){
-			g.drawString("" + strTemp,1000, 450);
+		if(strName[1] != null){
+			g.drawString("" + strName[1],1000, 363);
 		}
+		if(strName[2] != null){
+			g.drawString("" + strName[2],1000, 416);
+		}
+		if(strName[3] != null){
+			g.drawString("" + strName[3],1000, 469);
+		}	
 	}
-	
-	
-	
 	
 	//Constructor
 	public BlokusLoginPanel(){

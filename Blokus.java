@@ -16,11 +16,15 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	SuperSocketMaster ssm;
 	Block BlockModel;
 	int intPort;
+	int intConnected = 0;
 	String strIp;
 	String strUsername;
+	String strRecieve;
+	String strMsgSplit[];
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
+	boolean boolWaiting = false;
 
 	//J Properties
 	JButton loginButton = new JButton("Login");
@@ -90,12 +94,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					System.out.println(boolConnect);
 					//if client connection true
 					if(boolConnect){
-					//	theLoginPanel.setVisible(false);
-					//	theGamePanel.setVisible(true);
-					//	theFrame.setContentPane(theGamePanel);	
-					//	theGamePanel.boolStartGame = true;
-					//	chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
-					//	chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
 						System.out.println("Client connected!");
 						//disable all fields and buttons and wait for players
 						connectButton.setEnabled(false);
@@ -104,6 +102,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						portField.setEnabled(false);
 						serverRButton.setEnabled(false);
 						clientRButton.setEnabled(false);
+						//1send name to server
 						ssm.sendText(strUsername);
 					}else{
 						System.out.println("Client connect failed!");
@@ -118,13 +117,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					System.out.println(boolConnect);
 					//if server connection true
 					if(boolConnect){
-					//	theLoginPanel.setVisible(false);
-					//	theGamePanel.setVisible(true);
-					//	theFrame.setContentPane(theGamePanel);
-					//	theGamePanel.boolStartGame = true;
-					//	chatArea.append("My Address: "+ssm.getMyAddress()+"\n");
-					//	chatArea.append("My Hostname: "+ssm.getMyHostname()+"\n");
-						System.out.println("Server connected!");
 						connectButton.setEnabled(false);
 						usernameField.setEnabled(false);
 						ipField.setEnabled(false);
@@ -134,7 +126,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						startButton.setVisible(true);
 						startButton.setEnabled(false);
 						theLoginPanel.strName[0] = strUsername;
-						theLoginPanel.intConnected++;
+						intConnected++;
+						
 					}else{
 						System.out.println("Server connect failed!");
 					}
@@ -144,6 +137,10 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			ipField.setText("localhost");
 		}else if(evt.getSource() == clientRButton){
 			ipField.setText("127.0.0.1");
+			
+			
+			
+			
 		}else if(evt.getSource() == sendTextField){
 			//Send Text
 			if(ssm != null && theGamePanel.boolStartGame == true){
@@ -152,38 +149,79 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				LocalTime localTime = LocalTime.now();
 				System.out.println(dtf.format(localTime));
 				//Send with name + time
-				ssm.sendText(dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText());
+				ssm.sendText("chat,"+dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText());
 				chatArea.append(dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText() + "\n");
 				sendTextField.setText("");
 				//Focus cycle
 				sendTextField.setFocusable(false);
 				sendTextField.setFocusable(true);
-			}else if(ssm!= null){
-				//Send player names to clients from server
-				if(serverRButton.isSelected() && theLoginPanel.strName[theLoginPanel.intConnected] != null){
-					ssm.sendText("P1. " + theLoginPanel.strName[0]);
-					ssm.sendText("P2. " + theLoginPanel.strName[1]);
-					ssm.sendText("P3. " + theLoginPanel.strName[2]);
-					ssm.sendText("P4. " + theLoginPanel.strName[3]);
-				}
-			 }
-					
-				
+			}
 		}else if(evt.getSource() == ssm){
+			//Split command
+			String strRecieve = ssm.readText();
+			strMsgSplit = strRecieve.split(",");
 			if(theGamePanel.boolStartGame == true){
 				//Recieve Text
-				chatArea.append(ssm.readText() + "\n");
-				chatArea.setCaretPosition(chatArea.getDocument().getLength());
-			}else if(serverRButton.isSelected()){
-				//Recieve player names to server
-				theLoginPanel.strName[theLoginPanel.intConnected] = ssm.readText();
-			//	theLoginPanel.strTemp = theLoginPanel.strName[theLoginPanel.intConnected];
-				theLoginPanel.intConnected++;
-				//Recieve player names from server to clients
-			//	theLoginPanel.strTemp = ssm.readText();
+				if(strMsgSplit[0].equals("chat")){
+					chatArea.append(ssm.readText() + "\n");
+					chatArea.setCaretPosition(chatArea.getDocument().getLength());
+				}
+			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
+				//Recieve name from client to server
+				theLoginPanel.strName[intConnected] = ssm.readText();
+				intConnected++;
+				System.out.println("playerCount: " + intConnected);
+				if(intConnected == 4 ){
+					startButton.setEnabled(true);
+				}
+				//Send names to clients from server
+				if(intConnected <= 2){
+					ssm.sendText("P1," + theLoginPanel.strName[0]);
+					ssm.sendText("P2," + theLoginPanel.strName[1]);
+				}else if(intConnected <= 3){
+					ssm.sendText("P1," + theLoginPanel.strName[0]);
+					ssm.sendText("P2," + theLoginPanel.strName[1]);
+					ssm.sendText("P3," + theLoginPanel.strName[2]);
+				}else if(intConnected <= 4){
+					ssm.sendText("P1," + theLoginPanel.strName[0]);
+					ssm.sendText("P2," + theLoginPanel.strName[1]);
+					ssm.sendText("P3," + theLoginPanel.strName[2]);
+					ssm.sendText("P4," + theLoginPanel.strName[3]);
+				}
+					System.out.println("SENT");
+			}else if(clientRButton.isSelected() && theGamePanel.boolStartGame == false){
+				//insert names to array
+				if(strMsgSplit[0].equals("P1")){
+					theLoginPanel.strName[0] = strMsgSplit[1];
+				}else if(strMsgSplit[0].equals("P2")){
+					theLoginPanel.strName[1] = strMsgSplit[1];
+				}else if(strMsgSplit[0].equals("P3")){
+					theLoginPanel.strName[2] = strMsgSplit[1];
+				}else if(strMsgSplit[0].equals("P4")){
+					theLoginPanel.strName[3] = strMsgSplit[1];
+				}
+				System.out.println("Refreshed Names");
+				//start game command
+				if(strRecieve.equals("ssmStart")){
+					theLoginPanel.setVisible(false);
+					theGamePanel.setVisible(true);
+					theFrame.setContentPane(theGamePanel);	
+					theGamePanel.boolStartGame = true;
+				}
+	
 			}
-				
-				
+						
+		}else if(evt.getSource() == startButton){
+			//Start Game, display game panel
+			//Send start signal to client
+			if(theGamePanel.boolStartGame == false){
+				ssm.sendText("ssmStart");
+			}
+			theLoginPanel.setVisible(false);
+			theGamePanel.setVisible(true);
+			theFrame.setContentPane(theGamePanel);	
+			theGamePanel.boolStartGame = true;
+
 		}
 	}
 	public void mouseExited(MouseEvent evt){
