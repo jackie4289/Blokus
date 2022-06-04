@@ -120,7 +120,7 @@ public class BlokusPanel extends JPanel{
 		//Logo
 		g.drawString("BLOKUS", 588, 23);
 		
-
+		System.out.println("Running GAME");
 		
 		//GAME
 		boolStartGame = true;
@@ -165,8 +165,9 @@ public class BlokusPanel extends JPanel{
 					}
 				}
 			}
+		/*
 			PieceGrid = BlokObject.PickPiece(intPiece);
-			
+		
 			if(boolYourTurn == true){
 				if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
 					
@@ -198,7 +199,9 @@ public class BlokusPanel extends JPanel{
 		}else{
 			//game not started
 		}
+		*/
 	}
+}
 	//Constructor
 	public BlokusPanel(){
 		super();

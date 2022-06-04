@@ -34,6 +34,7 @@ public class BlokusLoginPanel extends JPanel{
 		if(strName[3] != null){
 			g.drawString("" + strName[3],1000, 469);
 		}	
+		System.out.println("LOginANEL");
 	}
 	
 	//Constructor

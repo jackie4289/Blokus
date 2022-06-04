@@ -9,12 +9,9 @@ import java.time.format.DateTimeFormatter;
 
 public class Blokus implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
 	//Properties
-	BlokusPanel theGamePanel = new BlokusPanel();
-	BlokusMenuPanel theMenuPanel = new BlokusMenuPanel();
-	BlokusLoginPanel theLoginPanel = new BlokusLoginPanel();
 	Timer theTimer = new Timer(1000/60, this);
 	SuperSocketMaster ssm;
-	Block BlockModel;
+	Blok BlokModel;
 	int intPort;
 	int intConnected = 0;
 	String strIp;
@@ -24,9 +21,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
-	boolean boolWaiting = false;
+	boolean boolBoot = false;
 
 	//J Properties
+	BlokusPanel theGamePanel = new BlokusPanel();
+	BlokusMenuPanel theMenuPanel = new BlokusMenuPanel();
+	BlokusLoginPanel theLoginPanel = new BlokusLoginPanel();
 	JButton loginButton = new JButton("Login");
 	JButton quitButton = new JButton("Quit");
 	JButton connectButton = new JButton ("Connect!");
@@ -137,10 +137,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			ipField.setText("localhost");
 		}else if(evt.getSource() == clientRButton){
 			ipField.setText("127.0.0.1");
-			
-			
-			
-			
 		}else if(evt.getSource() == sendTextField){
 			//Send Text
 			if(ssm != null && theGamePanel.boolStartGame == true){
@@ -171,7 +167,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				theLoginPanel.strName[intConnected] = ssm.readText();
 				intConnected++;
 				System.out.println("playerCount: " + intConnected);
-				if(intConnected == 4 ){
+				if(intConnected == 2 ){
 					startButton.setEnabled(true);
 				}
 				//Send names to clients from server
@@ -202,24 +198,24 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				}
 				System.out.println("Refreshed Names");
 				//start game command
-				if(strRecieve.equals("ssmStart")){
+				if(strMsgSplit[0].equals("ssmStart")){
 					theLoginPanel.setVisible(false);
 					theGamePanel.setVisible(true);
-					theFrame.setContentPane(theGamePanel);	
+					theFrame.setContentPane(theGamePanel);
 					theGamePanel.boolStartGame = true;
+					System.out.println("STARTTTS");
 				}
-	
 			}
 						
 		}else if(evt.getSource() == startButton){
 			//Start Game, display game panel
 			//Send start signal to client
 			if(theGamePanel.boolStartGame == false){
-				ssm.sendText("ssmStart");
+				ssm.sendText("ssmStart,");
 			}
 			theLoginPanel.setVisible(false);
 			theGamePanel.setVisible(true);
-			theFrame.setContentPane(theGamePanel);	
+			theFrame.setContentPane(theGamePanel);
 			theGamePanel.boolStartGame = true;
 
 		}
@@ -259,17 +255,19 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	public void keyTyped(KeyEvent evt){
 
 	}
-
+	
+	
 	//Constuctor
 	public Blokus(){
 		//Game panel
 		theGamePanel.setLayout(null);
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
 		theGamePanel.setVisible(false);
+		//theGamePanel.setVisible(true);
 		theGamePanel.addMouseMotionListener(this);
 		theGamePanel.addMouseListener(this);
 		theGamePanel.addKeyListener(this);
-		//theGamePanel.setVisible(true);
+
 		
 		//Menu Panel
 		theMenuPanel.setLayout(null);
