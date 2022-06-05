@@ -21,7 +21,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
-	boolean boolBoot = false;
+	
 
 	//J Properties
 	BlokusPanel theGamePanel = new BlokusPanel();
@@ -197,7 +197,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					theLoginPanel.strName[3] = strMsgSplit[1];
 				}
 				System.out.println("Refreshed Names");
-				//start game command
+				//start game command for client
 				if(strMsgSplit[0].equals("ssmStart")){
 					theLoginPanel.setVisible(false);
 					theGamePanel.setVisible(true);
@@ -209,7 +209,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						
 		}else if(evt.getSource() == startButton){
 			//Start Game, display game panel
-			//Send start signal to client
+			//setver send start signal to client
 			if(theGamePanel.boolStartGame == false){
 				ssm.sendText("ssmStart,");
 			}
