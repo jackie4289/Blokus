@@ -18,6 +18,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	String strUsername;
 	String strRecieve;
 	String strMsgSplit[];
+	String strName[] = new String[4];
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
@@ -102,7 +103,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						portField.setEnabled(false);
 						serverRButton.setEnabled(false);
 						clientRButton.setEnabled(false);
-						//1send name to server
+						//send name to server
 						ssm.sendText(strUsername);
 					}else{
 						System.out.println("Client connect failed!");
@@ -126,6 +127,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						startButton.setVisible(true);
 						startButton.setEnabled(false);
 						theLoginPanel.strName[0] = strUsername;
+						theGamePanel.strName[0] = strUsername;
 						intConnected++;
 						
 					}else{
@@ -143,7 +145,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				//get time
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 				LocalTime localTime = LocalTime.now();
-				System.out.println(dtf.format(localTime));
 				//Send with name + time
 				ssm.sendText("chat,"+dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText());
 				chatArea.append(dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText() + "\n");
@@ -165,9 +166,10 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
 				//Recieve name from client to server
 				theLoginPanel.strName[intConnected] = ssm.readText();
+				theGamePanel.strName[intConnected] = ssm.readText();
 				intConnected++;
 				System.out.println("playerCount: " + intConnected);
-				if(intConnected == 2 ){
+				if(intConnected == 4 ){
 					startButton.setEnabled(true);
 				}
 				//Send names to clients from server
@@ -184,17 +186,21 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					ssm.sendText("P3," + theLoginPanel.strName[2]);
 					ssm.sendText("P4," + theLoginPanel.strName[3]);
 				}
-					System.out.println("SENT");
+					System.out.println("SENT Names");
 			}else if(clientRButton.isSelected() && theGamePanel.boolStartGame == false){
-				//insert names to array
+				//insert names to client array
 				if(strMsgSplit[0].equals("P1")){
 					theLoginPanel.strName[0] = strMsgSplit[1];
+					theGamePanel.strName[0] = strMsgSplit[1];
 				}else if(strMsgSplit[0].equals("P2")){
 					theLoginPanel.strName[1] = strMsgSplit[1];
+					theGamePanel.strName[1] = strMsgSplit[1];
 				}else if(strMsgSplit[0].equals("P3")){
 					theLoginPanel.strName[2] = strMsgSplit[1];
+					theGamePanel.strName[2] = strMsgSplit[1];
 				}else if(strMsgSplit[0].equals("P4")){
 					theLoginPanel.strName[3] = strMsgSplit[1];
+					theGamePanel.strName[3] = strMsgSplit[1];
 				}
 				System.out.println("Refreshed Names");
 				//start game command for client
@@ -203,7 +209,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					theGamePanel.setVisible(true);
 					theFrame.setContentPane(theGamePanel);
 					theGamePanel.boolStartGame = true;
-					System.out.println("STARTTTS");
+					System.out.println("STARTS");
 					theGamePanel.repaint();
 					theFrame.setVisible(false);
 					theFrame.setVisible(true);
@@ -220,6 +226,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theGamePanel.setVisible(true);
 			theFrame.setContentPane(theGamePanel);
 			theGamePanel.boolStartGame = true;
+			System.out.println("STARTS");
 
 		}
 	}

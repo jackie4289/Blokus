@@ -11,6 +11,7 @@ public class BlokusPanel extends JPanel{
 	//Properties
 	// Arrays
 	String strBoard[][] = new String[20][20];
+	String strName[] = new String[4];
 	String intARow[];
 	int PieceGrid[][] = new int [4][4];
 	// 0 = EMPTY
@@ -73,7 +74,9 @@ public class BlokusPanel extends JPanel{
 		g.fillRect(0, 0, 350, 40);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
-		g.drawString("P1: " + strP1Name, 15, 30);
+		if(strName[0] != null){
+			g.drawString("P1: " + strName[0], 15, 30);
+		}
 		
 		//P2 (Green)
 		g.setColor(new Color(98, 218, 166));
@@ -85,7 +88,9 @@ public class BlokusPanel extends JPanel{
 		g.fillRect(930, 0, 350, 40);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
-		g.drawString("P2: " + strP1Name, 945, 30);
+		if(strName[1] != null){
+			g.drawString("P2: " + strName[1], 945, 30);
+		}
 		
 		//P3 (Blue)
 		g.setColor(new Color(115, 217, 219));
@@ -97,7 +102,9 @@ public class BlokusPanel extends JPanel{
 		g.fillRect(930, 680, 350, 40);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
-		g.drawString("P3: " + strP4Name, 945, 710);
+		if(strName[2] != null){
+			g.drawString("P3: " + strName[2], 945, 710);
+		}
 		
 		//P4 (Red)
 		g.setColor(new Color(226, 97, 95));
@@ -109,8 +116,9 @@ public class BlokusPanel extends JPanel{
 		g.fillRect(0, 680, 350, 40);
 		g.setColor(Color.BLACK);
 		g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
-		g.drawString("P4: " + strP4Name, 15, 710);
-		
+		if(strName[2] != null){
+			g.drawString("P4: " + strName[3], 15, 710);
+		}
 		//Board
 		g.setColor(Color.BLACK);
 		g.drawRect(369, 26, 541, 541);
@@ -119,8 +127,6 @@ public class BlokusPanel extends JPanel{
 		g.drawRect(369, 580, 541, 135);
 		//Logo
 		g.drawString("BLOKUS", 588, 23);
-		
-		System.out.println("Running GAME");
 		
 		//GAME
 		boolStartGame = true;
