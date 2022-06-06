@@ -149,9 +149,9 @@ public class BlokTest{
 		}
 		return intBoard;
 	}
-	public void rotatePiece(){
+	public int[][] rotatePiece(int intBoard[][]){
 		for(intCount = 0;intCount < 4;intCount++){
-			for(intCount2 = 0;intCount2 < 4; intCount++){
+			for(intCount2 = 0;intCount2 < 4; intCount2++){
 				tempBoard[intCount][intCount2] = 0;
 			}
 		}
@@ -165,18 +165,18 @@ public class BlokTest{
 		 */
 		 
 		//rotate loop
-		for(intCount2 = 0;intCount < 4;intCount++){
-			for(intCount = 0;intCount < 4;intCount++){
+		for(intCount2 = 0;intCount2 < 5;intCount2++){
+			for(intCount = 0;intCount < 5;intCount++){
 				tempBoard[intCount][intCount2] = intBoard[intCount2][4-intCount];
 			}
 		}
-		for(intCount = 0;intCount < 4;intCount++){
-			for(intCount2 = 0;intCount2 < 4; intCount++){
+		for(intCount = 0;intCount < 5;intCount++){
+			for(intCount2 = 0;intCount2 < 5; intCount2++){
 				intBoard[intCount][intCount2] = tempBoard[intCount][intCount2];
 			}
 		}
-		
-		
+
+		return intBoard;
 		
 		
 	}

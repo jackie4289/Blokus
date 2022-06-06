@@ -34,30 +34,37 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 
 	}
 	public void mousePressed(MouseEvent evt){
-
+		
 	}
 	public void mouseReleased(MouseEvent evt){
+		if(evt.getSource() == theGamePanel){
+			theGamePanel.boolDragAndDrop = false;
+			theGamePanel.intPiece = theGamePanel.intPiece + 1;
+		}
 
 	}
 	public void mouseClicked(MouseEvent evt){
-
+		
 	}
 	public void mouseMoved(MouseEvent evt){
-		if(theGamePanel.boolYourTurn == true){
-			if(theGamePanel.boolStartGame == true){
-				theGamePanel.mouseX = evt.getX();
-				theGamePanel.mouseY = evt.getY();
-			}
-		}
 	}
 	public void mouseDragged(MouseEvent evt){
-		
+		if(evt.getSource()==theGamePanel){
+			theGamePanel.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+			theGamePanel.boolDragAndDrop = true;
+			System.out.println("START");
+			
+		}
 	}
 	public void keyReleased(KeyEvent evt){
 
 	}
 	public void keyPressed(KeyEvent evt){
-
+		if(evt.getKeyCode() == 32){
+			theGamePanel.boolRotate = true;
+			
+		}
 	}
 	public void keyTyped(KeyEvent evt){
 
@@ -69,6 +76,9 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 		theGamePanel.setLayout(null);
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
 		theGamePanel.setVisible(true);
+		theGamePanel.addMouseMotionListener(this);
+		theGamePanel.addMouseListener(this);
+		theGamePanel.addKeyListener(this);
 		
 		theFrame.setContentPane(theGamePanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

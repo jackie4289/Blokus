@@ -20,8 +20,8 @@ public class BlokusPanelTest extends JPanel{
 	// 4 = RED (P4)
 	// Booleans
 	boolean boolStartGame = true;
-	boolean boolDragAndDrop = true; // read below
-	boolean boolYourTurn = true; // we can change this later so that bool value is decided within later code
+	boolean boolDragAndDrop = false; // read below
+	boolean boolRotate = false;
 	
 	// Integers
 	int intRow;
@@ -41,7 +41,7 @@ public class BlokusPanelTest extends JPanel{
 	
 	int mouseX = 0;
 	int mouseY = 0;
-	int intPiece = 0;
+	int intPiece = 1;
 
 	// Strings
 	String intLine;
@@ -166,32 +166,55 @@ public class BlokusPanelTest extends JPanel{
 				}
 			}
 			PieceGrid = BlokObject.PickPiece(intPiece);
+			System.out.println("PieceGrid found");
 			
-			if(boolYourTurn == true){
-				if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
-					
-					// Corners for boarder: g.drawRect(369, 26, 541, 541);
-					// So all four: (369,26)            (910,26)
-					//              (369,567)           (910,567)
-					//
-					// CURSOR WILL CONTROL BOTTOM LEFT CORNER OF THE PIECE
-					// (54,81)
-					
-					if(mouseX < 369 || mouseX > 910){
-						if(mouseY < 26 || mouseY > 567){
-							for(intCount = 0; intCount < 4; intCount++){
-								System.out.println();
-								for(intCount2 = 0; intCount2 < 4; intCount2++){
-									System.out.print(PieceGrid[intCount][intCount2]);
-									if(PieceGrid[intCount][intCount2] == 1){
-										g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
-									}
-								}
+			if(boolRotate == true){
+				System.out.println("ROTATE");
+				PieceGrid = BlokObject.rotatePiece(PieceGrid);
+			}
+			
+			
+			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
+				
+				// Corners for boarder: g.drawRect(369, 26, 541, 541);
+				// So all four: (369,26)            (910,26)
+				//              (369,567)           (910,567)
+				//
+				// CURSOR WILL CONTROL BOTTOM LEFT CORNER OF THE PIECE
+				// (54,81)
+				
+				if(mouseX < 369 || mouseX > 910){
+					for(intCount = 0; intCount < 4; intCount++){
+					System.out.println("OUT");
+						for(intCount2 = 0; intCount2 < 4; intCount2++){
+							System.out.print(PieceGrid[intCount][intCount2]);
+							if(PieceGrid[intCount][intCount2] == 1){
+								g.drawImage(yellow, ((-54) + (27*intCount2) + mouseX), ((-81) + (27*intCount) + mouseY),null);
 							}
-							
 						}
 					}
-					
+				}else if(mouseY < 26 || mouseY > 567){
+					for(intCount = 0; intCount < 4; intCount++){
+						System.out.println("OUT");
+						for(intCount2 = 0; intCount2 < 4; intCount2++){
+							System.out.print(PieceGrid[intCount][intCount2]);
+							if(PieceGrid[intCount][intCount2] == 1){
+								g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
+							}
+						}
+					}
+					System.out.println("OUT");
+				}else{
+					System.out.println("IN");
+					for(intCount = 0; intCount < 4; intCount++){
+						System.out.println();
+						for(intCount2 = 0; intCount2 < 4; intCount2++){
+							System.out.print(PieceGrid[intCount][intCount2]);
+							if(PieceGrid[intCount][intCount2] == 1){
+								g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
+							}
+						}
+					}
 				}
 			}
 			
