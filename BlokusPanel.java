@@ -123,6 +123,7 @@ public class BlokusPanel extends JPanel{
 		g.setColor(Color.BLACK);
 		g.drawRect(369, 26, 541, 541);
 		g.drawRect(350, 0, 580, 719);
+		g.fillRect(0, 360, 1280, 1);
 		//ChatBox
 		g.drawRect(369, 580, 541, 135);
 		//Logo
