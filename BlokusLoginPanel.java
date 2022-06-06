@@ -16,7 +16,7 @@ public class BlokusLoginPanel extends JPanel{
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		//Draw words and image
+		//Draw image
 		g.drawImage(login, 0, 0, null);
 		g.setColor(Color.BLACK);
 		//Print player list
