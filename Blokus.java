@@ -159,7 +159,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			if(theGamePanel.boolStartGame == true){
 				//Recieve Text
 				if(strMsgSplit[0].equals("chat")){
-					chatArea.append(ssm.readText() + "\n");
+					chatArea.append(strMsgSplit[1] + "\n");
 					chatArea.setCaretPosition(chatArea.getDocument().getLength());
 				}
 			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
@@ -204,12 +204,15 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					theFrame.setContentPane(theGamePanel);
 					theGamePanel.boolStartGame = true;
 					System.out.println("STARTTTS");
+					theGamePanel.repaint();
+					theFrame.setVisible(false);
+					theFrame.setVisible(true);
 				}
 			}
 						
 		}else if(evt.getSource() == startButton){
 			//Start Game, display game panel
-			//setver send start signal to client
+			//server send start signal to client
 			if(theGamePanel.boolStartGame == false){
 				ssm.sendText("ssmStart,");
 			}
