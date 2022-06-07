@@ -22,6 +22,7 @@ public class BlokusPanelTest extends JPanel{
 	boolean boolStartGame = true;
 	boolean boolDragAndDrop = false; // read below
 	boolean boolRotate = false;
+	boolean newPiece = true;
 	
 	// Integers
 	int intRow;
@@ -165,8 +166,11 @@ public class BlokusPanelTest extends JPanel{
 					}
 				}
 			}
-			PieceGrid = BlokObject.PickPiece(intPiece);
-			System.out.println("PieceGrid found");
+			if(newPiece == true){
+				PieceGrid = BlokObject.PickPiece(intPiece);
+				System.out.println("PieceGrid found");
+				newPiece = false;
+			}
 			
 			
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
@@ -178,8 +182,9 @@ public class BlokusPanelTest extends JPanel{
 				// CURSOR WILL CONTROL BOTTOM LEFT CORNER OF THE PIECE
 				// (54,81)
 				if(boolRotate == true){
-					System.out.println("ROTATE");
+					System.out.println("ROTATE AGAIN");
 					PieceGrid = BlokObject.rotatePiece(PieceGrid);
+					boolRotate = false;
 				}
 				if(mouseX < 369 || mouseX > 910){
 					for(intCount = 0; intCount < 5; intCount++){

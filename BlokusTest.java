@@ -40,6 +40,8 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 		if(evt.getSource() == theGamePanel){
 			theGamePanel.boolDragAndDrop = false;
 			theGamePanel.intPiece = theGamePanel.intPiece + 1;
+			theGamePanel.newPiece = true;
+			theFrame.requestFocus();
 		}
 
 	}
@@ -54,6 +56,7 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 			theGamePanel.mouseY = evt.getY();
 			theGamePanel.boolDragAndDrop = true;
 			System.out.println("START");
+			theFrame.requestFocus();
 			
 		}
 	}
@@ -63,7 +66,7 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyCode() == 32){
 			theGamePanel.boolRotate = true;
-			
+			System.out.println("ROTATE");
 		}
 	}
 	public void keyTyped(KeyEvent evt){
@@ -78,7 +81,7 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 		theGamePanel.setVisible(true);
 		theGamePanel.addMouseMotionListener(this);
 		theGamePanel.addMouseListener(this);
-		theGamePanel.addKeyListener(this);
+		theFrame.addKeyListener(this);
 		
 		theFrame.setContentPane(theGamePanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,6 +107,7 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 		theFrame.pack();
 		theFrame.setVisible(true);
 		theTimer.start();
+		theFrame.requestFocus();
 	}
 
 	//Main Program
