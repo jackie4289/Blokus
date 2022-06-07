@@ -182,9 +182,9 @@ public class BlokusPanelTest extends JPanel{
 					PieceGrid = BlokObject.rotatePiece(PieceGrid);
 				}
 				if(mouseX < 369 || mouseX > 910){
-					for(intCount = 0; intCount < 4; intCount++){
+					for(intCount = 0; intCount < 5; intCount++){
 					System.out.println("OUT");
-						for(intCount2 = 0; intCount2 < 4; intCount2++){
+						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, ((-54) + (27*intCount2) + mouseX), ((-81) + (27*intCount) + mouseY),null);
@@ -192,9 +192,9 @@ public class BlokusPanelTest extends JPanel{
 						}
 					}
 				}else if(mouseY < 26 || mouseY > 567){
-					for(intCount = 0; intCount < 4; intCount++){
+					for(intCount = 0; intCount < 5; intCount++){
 						System.out.println("OUT");
-						for(intCount2 = 0; intCount2 < 4; intCount2++){
+						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
@@ -204,9 +204,9 @@ public class BlokusPanelTest extends JPanel{
 					System.out.println("OUT");
 				}else{
 					System.out.println("IN");
-					for(intCount = 0; intCount < 4; intCount++){
+					for(intCount = 0; intCount < 5; intCount++){
 						System.out.println();
-						for(intCount2 = 0; intCount2 < 4; intCount2++){
+						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
