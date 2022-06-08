@@ -28,6 +28,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	BlokusPanel theGamePanel = new BlokusPanel();
 	BlokusMenuPanel theMenuPanel = new BlokusMenuPanel();
 	BlokusLoginPanel theLoginPanel = new BlokusLoginPanel();
+	BlokusHelpPanel theHelpPanel = new BlokusHelpPanel();
 	JButton loginButton = new JButton("Login");
 	JButton quitButton = new JButton("Quit");
 	JButton connectButton = new JButton ("Connect!");
