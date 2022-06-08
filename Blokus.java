@@ -31,18 +31,23 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	BlokusHelpPanel theHelpPanel = new BlokusHelpPanel();
 	JButton loginButton = new JButton("Login");
 	JButton quitButton = new JButton("Quit");
+	JButton helpButton = new JButton("Help");
 	JButton connectButton = new JButton ("Connect!");
 	JButton startButton = new JButton("Start!");
+	JButton backButton = new JButton("Back");
 	JFrame theFrame = new JFrame("Blokus");
 	JTextField usernameField = new JTextField();
 	JTextField ipField = new JTextField();
 	JTextField portField = new JTextField();
 	JTextField sendTextField = new JTextField();
+	JTextField testTextField = new JTextField();
 	JRadioButton serverRButton = new JRadioButton("Server");
 	JRadioButton clientRButton = new JRadioButton("Client");
 	ButtonGroup buttonGroup = new ButtonGroup();
 	JTextArea chatArea = new JTextArea();
 	JScrollPane chatScroll = new JScrollPane(chatArea);
+	JTextArea testChatArea = new JTextArea();
+	JScrollPane testChatScroll = new JScrollPane(testChatArea);
 	
 	//Methods
 	public void actionPerformed(ActionEvent evt){
@@ -51,6 +56,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theLoginPanel.repaint();
 		}else if(evt.getSource() == quitButton){
 			System.exit(0);
+		}else if(evt.getSource() == helpButton){
+			theMenuPanel.setVisible(false);
+			theHelpPanel.add(backButton);
+			theHelpPanel.setVisible(true);
+			theFrame.setContentPane(theHelpPanel);		
 		}else if(evt.getSource() == loginButton){
 			theMenuPanel.setVisible(false);
 			theLoginPanel.setVisible(true);
@@ -228,7 +238,10 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theFrame.setContentPane(theGamePanel);
 			theGamePanel.boolStartGame = true;
 			System.out.println("STARTS");
-
+		}else if(evt.getSource() ==  backButton){
+			theHelpPanel.setVisible(false);
+			theMenuPanel.setVisible(true);
+			theFrame.setContentPane(theMenuPanel);				
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -253,6 +266,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				theGamePanel.mouseY = evt.getY();
 			}
 		}
+		
 	}
 	public void mouseDragged(MouseEvent evt){
 		
@@ -278,7 +292,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theGamePanel.addMouseMotionListener(this);
 		theGamePanel.addMouseListener(this);
 		theGamePanel.addKeyListener(this);
-
 		
 		//Menu Panel
 		theMenuPanel.setLayout(null);
@@ -290,6 +303,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theLoginPanel.setLayout(null);
 		theLoginPanel.setPreferredSize(new Dimension(1280, 720));
 		theLoginPanel.setVisible(false);
+		
+		//Help Panel
+		theHelpPanel.setLayout(null);
+		theHelpPanel.setPreferredSize(new Dimension(1280, 720));
+		theHelpPanel.setVisible(false);
 		
 		//theFrame.setContentPane(theGamePanel);
 		theFrame.setContentPane(theMenuPanel);
@@ -308,6 +326,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		quitButton.addActionListener(this);
 		theMenuPanel.add(quitButton);
 		
+		//Help Button Menu
+		helpButton.setSize(300,50);
+		helpButton.setLocation(950,50);
+		helpButton.addActionListener(this);
+		theMenuPanel.add(helpButton);
+		
 		//Connect Button Login
 		connectButton.setSize(200, 25);
 		connectButton.setLocation(556, 510);
@@ -320,6 +344,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		startButton.addActionListener(this);
 		theLoginPanel.add(startButton);
 		startButton.setVisible(false);
+		
+		//Back Button Help/Highscore
+		backButton.setSize(300,50);
+		backButton.setLocation(950,600);
+		backButton.addActionListener(this);
+		//add to panel when panel is selected...
 		
 		//username Textfield
 		usernameField = new JTextField();
@@ -372,6 +402,22 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		sendTextField.setBackground(new Color(157, 156, 154));
 		sendTextField.addActionListener(this);
 		theGamePanel.add(sendTextField);
+		
+		//Help Chat Box
+		testChatScroll.setSize(350,110);
+		testChatScroll.setLocation(200, 400);
+		testChatScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		testChatArea.setLineWrap(true);
+		testChatArea.setEditable(false);
+		theHelpPanel.add(testChatScroll); 
+		
+		//Help Chat TextField
+		testTextField.setSize(350, 24);
+		testTextField.setLocation(200, 510);
+		testTextField.setForeground(Color.BLACK);
+		testTextField.setBackground(new Color(157, 156, 154));
+		testTextField.addActionListener(this);
+		theHelpPanel.add(testTextField);
 		
 		//Pack Frame
 		theFrame.pack();
