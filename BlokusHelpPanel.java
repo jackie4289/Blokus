@@ -9,24 +9,22 @@ import javax.imageio.*;
 
 public class BlokusHelpPanel extends JPanel{
 	//Properties
-	
+	BufferedImage help = null;
 	
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
+		g.drawImage(help, 0, 0, null);
 	}
 
 	//Constructor
 	public BlokusHelpPanel(){
 		super();
 		//import images
-		/*
 		try{
-		= ImageIO.read(this.getClass().getResourceAsStream("menu.png"));
+			help = ImageIO.read(this.getClass().getResourceAsStream("help.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(menu.png)");
 		}
-		*/
 	}
 }
