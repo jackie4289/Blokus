@@ -126,7 +126,7 @@ public class BlokusPanelTest extends JPanel{
 		// SET BOARD ARRAY TO 0
 		for(intCount = 0;intCount < 19; intCount++){
 			for(intCount2 = 0;intCount2 < 19; intCount2++){
-				
+				BoardGrid[intCount][intCount2] = 0;
 			}
 		}
 		

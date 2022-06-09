@@ -167,6 +167,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			}
 		}else if(evt.getSource() == ssm){
 			//Split command
+				//chat,hello
+				//turn,name,turn(1 or 2),      (string,string,int)
 			String strRecieve = ssm.readText();
 			strMsgSplit = strRecieve.split(",");
 			if(theGamePanel.boolStartGame == true){
