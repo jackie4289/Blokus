@@ -123,7 +123,12 @@ public class BlokusPanelTest extends JPanel{
 		//Logo
 		g.drawString("BLOKUS", 588, 23);
 		
-
+		// SET BOARD ARRAY TO 0
+		for(intCount = 0;intCount < 19; intCount++){
+			for(intCount2 = 0;intCount2 < 19; intCount2++){
+				
+			}
+		}
 		
 		//GAME
 		boolStartGame = true;
