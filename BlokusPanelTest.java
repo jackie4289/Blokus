@@ -13,6 +13,7 @@ public class BlokusPanelTest extends JPanel{
 	String strBoard[][] = new String[20][20];
 	String intARow[];
 	int PieceGrid[][] = new int [4][4];
+	int BoardGrid[][] = new int[19][19];
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -23,6 +24,7 @@ public class BlokusPanelTest extends JPanel{
 	boolean boolDragAndDrop = false; // read below
 	boolean boolRotate = false;
 	boolean newPiece = true;
+	boolean dropped = false;
 	
 	// Integers
 	int intRow;
@@ -166,12 +168,22 @@ public class BlokusPanelTest extends JPanel{
 					}
 				}
 			}
+			
 			if(newPiece == true){
 				PieceGrid = BlokObject.PickPiece(intPiece);
 				System.out.println("PieceGrid found");
 				newPiece = false;
 			}
-			
+			if(dropped == true){
+				if(mouseX > 369 && mouseX < 910){
+					if(mouseY > 26 && mouseY < 567){
+						
+						intPiece = intPiece + 1;
+						newPiece = true;
+					}
+				}
+				dropped = false;		
+			}
 			
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
 				

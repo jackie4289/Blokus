@@ -63,7 +63,7 @@ public class BlokusLoginPanel extends JPanel{
 			}*/
 			
 		}
-		System.out.println(boolFirstTime);
+		//System.out.println(boolFirstTime);
 	}
 	
 	//Constructor
