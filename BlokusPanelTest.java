@@ -24,7 +24,7 @@ public class BlokusPanelTest extends JPanel{
 	boolean boolDragAndDrop = false; // read below
 	boolean boolRotate = false;
 	boolean newPiece = true;
-	boolean dropped = false;
+	boolean boolDropped = false;
 	
 	// Integers
 	int intRow;
@@ -179,6 +179,7 @@ public class BlokusPanelTest extends JPanel{
 				System.out.println("PieceGrid found");
 				newPiece = false;
 			}
+			/*
 			if(dropped == true){
 				if(mouseX > 369 && mouseX < 910){
 					if(mouseY > 26 && mouseY < 567){
@@ -189,6 +190,7 @@ public class BlokusPanelTest extends JPanel{
 				}
 				dropped = false;		
 			}
+			*/
 			
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
 				
@@ -236,7 +238,31 @@ public class BlokusPanelTest extends JPanel{
 						}
 					}
 				}
-			}
+			}/*else if(boolDragAndDrop == false && boolDropped == true){
+				for(intCount = 0; intCount < 5; intCount++){
+					System.out.println();
+					for(intCount2 = 0; intCount2 < 5; intCount2++){
+						System.out.print(PieceGrid[intCount][intCount2]);
+						if(PieceGrid[intCount][intCount2] == 1){
+							g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
+						}
+					}
+				}
+			}*/
+			
+			if(boolDropped == true){
+				if(mouseX > 369 && mouseX < 910){
+					if(mouseY > 26 && mouseY < 567){
+						if(intPiece > 22){
+							intPiece = 1;
+						}else{	
+							intPiece = intPiece + 1;
+						}						
+						newPiece = true;
+					}
+				}
+				boolDropped = false;
+			}		
 			
 		}else{
 			//game not started
