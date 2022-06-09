@@ -23,6 +23,7 @@ public class BlokusPanelTest extends JPanel{
 	boolean boolDragAndDrop = false; // read below
 	boolean boolRotate = false;
 	boolean newPiece = true;
+	boolean dropped = false;
 	
 	// Integers
 	int intRow;
@@ -166,12 +167,15 @@ public class BlokusPanelTest extends JPanel{
 					}
 				}
 			}
+			
 			if(newPiece == true){
 				PieceGrid = BlokObject.PickPiece(intPiece);
 				System.out.println("PieceGrid found");
 				newPiece = false;
 			}
-			
+			if(dropped == true){
+				newPiece = true;
+			}
 			
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
 				
