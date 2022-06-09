@@ -47,9 +47,9 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 		if(evt.getSource() == theGamePanel){
 			theGamePanel.boolDragAndDrop = false;
 			if(theGamePanel.intPiece > 22){
-				theGamePanel.intPiece = 1;
+				theGamePanel.intPiece = 0;
 			}
-			theGamePanel.dropped = true;
+			theGamePanel.boolDropped = true;
 			theFrame.requestFocus();
 		}
 
