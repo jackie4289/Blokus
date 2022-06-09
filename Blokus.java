@@ -63,6 +63,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theFrame.setContentPane(theHelpPanel);		
 		}else if(evt.getSource() == loginButton){
 			theMenuPanel.setVisible(false);
+			theLoginPanel.add(backButton);
 			theLoginPanel.setVisible(true);
 			theFrame.setContentPane(theLoginPanel);		
 		}else if(evt.getSource() == connectButton){
