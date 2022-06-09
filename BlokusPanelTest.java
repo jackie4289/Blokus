@@ -14,6 +14,7 @@ public class BlokusPanelTest extends JPanel{
 	String intARow[];
 	int PieceGrid[][] = new int [4][4];
 	int BoardGrid[][] = new int[19][19];
+	int TempGrid[][] = new int[19][19];
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -127,15 +128,14 @@ public class BlokusPanelTest extends JPanel{
 		for(intCount = 0;intCount < 19; intCount++){
 			for(intCount2 = 0;intCount2 < 19; intCount2++){
 				BoardGrid[intCount][intCount2] = 0;
+				TempGrid[intCount][intCount2] = 0;
 			}
 		}
 		
 		//GAME
 		boolStartGame = true;
 		if(boolStartGame == true){
-			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES
-			// - we should add a button to set boolStartGame to true, so the game starts (we could use a button)
-			
+			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES			
 			//Import Array
 			BufferedReader board = null;
 			try{
@@ -173,7 +173,7 @@ public class BlokusPanelTest extends JPanel{
 					}
 				}
 			}
-			
+			//Draw Pieces
 			if(newPiece == true){
 				PieceGrid = BlokObject.PickPiece(intPiece);
 				System.out.println("PieceGrid found");
@@ -211,7 +211,7 @@ public class BlokusPanelTest extends JPanel{
 						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
-								g.drawImage(yellow, ((-54) + (27*intCount2) + mouseX), ((-81) + (27*intCount) + mouseY),null);
+								g.drawImage(yellow, ((-68) + (27*intCount2) + mouseX), ((-68) + (27*intCount) + mouseY),null);
 							}
 						}
 					}
@@ -221,7 +221,7 @@ public class BlokusPanelTest extends JPanel{
 						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
-								g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
+								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -233,7 +233,7 @@ public class BlokusPanelTest extends JPanel{
 						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
-								g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
+								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
