@@ -46,6 +46,9 @@ public class BlokusPanelTest extends JPanel{
 	int mouseX = 0;
 	int mouseY = 0;
 	int intPiece = 1;
+	
+	int intDropX;
+	int intDropY;
 
 	// Strings
 	String intLine;
@@ -244,13 +247,45 @@ public class BlokusPanelTest extends JPanel{
 					for(intCount2 = 0; intCount2 < 5; intCount2++){
 						System.out.print(PieceGrid[intCount][intCount2]);
 						if(PieceGrid[intCount][intCount2] == 1){
-							g.drawImage(yellow, -54 + (27*intCount2) + mouseX, -81 + (27*intCount) + mouseY,null);
+							g.drawImage(yellow, -68 + (27*intCount2) + intDropX, -68 + (27*intCount) + intDropY, null);
 						}
 					}
 				}
 			}*/
 			
 			if(boolDropped == true){
+				//draw dropped piece onto board
+					/*
+						for(intCount = 0; intCount < 5; intCount++){
+							System.out.println();
+							for(intCount2 = 0; intCount2 < 5; intCount2++){
+								System.out.print(PieceGrid[intCount][intCount2]);
+								if(PieceGrid[intCount][intCount2] == 1){
+									g.drawImage(yellow, -68 + (27*intCount2) + intDropX, -68 + (27*intCount) + intDropY, null);
+								}
+							}
+						}
+					*/
+//change the board array instead...
+				//place the values (not 0) of piece grid into the board array 
+				/*
+				
+				for(intCount = 0; intCount < 5; intCount++){
+						System.out.println();
+					for(intCount2 = 0; intCount2 < 5; intCount2++){
+						System.out.print(PieceGrid[intCount][intCount2]);
+						if(PieceGrid[intCount][intCount2] == 1){
+						//determine row & column based on mouse drop (x,y) coordinates.
+							intRow
+							strBoard[intRow][intCol].equals("1");
+						}
+					}
+				}
+				*/
+			
+						
+				System.out.println("piece dropped");
+								
 				if(mouseX > 369 && mouseX < 910){
 					if(mouseY > 26 && mouseY < 567){
 						if(intPiece > 22){
