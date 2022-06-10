@@ -148,13 +148,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				}
 			}
 		}else if(evt.getSource() == serverRButton){
-			if(ipField == null){
 				ipField.setText("localhost");
-			}
 		}else if(evt.getSource() == clientRButton){
-			if(ipField == null){
 				ipField.setText("127.0.0.1");
-			}
 		}else if(evt.getSource() == sendTextField){
 			//Send Text
 			if(ssm != null && theGamePanel.boolStartGame == true){
@@ -213,7 +209,16 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					ssm.sendText("P4," + theLoginPanel.strName[3]);
 				}
 					System.out.println("SENT Names");
-					
+				if(theGamePanel.intTurn == 1){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
+				}else if(theGamePanel.intTurn == 2){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",1," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
+				}else if(theGamePanel.intTurn == 4){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",1," + theGamePanel.strName[3] + ",0");
+				}else if(theGamePanel.intTurn == 4){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",1");	
+				}	
+				System.out.println("TURNS SENT");
 			//SERVER SIDE MESSAGES GAME
 			if(serverRButton.isSelected() && theGamePanel.boolStartGame == true){
 				if(theGamePanel.intTurn == 1){
