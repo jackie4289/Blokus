@@ -148,19 +148,26 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				}
 			}
 		}else if(evt.getSource() == serverRButton){
-			ipField.setText("localhost");
+			if(ipField == null){
+				ipField.setText("localhost");
+			}
 		}else if(evt.getSource() == clientRButton){
-			ipField.setText("127.0.0.1");
+			if(ipField == null){
+				ipField.setText("127.0.0.1");
+			}
 		}else if(evt.getSource() == sendTextField){
 			//Send Text
 			if(ssm != null && theGamePanel.boolStartGame == true){
+				
 				//get time
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 				LocalTime localTime = LocalTime.now();
+				
 				//Send with name + time
 				ssm.sendText("chat,"+dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText());
 				chatArea.append(dtf.format(localTime)+ " " + strUsername + ": " + sendTextField.getText() + "\n");
 				sendTextField.setText("");
+				
 				//Focus cycle
 				sendTextField.setFocusable(false);
 				sendTextField.setFocusable(true);
@@ -172,13 +179,16 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			String strRecieve = ssm.readText();
 			strMsgSplit = strRecieve.split(",");
 			if(theGamePanel.boolStartGame == true){
+				
 				//Recieve Text
 				if(strMsgSplit[0].equals("chat")){
 					chatArea.append(strMsgSplit[1] + "\n");
 					chatArea.setCaretPosition(chatArea.getDocument().getLength());
 				}
+				
 			//SERVER SIDE MESSAGES LOGIN
 			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
+				
 				//Recieve name from client to server
 				theLoginPanel.strName[intConnected] = ssm.readText();
 				theGamePanel.strName[intConnected] = ssm.readText();
@@ -187,6 +197,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				if(intConnected == 4 ){
 					startButton.setEnabled(true);
 				}
+				
 				//Send names to clients from server
 				if(intConnected <= 2){
 					ssm.sendText("P1," + theLoginPanel.strName[0]);
@@ -202,8 +213,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					ssm.sendText("P4," + theLoginPanel.strName[3]);
 				}
 					System.out.println("SENT Names");
+					
 			//SERVER SIDE MESSAGES GAME
-			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == true){
+			if(serverRButton.isSelected() && theGamePanel.boolStartGame == true){
 				if(theGamePanel.intTurn == 1){
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
 				}else if(theGamePanel.intTurn == 2){
@@ -213,8 +225,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				}else if(theGamePanel.intTurn == 4){
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",1");	
 				}	
+				System.out.println("TURNS SENT");
+			}
 			//CLIENT SIDE MESSAGES LOGIN
 			}else if(clientRButton.isSelected() && theGamePanel.boolStartGame == false){
+				
 				//insert names to client array
 				if(strMsgSplit[0].equals("P1")){
 					theLoginPanel.strName[0] = strMsgSplit[1];
@@ -230,6 +245,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					theGamePanel.strName[3] = strMsgSplit[1];
 				}
 				System.out.println("Refreshed Names");
+				
 				//start game command for client
 				if(strMsgSplit[0].equals("ssmStart")){
 					theLoginPanel.setVisible(false);
@@ -242,6 +258,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					theFrame.setVisible(true);
 				}
 			}else if(clientRButton.isSelected() && theGamePanel.boolStartGame == true){
+				
+				//Client checking turns
 				if(strMsgSplit[0].equals("turn")){
 					if(strMsgSplit[1] == theGamePanel.strName[0]){
 						if(strMsgSplit[2].equals("0")){
@@ -315,6 +333,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		
 	}
 	public void keyReleased(KeyEvent evt){
+		if(theGamePanel.boolYourTurn == true){
+			if(evt.getKeyCode() == 32){
+				theGamePanel.intTurn++;
+			}
+		}
 
 	}
 	public void keyPressed(KeyEvent evt){
