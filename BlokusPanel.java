@@ -29,7 +29,7 @@ public class BlokusPanel extends JPanel{
 	int intCol;
 	int intCount;
 	int intCount2;
-	int intTurn = 1;
+	int intTurn = 3;
 
 	//Player coords
 	int P1X;
@@ -174,7 +174,7 @@ public class BlokusPanel extends JPanel{
 				}
 			}
 			
-			//Draw Turn Dot
+			//Draw Turn 
 			if(boolYourTurn == true){
 				System.out.println("YOUR TURNNNNNNNNNNNNN");
 			}
