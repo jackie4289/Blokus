@@ -131,8 +131,8 @@ public class BlokusPanelTest extends JPanel{
 		g.drawString("BLOKUS", 588, 23);
 		
 		// SET BOARD ARRAY TO 0
-		for(intCount = 0;intCount < 20; intCount++){
-			for(intCount2 = 0;intCount2 < 20; intCount2++){
+		for(intCount = 0;intCount < 19; intCount++){
+			for(intCount2 = 0;intCount2 < 19; intCount2++){
 				BoardGrid[intCount][intCount2] = 0;
 				TempGrid[intCount][intCount2] = 0;
 			}
