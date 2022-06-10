@@ -214,7 +214,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
 				}else if(theGamePanel.intTurn == 2){
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",1," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
-				}else if(theGamePanel.intTurn == 4){
+				}else if(theGamePanel.intTurn == 3){
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",1," + theGamePanel.strName[3] + ",0");
 				}else if(theGamePanel.intTurn == 4){
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",1");	
@@ -254,35 +254,26 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			//Client checking turns
 			if(strMsgSplit[0].equals("turn")){
 				System.out.println("TURN Recieved");
-				System.out.println("4th element is " + strMsgSplit[3]);
-				System.out.println(theGamePanel.strName[1]);
 				//Check
 				if(strMsgSplit[1].equals(theGamePanel.strName[0])){
-					if(strMsgSplit[3].equals("1")){
+					if(strMsgSplit[2].equals("1")){
 						theGamePanel.boolYourTurn = true;
-					}else{
-						theGamePanel.boolYourTurn = false;
 					}
-				}else if(strMsgSplit[3].equals(theGamePanel.strName[1])){
-					System.out.println("Turn: " + strMsgSplit[5]);
-					if(strMsgSplit[5].equals("1")){
+				}
+				if(strMsgSplit[3].equals(theGamePanel.strName[1])){
+					if(strMsgSplit[4].equals("1")){
 						theGamePanel.boolYourTurn = true;
-					}else{
-						theGamePanel.boolYourTurn = false;	
 					}
-				}else if(strMsgSplit[6].equals(theGamePanel.strName[2])){
-					System.out.println("Turn: " + strMsgSplit[7]);
-					if(strMsgSplit[7].equals("1")){
+				}
+				if(strMsgSplit[5].equals(theGamePanel.strName[2])){
+					if(strMsgSplit[6].equals("1")){
 						theGamePanel.boolYourTurn = true;
-					}else{
-						theGamePanel.boolYourTurn = false;	
-					}	
-				}else if(strMsgSplit[8].equals(theGamePanel.strName[3])){
-					System.out.println("Turn: " + strMsgSplit[9]);
-					if(strMsgSplit[9].equals("1")){
+						System.out.println("1");
+					}
+				}
+				if(strMsgSplit[7].equals(theGamePanel.strName[3])){
+					if(strMsgSplit[8].equals("1")){
 						theGamePanel.boolYourTurn = true;
-					}else{
-						theGamePanel.boolYourTurn = false;	
 					}
 				}
 			}
@@ -303,7 +294,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
 				}else if(theGamePanel.intTurn == 2){
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",1," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
-				}else if(theGamePanel.intTurn == 4){
+				}else if(theGamePanel.intTurn == 3){
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",1," + theGamePanel.strName[3] + ",0");
 				}else if(theGamePanel.intTurn == 4){
 					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",1");	
