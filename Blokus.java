@@ -25,26 +25,26 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 
 	//J Properties
 	BlokusPanel theGamePanel = new BlokusPanel();
+	JFrame theFrame = new JFrame("Blokus");
+	JTextField sendTextField = new JTextField();
+	JTextArea chatArea = new JTextArea();
+	JScrollPane chatScroll = new JScrollPane(chatArea);
 	BlokusMenuPanel theMenuPanel = new BlokusMenuPanel();
-	BlokusLoginPanel theLoginPanel = new BlokusLoginPanel();
-	BlokusHelpPanel theHelpPanel = new BlokusHelpPanel();
 	JButton loginButton = new JButton("Login");
 	JButton quitButton = new JButton("Quit");
 	JButton helpButton = new JButton("Help");
+	BlokusLoginPanel theLoginPanel = new BlokusLoginPanel();
 	JButton connectButton = new JButton ("Connect!");
 	JButton startButton = new JButton("Start!");
-	JButton backButton = new JButton("Back");
-	JFrame theFrame = new JFrame("Blokus");
 	JTextField usernameField = new JTextField();
 	JTextField ipField = new JTextField();
 	JTextField portField = new JTextField();
-	JTextField sendTextField = new JTextField();
-	JTextField testTextField = new JTextField();
 	JRadioButton serverRButton = new JRadioButton("Server");
 	JRadioButton clientRButton = new JRadioButton("Client");
 	ButtonGroup buttonGroup = new ButtonGroup();
-	JTextArea chatArea = new JTextArea();
-	JScrollPane chatScroll = new JScrollPane(chatArea);
+	BlokusHelpPanel theHelpPanel = new BlokusHelpPanel();
+	JButton backButton = new JButton("Back");
+	JTextField testTextField = new JTextField();
 	JTextArea testChatArea = new JTextArea();
 	JScrollPane testChatScroll = new JScrollPane(testChatArea);
 	
