@@ -138,9 +138,33 @@ public class BlokusPanelTest extends JPanel{
 			}
 		}
 		
+		// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES			
+			//Import Array
+			BufferedReader board = null;
+			try{
+				board = new BufferedReader(new FileReader("board.csv"));
+			}catch(FileNotFoundException e){
+				System.out.println("File not found!!!");
+			}
+
+			//read array
+			for(intCount = 0; intCount < 20; intCount++){
+				try{
+					intLine = board.readLine();
+					intARow = intLine.split(",");
+				}catch(IOException e){
+					intLine = "0";
+				}
+				for(intCount2 = 0; intCount2 < 20; intCount2++){
+					strBoard[intCount][intCount2] = intARow[intCount2];
+				}
+			}
+		
 		//GAME
 		boolStartGame = true;
 		if(boolStartGame == true){
+		
+		/*
 			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES			
 			//Import Array
 			BufferedReader board = null;
@@ -162,6 +186,7 @@ public class BlokusPanelTest extends JPanel{
 					strBoard[intCount][intCount2] = intARow[intCount2];
 				}
 			}
+		*/
 
 			//Draw array
 			for(intRow = 0; intRow < 20; intRow++){
@@ -218,6 +243,8 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, ((-68) + (27*intCount2) + mouseX), ((-68) + (27*intCount) + mouseY),null);
+							}else{
+								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -228,6 +255,8 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
+							}else{
+								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -240,6 +269,8 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
+							}else{
+								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -257,18 +288,6 @@ public class BlokusPanelTest extends JPanel{
 			}*/
 			
 			if(boolDropped == true){
-				//draw dropped piece onto board
-					/*
-						for(intCount = 0; intCount < 5; intCount++){
-							System.out.println();
-							for(intCount2 = 0; intCount2 < 5; intCount2++){
-								System.out.print(PieceGrid[intCount][intCount2]);
-								if(PieceGrid[intCount][intCount2] == 1){
-									g.drawImage(yellow, -68 + (27*intCount2) + intDropX, -68 + (27*intCount) + intDropY, null);
-								}
-							}
-						}
-					*/
 //change the board array instead...
 				//place the values (not 0) of piece grid into the board array 
 				
@@ -278,8 +297,7 @@ public class BlokusPanelTest extends JPanel{
 				intRowDrop = Math.round((intDropY-26)/27); 		
 				
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
-						
-				/*
+										
 				for(intCount = 0; intCount < 5; intCount++){
 						System.out.println();
 					for(intCount2 = 0; intCount2 < 5; intCount2++){
@@ -287,11 +305,21 @@ public class BlokusPanelTest extends JPanel{
 						if(PieceGrid[intCount][intCount2] == 1){
 						//determine row & column based on mouse drop (x,y) coordinates.
 							//build from intRow & intCol
-							//strBoard[intRow][intCol].equals("1");
+							strBoard[intRowDrop - 2][intColDrop-2] = "1";
 						}
 					}
 				}
-				*/
+				
+			System.out.println("board array");
+			
+			for(intRow = 0; intRow < 20; intRow++){
+				System.out.println("");
+				for(intCol = 0; intCol < 20; intCol++){
+					System.out.print(strBoard[intRow][intCol]);
+				}
+			}
+				
+// fix errors... array index out of bounds
 
 								
 				if(mouseX > 369 && mouseX < 910){
