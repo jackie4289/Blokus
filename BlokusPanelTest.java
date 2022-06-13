@@ -28,6 +28,9 @@ public class BlokusPanelTest extends JPanel{
 	boolean newPiece = true;
 	boolean boolDropped = false;
 	boolean boolFirstTime = true;
+	boolean boolOverlap = false;
+	boolean boolCorner = false;
+	boolean boolSide = false;
 	
 	// Integers
 	int intRow;
@@ -300,15 +303,60 @@ public class BlokusPanelTest extends JPanel{
 				intRowDrop = Math.round((intDropY-26)/27); 		
 				
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
-										
+				boolOverlap = false;	
 				for(intCount = 0; intCount < 5; intCount++){
 					System.out.println();
 					for(intCount2 = 0; intCount2 < 5; intCount2++){
-						System.out.print(PieceGrid[intCount][intCount2]);
 						if(PieceGrid[intCount][intCount2] == 1){
 						//determine row & column based on mouse drop (x,y) coordinates.
 							//build from intRow & intCol
-							strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] = "1";
+							if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] == "1"){
+								boolOverlap = true;
+							}
+						}
+					}
+				}
+				
+				if(boolOverlap == false){
+					boolCorner = false;
+					boolSide = false;
+					for(intCount = 0; intCount < 5; intCount++){
+						System.out.println();
+						for(intCount2 = 0; intCount2 < 5; intCount2++){
+							if(PieceGrid[intCount][intCount2] == 1){
+							//determine row & column based on mouse drop (x,y) coordinates.
+								//build from intRow & intCol
+								if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2] == "1"){
+									boolSide = true;
+								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2] == "1"){
+									boolSide = true;
+								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2+1] == "1"){
+									boolSide = true;
+								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2-1] == "1"){
+									boolSide = true;
+								}
+							}
+						}
+					}
+					
+					if(boolCorner == true){
+						boolCorner = false;
+					}else{
+						boolCorner = true;
+					}
+					
+					if(boolCorner == true && boolSide == false){
+						for(intCount = 0; intCount < 5; intCount++){
+							System.out.println();
+							for(intCount2 = 0; intCount2 < 5; intCount2++){
+								System.out.print(PieceGrid[intCount][intCount2]);
+								if(PieceGrid[intCount][intCount2] == 1){
+								//determine row & column based on mouse drop (x,y) coordinates.
+									//build from intRow & intCol
+									strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] = "1";
+									
+								}
+							}
 						}
 					}
 				}
