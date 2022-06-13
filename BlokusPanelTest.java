@@ -27,6 +27,7 @@ public class BlokusPanelTest extends JPanel{
 	boolean boolRotate = false;
 	boolean newPiece = true;
 	boolean boolDropped = false;
+	boolean boolFirstTime = true;
 	
 	// Integers
 	int intRow;
@@ -140,13 +141,13 @@ public class BlokusPanelTest extends JPanel{
 		
 		// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES			
 			//Import Array
+		if(boolFirstTime == true){
 			BufferedReader board = null;
 			try{
 				board = new BufferedReader(new FileReader("board.csv"));
 			}catch(FileNotFoundException e){
 				System.out.println("File not found!!!");
 			}
-
 			//read array
 			for(intCount = 0; intCount < 20; intCount++){
 				try{
@@ -159,6 +160,8 @@ public class BlokusPanelTest extends JPanel{
 					strBoard[intCount][intCount2] = intARow[intCount2];
 				}
 			}
+			boolFirstTime = false;
+		}
 		
 		//GAME
 		boolStartGame = true;
@@ -299,13 +302,13 @@ public class BlokusPanelTest extends JPanel{
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
 										
 				for(intCount = 0; intCount < 5; intCount++){
-						System.out.println();
+					System.out.println();
 					for(intCount2 = 0; intCount2 < 5; intCount2++){
 						System.out.print(PieceGrid[intCount][intCount2]);
 						if(PieceGrid[intCount][intCount2] == 1){
 						//determine row & column based on mouse drop (x,y) coordinates.
 							//build from intRow & intCol
-							strBoard[intRowDrop - 2][intColDrop-2] = "1";
+							strBoard[intRowDrop][intColDrop] = "1";
 						}
 					}
 				}
