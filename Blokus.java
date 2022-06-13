@@ -367,6 +367,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		
 	}
 	public void keyReleased(KeyEvent evt){
+		
 		/*	
 		if(evt.getKeyCode() == 32){
 			if(theGamePanel.intTurn < 5){
