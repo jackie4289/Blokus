@@ -310,11 +310,14 @@ public class BlokusPanelTest extends JPanel{
 					}
 				}
 				
-				/*
-				for(intRow = 0; intRow < 20; intRow++){
+			System.out.println("board array");
+			
+			for(intRow = 0; intRow < 20; intRow++){
+				System.out.println("");
 				for(intCol = 0; intCol < 20; intCol++){
-				System.out.println(strBoard[intRow][intCol]);
-				*/
+					System.out.print(strBoard[intRow][intCol]);
+				}
+			}
 				
 // fix errors... array index out of bounds
 
