@@ -279,7 +279,9 @@ public class BlokusPanelTest extends JPanel{
 				
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
 						
-				/*
+				intCol = intColDrop - 2;
+				intRow = intRowDrop - 2;
+				
 				for(intCount = 0; intCount < 5; intCount++){
 						System.out.println();
 					for(intCount2 = 0; intCount2 < 5; intCount2++){
@@ -287,11 +289,11 @@ public class BlokusPanelTest extends JPanel{
 						if(PieceGrid[intCount][intCount2] == 1){
 						//determine row & column based on mouse drop (x,y) coordinates.
 							//build from intRow & intCol
-							//strBoard[intRow][intCol].equals("1");
+							strBoard[intRow][intCol].equals("1");
 						}
 					}
 				}
-				*/
+				
 
 								
 				if(mouseX > 369 && mouseX < 910){
