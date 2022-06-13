@@ -243,6 +243,8 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, ((-68) + (27*intCount2) + mouseX), ((-68) + (27*intCount) + mouseY),null);
+							}else{
+								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -253,6 +255,8 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
+							}else{
+								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -265,6 +269,8 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
+							}else{
+								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
