@@ -13,6 +13,7 @@ public class BlokusPanel extends JPanel{
 	String strBoard[][] = new String[20][20];
 	String strName[] = new String[4];
 	String intARow[];
+	String strUsername;
 	int PieceGrid[][] = new int [4][4];
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
