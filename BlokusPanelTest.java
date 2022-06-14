@@ -335,6 +335,15 @@ public class BlokusPanelTest extends JPanel{
 								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2-1] == "1"){
 									boolSide = true;
 								}
+								if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2-1] == "1"){
+									boolCorner = true;
+								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2+1] == "1"){
+									boolCorner = true;
+								}else if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2+1] == "1"){
+									boolCorner = true;
+								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2-1] == "1"){
+									boolCorner = true;
+								}
 							}
 						}
 					}
@@ -344,8 +353,11 @@ public class BlokusPanelTest extends JPanel{
 					}else{
 						boolCorner = true;
 					}
-					
-					if(boolCorner == true && boolSide == false){
+					System.out.println(boolSide);
+					System.out.println(boolCorner);
+					if(boolCorner == false && boolSide == false){
+						System.out.println("CORNER FOUND, NO SIDE");
+
 						for(intCount = 0; intCount < 5; intCount++){
 							System.out.println();
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
