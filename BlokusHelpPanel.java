@@ -11,7 +11,7 @@ public class BlokusHelpPanel extends JPanel{
 	//Properties
 	
 	//Mini Arrays
-	String strBoard[][] = new String[5][5];
+	String strMiniBoard[][] = new String[5][5];
 	//String intARow[];
 	int PieceGrid[][] = new int [4][4];
 	int BoardGrid[][] = new int[5][5];
@@ -39,9 +39,33 @@ public class BlokusHelpPanel extends JPanel{
 	BufferedImage blue = null;
 	
 	//Methods
+	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		g.drawImage(help, 0, 0, null);
+		
+		//set blank board
+		for(intCount = 0; intCount < 5; intCount++){
+			for(intCount2 = 0; intCount2 < 5; intCount2++){
+				strMiniBoard[intCount][intCount2] = "0";
+			}
+		}
+		
+		for(intRow = 0; intRow < 5; intRow++){
+			for(intCol = 0; intCol < 5; intCol++){
+				if(strMiniBoard[intRow][intCol].equals("0")){
+					g.drawImage(white, 370 + intCol * 27, 200 + intRow * 27, null);
+				}else if(strMiniBoard[intRow][intCol].equals("1")){
+					g.drawImage(blue, 370 + intCol * 27, 200 + intRow * 27, null);
+				}else if(strMiniBoard[intRow][intCol].equals("2")){
+					g.drawImage(red, 370 + intCol * 27, 200 + intRow * 27, null);
+				}
+			}
+		}	
+		
+		
+		
+		
 	}
 
 	//Constructor
