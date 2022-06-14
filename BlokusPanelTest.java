@@ -326,6 +326,7 @@ public class BlokusPanelTest extends JPanel{
 							if(PieceGrid[intCount][intCount2] == 1){
 							//determine row & column based on mouse drop (x,y) coordinates.
 								//build from intRow & intCol
+								//side
 								if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2] == "1"){
 									boolSide = true;
 								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2] == "1"){
@@ -335,6 +336,7 @@ public class BlokusPanelTest extends JPanel{
 								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2-1] == "1"){
 									boolSide = true;
 								}
+								//corner
 								if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2-1] == "1"){
 									boolCorner = true;
 								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2+1] == "1"){
@@ -348,14 +350,12 @@ public class BlokusPanelTest extends JPanel{
 						}
 					}
 					
-					if(boolCorner == true){
-						boolCorner = false;
-					}else{
-						boolCorner = true;
-					}
+					
 					System.out.println(boolSide);
 					System.out.println(boolCorner);
-					if(boolCorner == false && boolSide == false){
+					
+					
+					if(boolCorner == true && boolSide == false){
 						System.out.println("CORNER FOUND, NO SIDE");
 
 						for(intCount = 0; intCount < 5; intCount++){
