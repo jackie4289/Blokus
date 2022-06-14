@@ -305,23 +305,24 @@ public class BlokusPanelTest extends JPanel{
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
 				boolOverlap = false;	
 				for(intCount = 0; intCount < 5; intCount++){
-					System.out.println();
 					for(intCount2 = 0; intCount2 < 5; intCount2++){
 						if(PieceGrid[intCount][intCount2] == 1){
 						//determine row & column based on mouse drop (x,y) coordinates.
 							//build from intRow & intCol
 							if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] == "1"){
 								boolOverlap = true;
+								System.out.println("******************************************************************************************");
 							}
 						}
 					}
 				}
-				
+				System.out.println(intRowDrop);
+				System.out.println(intColDrop);
+				System.out.println(boolOverlap);
 				if(boolOverlap == false){
 					boolCorner = false;
 					boolSide = false;
 					for(intCount = 0; intCount < 5; intCount++){
-						System.out.println();
 						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							if(PieceGrid[intCount][intCount2] == 1){
 							//determine row & column based on mouse drop (x,y) coordinates.
@@ -335,38 +336,44 @@ public class BlokusPanelTest extends JPanel{
 								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2-1] == "1"){
 									boolSide = true;
 								}
-								if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2-1] == "1"){
-									boolCorner = true;
-								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2+1] == "1"){
-									boolCorner = true;
-								}else if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2+1] == "1"){
-									boolCorner = true;
-								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2-1] == "1"){
-									boolCorner = true;
-								}
+								
 							}
 						}
 					}
-					
-					if(boolCorner == true){
-						boolCorner = false;
-					}else{
-						boolCorner = true;
-					}
 					System.out.println(boolSide);
-					System.out.println(boolCorner);
-					if(boolCorner == false && boolSide == false){
-						System.out.println("CORNER FOUND, NO SIDE");
-
+					if(boolSide == false){
 						for(intCount = 0; intCount < 5; intCount++){
-							System.out.println();
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
-								System.out.print(PieceGrid[intCount][intCount2]);
 								if(PieceGrid[intCount][intCount2] == 1){
 								//determine row & column based on mouse drop (x,y) coordinates.
 									//build from intRow & intCol
-									strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] = "1";
+									if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2-1] == "1"){
+										boolCorner = true;
+									}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2+1] == "1"){
+										boolCorner = true;
+									}else if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2+1] == "1"){
+										boolCorner = true;
+									}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2-1] == "1"){
+										boolCorner = true;
+									}
 									
+								}
+							}
+						}
+						System.out.println(boolCorner);
+						if(boolCorner == true){
+							System.out.println("CORNER FOUND, NO SIDE");
+
+							for(intCount = 0; intCount < 5; intCount++){
+								System.out.println();
+								for(intCount2 = 0; intCount2 < 5; intCount2++){
+									System.out.print(PieceGrid[intCount][intCount2]);
+									if(PieceGrid[intCount][intCount2] == 1){
+									//determine row & column based on mouse drop (x,y) coordinates.
+										//build from intRow & intCol
+										strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] = "1";
+										
+									}
 								}
 							}
 						}
