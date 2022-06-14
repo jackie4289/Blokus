@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 public class BlokusTest implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
 	//Properties
-	BlokusPanelTest2 theGamePanel = new BlokusPanelTest2();
+	BlokusPanelTest theGamePanel = new BlokusPanelTest();
 
 	Timer theTimer = new Timer(1000/60, this);
 	Block BlockModel;
@@ -123,7 +123,7 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 	}
 
 	//Main Program
-	public static void main(String[] args){
+	public static void main(String [] args){
 		BlokusTest Block = new BlokusTest();
 	}
 }
