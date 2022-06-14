@@ -14,8 +14,8 @@ public class BlokusHelpPanel extends JPanel{
 	String strBoard[][] = new String[5][5];
 	//String intARow[];
 	int PieceGrid[][] = new int [4][4];
-	int BoardGrid[][] = new int[19][19];
-	int TempGrid[][] = new int[19][19];
+	int BoardGrid[][] = new int[5][5];
+	int TempGrid[][] = new int[5][5];
 	
 	// Integers
 	int intRow;
