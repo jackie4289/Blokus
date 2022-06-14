@@ -21,6 +21,8 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 	JTextArea chatArea = new JTextArea();
 	JScrollPane chatScroll = new JScrollPane(chatArea);
 	
+	//int intTurn = 0;
+	
 	//Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){

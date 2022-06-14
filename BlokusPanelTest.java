@@ -294,10 +294,14 @@ public class BlokusPanelTest extends JPanel{
 			}*/
 			
 			if(boolDropped == true){
+				int intTurn = 0;
+				intTurn++;
+				System.out.println("Turn #: "+intTurn);
 //change the board array instead...
 				//place the values (not 0) of piece grid into the board array 
 				
-				System.out.println("piece dropped: drop x "+intDropX+" | drop y " +intDropY);
+				System.out.println("piece dropped");
+				System.out.println("drop x "+intDropX+" | drop y " +intDropY);
 				
 				intColDrop= Math.round((intDropX-369)/27);
 				intRowDrop = Math.round((intDropY-26)/27); 		
@@ -314,6 +318,12 @@ public class BlokusPanelTest extends JPanel{
 							}
 						}
 					}
+				}
+				
+				//figure out how to place pieces along the edge
+				//then find how to place 1st piece in corner
+				if(intTurn == 1){
+					
 				}
 				
 				if(boolOverlap == false){
