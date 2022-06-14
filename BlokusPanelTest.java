@@ -308,8 +308,7 @@ public class BlokusPanelTest extends JPanel{
 					System.out.println();
 					for(intCount2 = 0; intCount2 < 5; intCount2++){
 						if(PieceGrid[intCount][intCount2] == 1){
-						//determine row & column based on mouse drop (x,y) coordinates.
-							//build from intRow & intCol
+							//check for overlap
 							if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] == "1"){
 								boolOverlap = true;
 							}
@@ -335,15 +334,6 @@ public class BlokusPanelTest extends JPanel{
 								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2-1] == "1"){
 									boolSide = true;
 								}
-								if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2-1] == "1"){
-									boolCorner = true;
-								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2+1] == "1"){
-									boolCorner = true;
-								}else if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2+1] == "1"){
-									boolCorner = true;
-								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2-1] == "1"){
-									boolCorner = true;
-								}
 							}
 						}
 					}
@@ -353,11 +343,8 @@ public class BlokusPanelTest extends JPanel{
 					}else{
 						boolCorner = true;
 					}
-					System.out.println(boolSide);
-					System.out.println(boolCorner);
-					if(boolCorner == false && boolSide == false){
-						System.out.println("CORNER FOUND, NO SIDE");
-
+					
+					if(boolCorner == true && boolSide == false){
 						for(intCount = 0; intCount < 5; intCount++){
 							System.out.println();
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
@@ -371,31 +358,31 @@ public class BlokusPanelTest extends JPanel{
 							}
 						}
 					}
-				}
 				
-			System.out.println("board array");
-			
-			for(intRow = 0; intRow < 20; intRow++){
-				System.out.println("");
-				for(intCol = 0; intCol < 20; intCol++){
-					System.out.print(strBoard[intRow][intCol]);
-				}
-			}
-				
-// fix errors... array index out of bounds
-
-								
-				if(mouseX > 369 && mouseX < 910){
-					if(mouseY > 26 && mouseY < 567){
-						if(intPiece > 22){
-							intPiece = 1;
-						}else{	
-							intPiece = intPiece + 1;
-						}						
-						newPiece = true;
+					System.out.println("board array");
+					
+					for(intRow = 0; intRow < 20; intRow++){
+						System.out.println("");
+						for(intCol = 0; intCol < 20; intCol++){
+							System.out.print(strBoard[intRow][intCol]);
+						}
 					}
+						
+		// fix errors... array index out of bounds
+
+										
+						if(mouseX > 369 && mouseX < 910){
+							if(mouseY > 26 && mouseY < 567){
+								if(intPiece > 22){
+									intPiece = 1;
+								}else{	
+									intPiece = intPiece + 1;
+								}						
+								newPiece = true;
+							}
+						}
+						boolDropped = false;
 				}
-				boolDropped = false;
 			}		
 			
 		}else{
