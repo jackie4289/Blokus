@@ -11,7 +11,7 @@ import java.lang.Math;
 public class BlokusPanelTest2 extends JPanel{
 	//Properties
 	// Arrays
-	String strBoard[][] = new String[23][23];
+	String strBoard[][] = new String[24][24];
 	String intARow[];
 	int PieceGrid[][] = new int [4][4];
 	int BoardGrid[][] = new int[23][23];
@@ -135,8 +135,8 @@ public class BlokusPanelTest2 extends JPanel{
 		g.drawString("BLOKUS", 588, 23);
 		
 		// SET BOARD ARRAY TO 0
-		for(intCount = 2;intCount < 22; intCount++){
-			for(intCount2 = 2;intCount2 < 22; intCount2++){
+		for(intCount = 0;intCount < 23; intCount++){
+			for(intCount2 = 0;intCount2 < 23; intCount2++){
 				BoardGrid[intCount][intCount2] = 0;
 				TempGrid[intCount][intCount2] = 0;
 			}
@@ -196,18 +196,7 @@ public class BlokusPanelTest2 extends JPanel{
 				System.out.println("PieceGrid found");
 				newPiece = false;
 			}
-			/*
-			if(dropped == true){
-				if(mouseX > 369 && mouseX < 910){
-					if(mouseY > 26 && mouseY < 567){
-						
-						intPiece = intPiece + 1;
-						newPiece = true;
-					}
-				}
-				dropped = false;		
-			}
-			*/
+			
 			
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
 				
@@ -261,17 +250,7 @@ public class BlokusPanelTest2 extends JPanel{
 						}
 					}
 				}
-			}/*else if(boolDragAndDrop == false && boolDropped == true){
-				for(intCount = 0; intCount < 5; intCount++){
-					System.out.println();
-					for(intCount2 = 0; intCount2 < 5; intCount2++){
-						System.out.print(PieceGrid[intCount][intCount2]);
-						if(PieceGrid[intCount][intCount2] == 1){
-							g.drawImage(yellow, -68 + (27*intCount2) + intDropX, -68 + (27*intCount) + intDropY, null);
-						}
-					}
-				}
-			}*/
+			}
 			
 			if(boolDropped == true){
 				int intTurn = 0;
@@ -293,7 +272,7 @@ public class BlokusPanelTest2 extends JPanel{
 					for(intCount2 = 0; intCount2 < 5; intCount2++){
 						if(PieceGrid[intCount][intCount2] == 1){
 							//check for overlap
-							if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] == "1"){
+							if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "1" || strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == null){
 								boolOverlap = true;
 							}
 						}
@@ -315,13 +294,13 @@ public class BlokusPanelTest2 extends JPanel{
 							if(PieceGrid[intCount][intCount2] == 1){
 							//determine row & column based on mouse drop (x,y) coordinates.
 								//build from intRow & intCol
-								if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2] == "1"){
+								if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "1"){
 									boolSide = true;
-								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2] == "1"){
+								}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "1"){
 									boolSide = true;
-								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2+1] == "1"){
+								}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "1"){
 									boolSide = true;
-								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2-1] == "1"){
+								}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "1"){
 									boolSide = true;
 								}
 							}
@@ -342,7 +321,7 @@ public class BlokusPanelTest2 extends JPanel{
 								if(PieceGrid[intCount][intCount2] == 1){
 								//determine row & column based on mouse drop (x,y) coordinates.
 									//build from intRow & intCol
-									strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] = "1";
+									strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "1";
 									
 								}
 							}
@@ -351,9 +330,9 @@ public class BlokusPanelTest2 extends JPanel{
 				
 					System.out.println("board array");
 					
-					for(intRow = 2; intRow <22; intRow++){
+					for(intRow = 0; intRow <24; intRow++){
 						System.out.println("");
-						for(intCol = 2; intCol <22; intCol++){
+						for(intCol = 0; intCol <24; intCol++){
 							System.out.print(strBoard[intRow][intCol]);
 						}
 					}
