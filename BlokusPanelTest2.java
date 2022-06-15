@@ -11,11 +11,11 @@ import java.lang.Math;
 public class BlokusPanelTest2 extends JPanel{
 	//Properties
 	// Arrays
-	String strBoard[][] = new String[20][20];
+	String strBoard[][] = new String[23][23];
 	String intARow[];
 	int PieceGrid[][] = new int [4][4];
-	int BoardGrid[][] = new int[19][19];
-	int TempGrid[][] = new int[19][19];
+	int BoardGrid[][] = new int[23][23];
+	int TempGrid[][] = new int[23][23];
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -135,8 +135,8 @@ public class BlokusPanelTest2 extends JPanel{
 		g.drawString("BLOKUS", 588, 23);
 		
 		// SET BOARD ARRAY TO 0
-		for(intCount = 0;intCount < 19; intCount++){
-			for(intCount2 = 0;intCount2 < 19; intCount2++){
+		for(intCount = 2;intCount < 22; intCount++){
+			for(intCount2 = 2;intCount2 < 22; intCount2++){
 				BoardGrid[intCount][intCount2] = 0;
 				TempGrid[intCount][intCount2] = 0;
 			}
@@ -152,6 +152,8 @@ public class BlokusPanelTest2 extends JPanel{
 				System.out.println("File not found!!!");
 			}
 			//read array
+			intRow = 0;
+			intCol = 0;
 			for(intCount = 0; intCount < 20; intCount++){
 				try{
 					intLine = board.readLine();
@@ -160,53 +162,31 @@ public class BlokusPanelTest2 extends JPanel{
 					intLine = "0";
 				}
 				for(intCount2 = 0; intCount2 < 20; intCount2++){
-					strBoard[intCount][intCount2] = intARow[intCount2];
+					strBoard[intCount+2][intCount2+2] = intARow[intCount2];
 				}
 			}
 			boolFirstTime = false;
+			System.out.println("FIRST TIME FINSIHED");
 		}
 		
 		//GAME
 		boolStartGame = true;
 		if(boolStartGame == true){
 		
-		/*
-			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES			
-			//Import Array
-			BufferedReader board = null;
-			try{
-				board = new BufferedReader(new FileReader("board.csv"));
-			}catch(FileNotFoundException e){
-				System.out.println("File not found!!!");
-			}
-
-			//read array
-			for(intCount = 0; intCount < 20; intCount++){
-				try{
-					intLine = board.readLine();
-					intARow = intLine.split(",");
-				}catch(IOException e){
-					intLine = "0";
-				}
-				for(intCount2 = 0; intCount2 < 20; intCount2++){
-					strBoard[intCount][intCount2] = intARow[intCount2];
-				}
-			}
-		*/
-
+		
 			//Draw array
-			for(intRow = 0; intRow < 20; intRow++){
-				for(intCol = 0; intCol < 20; intCol++){
+			for(intRow = 2; intRow <22; intRow++){
+				for(intCol = 2; intCol <22; intCol++){
 					if(strBoard[intRow][intCol].equals("0")){
-						g.drawImage(white, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(white, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}else if(strBoard[intRow][intCol].equals("1")){
-						g.drawImage(yellow, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(yellow, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}else if(strBoard[intRow][intCol].equals("2")){
-						g.drawImage(green, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(green, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}else if(strBoard[intRow][intCol].equals("3")){
-						g.drawImage(blue, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(blue, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}else if(strBoard[intRow][intCol].equals("4")){
-						g.drawImage(red, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(red, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}
 				}
 			}
@@ -371,30 +351,26 @@ public class BlokusPanelTest2 extends JPanel{
 				
 					System.out.println("board array");
 					
-					for(intRow = 0; intRow < 20; intRow++){
+					for(intRow = 2; intRow <22; intRow++){
 						System.out.println("");
-						for(intCol = 0; intCol < 20; intCol++){
+						for(intCol = 2; intCol <22; intCol++){
 							System.out.print(strBoard[intRow][intCol]);
 						}
 					}
-						
-		// fix errors... array index out of bounds
-
-										
-						if(mouseX > 369 && mouseX < 910){
-							if(mouseY > 26 && mouseY < 567){
-								if(intPiece > 22){
-									intPiece = 1;
-								}else{	
-									intPiece = intPiece + 1;
-								}						
-								newPiece = true;
-							}
+					// fix errors... array index out of bounds										
+					if(mouseX > 369 && mouseX < 910){
+						if(mouseY > 26 && mouseY < 567){
+							if(intPiece > 21){
+								intPiece = 1;
+							}else{	
+								intPiece = intPiece + 1;
+							}						
+							newPiece = true;
 						}
-						boolDropped = false;
+					}
+					boolDropped = false;
 				}
 			}		
-			
 		}else{
 			//game not started
 		}
