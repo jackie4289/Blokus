@@ -54,11 +54,11 @@ public class BlokusHelpPanel extends JPanel{
 		for(intRow = 0; intRow < 5; intRow++){
 			for(intCol = 0; intCol < 5; intCol++){
 				if(strMiniBoard[intRow][intCol].equals("0")){
-					g.drawImage(white, 370 + intCol * 27, 200 + intRow * 27, null);
+					g.drawImage(white, 250 + intCol * 27, 270 + intRow * 27, null);
 				}else if(strMiniBoard[intRow][intCol].equals("1")){
-					g.drawImage(blue, 370 + intCol * 27, 200 + intRow * 27, null);
+					g.drawImage(blue, 250 + intCol * 27, 270 + intRow * 27, null);
 				}else if(strMiniBoard[intRow][intCol].equals("2")){
-					g.drawImage(red, 370 + intCol * 27, 200 + intRow * 27, null);
+					g.drawImage(red, 250 + intCol * 27, 270 + intRow * 27, null);
 				}
 			}
 		}	

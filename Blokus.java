@@ -34,6 +34,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	JButton loginButton = new JButton("Login");
 	JButton quitButton = new JButton("Quit");
 	JButton helpButton = new JButton("Help");
+	JButton highscoreButton = new JButton("High Scores");
 	BlokusLoginPanel theLoginPanel = new BlokusLoginPanel();
 	JButton connectButton = new JButton ("Connect!");
 	JButton startButton = new JButton("Start!");
@@ -45,23 +46,34 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	ButtonGroup buttonGroup = new ButtonGroup();
 	BlokusHelpPanel theHelpPanel = new BlokusHelpPanel();
 	JButton backButton = new JButton("Back");
-	JTextField testTextField = new JTextField();
-	JTextArea testChatArea = new JTextArea();
-	JScrollPane testChatScroll = new JScrollPane(testChatArea);
+	JTextField helpTextField = new JTextField();
+	JTextArea helpChatArea = new JTextArea();
+	JScrollPane helpChatScroll = new JScrollPane(helpChatArea);
+	BlokusHighSPanel theHighScorePanel = new BlokusHighSPanel();
 	
 	//Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
+			//timer
 			theGamePanel.repaint();
 			theLoginPanel.repaint();
 		}else if(evt.getSource() == quitButton){
+			//quit
 			System.exit(0);
 		}else if(evt.getSource() == helpButton){
+			//Help Panel Visible
 			theMenuPanel.setVisible(false);
 			theHelpPanel.add(backButton);
 			theHelpPanel.setVisible(true);
-			theFrame.setContentPane(theHelpPanel);		
+			theFrame.setContentPane(theHelpPanel);	
+		}else if(evt.getSource() == highscoreButton){
+			//High Score Panel Visible
+			theMenuPanel.setVisible(false);
+			theHighScorePanel.add(backButton);
+			theHighScorePanel.setVisible(true);
+			theFrame.setContentPane(theHighScorePanel);
 		}else if(evt.getSource() == loginButton){
+			//Login Panel Visible
 			theMenuPanel.setVisible(false);
 			theLoginPanel.add(backButton);
 			theLoginPanel.setVisible(true);
@@ -154,7 +166,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		}else if(evt.getSource() == sendTextField){
 			//Send Text
 			if(ssm != null && theGamePanel.boolStartGame == true){
-				
 				//get time
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 				LocalTime localTime = LocalTime.now();
@@ -342,8 +353,21 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			}
 		}else if(evt.getSource() ==  backButton){
 			theHelpPanel.setVisible(false);
+			theFrame.setContentPane(theMenuPanel);		
 			theMenuPanel.setVisible(true);
-			theFrame.setContentPane(theMenuPanel);				
+		}else if(evt.getSource() == helpTextField){
+			//get time
+			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
+			LocalTime localTime = LocalTime.now();
+			
+			//Send with name + time
+			helpChatArea.append(dtf.format(localTime)+ " User: " + helpTextField.getText() + "\n");
+			helpTextField.setText("");
+			
+			//Focus cycle
+			helpTextField.setFocusable(false);
+			helpTextField.setFocusable(true);
+					
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -374,28 +398,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		
 	}
 	public void keyReleased(KeyEvent evt){
-		
-		/*	
-		if(evt.getKeyCode() == 32){
-			if(theGamePanel.intTurn < 5){
-				theGamePanel.intTurn = 1;
-			}else{
-				theGamePanel.intTurn++;			
-			}
-		}
-		if(serverRButton.isSelected() && theGamePanel.boolStartGame == true){
-			if(theGamePanel.intTurn == 1){
-				ssm.sendText("turn," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
-			}else if(theGamePanel.intTurn == 2){
-				ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",1," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
-			}else if(theGamePanel.intTurn == 4){
-				ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",1," + theGamePanel.strName[3] + ",0");
-			}else if(theGamePanel.intTurn == 4){
-				ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",1");	
-			}
-			System.out.println("TURNS SENT rbutton");
-		}
-		*/
+	
 	}
 	public void keyPressed(KeyEvent evt){
 
@@ -432,6 +435,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theHelpPanel.setPreferredSize(new Dimension(1280, 720));
 		theHelpPanel.setVisible(false);
 		
+		//HighScore Panel
+		theHighScorePanel.setLayout(null);
+		theHighScorePanel.setPreferredSize(new Dimension(1280, 720));
+		theHighScorePanel.setVisible(false);
+		
 		//theFrame.setContentPane(theGamePanel);
 		theFrame.setContentPane(theMenuPanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -443,9 +451,15 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		loginButton.addActionListener(this);
 		theMenuPanel.add(loginButton);
 		
+		//High Score Button Menu
+		highscoreButton.setSize(240,50);
+		highscoreButton.setLocation(200, 555);
+		highscoreButton.addActionListener(this);
+		theMenuPanel.add(highscoreButton);
+		
 		//Quit Button Menu
-		quitButton.setSize(300, 50);
-		quitButton.setLocation(170, 555);
+		quitButton.setSize(240, 50);
+		quitButton.setLocation(200, 610);
 		quitButton.addActionListener(this);
 		theMenuPanel.add(quitButton);
 		
@@ -469,7 +483,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		startButton.setVisible(false);
 		
 		//Back Button Help/Highscore
-		backButton.setSize(300,50);
+		backButton.setSize(200,55);
 		backButton.setLocation(950,600);
 		backButton.addActionListener(this);
 		//add to panel when panel is selected...
@@ -527,20 +541,20 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theGamePanel.add(sendTextField);
 		
 		//Help Chat Box
-		testChatScroll.setSize(350,110);
-		testChatScroll.setLocation(200, 400);
-		testChatScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		testChatArea.setLineWrap(true);
-		testChatArea.setEditable(false);
-		theHelpPanel.add(testChatScroll); 
+		helpChatScroll.setSize(350,110);
+		helpChatScroll.setLocation(150, 500);
+		helpChatScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		helpChatArea.setLineWrap(true);
+		helpChatArea.setEditable(false);
+		theHelpPanel.add(helpChatScroll); 
 		
 		//Help Chat TextField
-		testTextField.setSize(350, 24);
-		testTextField.setLocation(200, 510);
-		testTextField.setForeground(Color.BLACK);
-		testTextField.setBackground(new Color(157, 156, 154));
-		testTextField.addActionListener(this);
-		theHelpPanel.add(testTextField);
+		helpTextField.setSize(350, 24);
+		helpTextField.setLocation(150, 610);
+		helpTextField.setForeground(Color.BLACK);
+		helpTextField.setBackground(new Color(157, 156, 154));
+		helpTextField.addActionListener(this);
+		theHelpPanel.add(helpTextField);
 		
 		//Pack Frame
 		theFrame.pack();
