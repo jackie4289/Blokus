@@ -13,14 +13,13 @@ public class BlokusHighSPanel extends JPanel{
 	String strTemp;
 	String strLine = "";
 	String strSplit[];
-	int intListCount = 0;
+	int intCountList = 0;
 	int intScore = 0;
 	int intCount;
 	int intOuter;
 	BufferedImage highscore = null;
 	BufferedReader scoreFile = null;
-	String strHighScore[][];
-	String strPlayers[][][][];
+	String strPlayers[][] = new String[intCountList][2];
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -40,8 +39,12 @@ public class BlokusHighSPanel extends JPanel{
 			while(strLine != null){
 				try{
 					strLine = scoreFile.readLine();
+					strSplit = strLine.split(",");
+					strPlayers[intCountList][0] = strSplit[0];
+					strPlayers[intCountList][1] = strSplit[1];
+					strPlayers[intCountList][2] = strSplit[2];
 					if(strLine != null){
-						intListCount++;
+						intCountList++;
 					}
 				}catch(IOException e){
 					System.out.println("Error reading from file");
@@ -52,14 +55,13 @@ public class BlokusHighSPanel extends JPanel{
 			}catch(IOException e){
 				System.out.println("Unable to close file");
 			}
-			System.out.println("HighScore list count: " + intListCount);
+			System.out.println("HighScore list count: " + intCountList);
 		}
 		
 
 		
 		//Array
-		strHighScore = new String[intListCount][2];
-		for(intCount = 0; intCount < intListCount; intCount++){
+		for(intCount = 0; intCount < intCountList; intCount++){
 			try{
 				strName = scoreFile.readLine();
 				intScore = Integer.parseInt(scoreFile.readLine());
@@ -67,16 +69,15 @@ public class BlokusHighSPanel extends JPanel{
 				strHighScore[intCount][1] = intScore + "";
 			}catch(IOException e){
 				System.out.println("error");
-				
-		}
+			}
 		scoreFile.close();
-		
+		}
 		/*
 		//BubbleSort
 		
 
-		for(intOuter = 0; intOuter < intListCount-1; intOuter++){
-			for(intCount = 0; intCount < intListCount-1; intCount++){
+		for(intOuter = 0; intOuter < intCountList-1; intOuter++){
+			for(intCount = 0; intCount < intCountList-1; intCount++){
 				// compare "left" to "right"
 				if(Double.parseDouble(strHighScore[intCount][1]) < Double.parseDouble(strHighScore[intCount + 1][1])){
 					strTemp = strHighScore[intCount][1];
