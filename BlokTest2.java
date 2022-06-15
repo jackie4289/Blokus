@@ -21,7 +21,9 @@ public class BlokTest2{
 				intBoard[intCount][intCount2] = 0;
 			}
 		}
-		
+		if(pieceType < 1 || pieceType > 21){
+			pieceType = 1;
+		}
 		//One 1-square piece
 		if (pieceType == 1){
 			intBoard[2][2] = 1;
