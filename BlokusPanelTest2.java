@@ -11,11 +11,11 @@ import java.lang.Math;
 public class BlokusPanelTest2 extends JPanel{
 	//Properties
 	// Arrays
-	String strBoard[][] = new String[20][20];
+	String strBoard[][] = new String[24][24];
 	String intARow[];
 	int PieceGrid[][] = new int [4][4];
-	int BoardGrid[][] = new int[19][19];
-	int TempGrid[][] = new int[19][19];
+	int BoardGrid[][] = new int[23][23];
+	int TempGrid[][] = new int[23][23];
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -28,6 +28,7 @@ public class BlokusPanelTest2 extends JPanel{
 	boolean newPiece = true;
 	boolean boolDropped = false;
 	boolean boolFirstTime = true;
+	boolean boolFirstCorner = false;
 	boolean boolOverlap = false;
 	boolean boolCorner = false;
 	boolean boolSide = false;
@@ -74,7 +75,7 @@ public class BlokusPanelTest2 extends JPanel{
 
 	//Methods
 	public void paintComponent(/*graphics variable*/Graphics g){
-		BlokTest BlokObject = new BlokTest();
+		BlokTest2 BlokObject = new BlokTest2();
 		super.paintComponent(g);
 		//UI
 		//P1 (Yellow)
@@ -135,8 +136,8 @@ public class BlokusPanelTest2 extends JPanel{
 		g.drawString("BLOKUS", 588, 23);
 		
 		// SET BOARD ARRAY TO 0
-		for(intCount = 0;intCount < 19; intCount++){
-			for(intCount2 = 0;intCount2 < 19; intCount2++){
+		for(intCount = 0;intCount < 23; intCount++){
+			for(intCount2 = 0;intCount2 < 23; intCount2++){
 				BoardGrid[intCount][intCount2] = 0;
 				TempGrid[intCount][intCount2] = 0;
 			}
@@ -152,6 +153,8 @@ public class BlokusPanelTest2 extends JPanel{
 				System.out.println("File not found!!!");
 			}
 			//read array
+			intRow = 0;
+			intCol = 0;
 			for(intCount = 0; intCount < 20; intCount++){
 				try{
 					intLine = board.readLine();
@@ -160,53 +163,30 @@ public class BlokusPanelTest2 extends JPanel{
 					intLine = "0";
 				}
 				for(intCount2 = 0; intCount2 < 20; intCount2++){
-					strBoard[intCount][intCount2] = intARow[intCount2];
+					strBoard[intCount+2][intCount2+2] = intARow[intCount2];
 				}
 			}
-			boolFirstTime = false;
+			//boolFirstTime = false;
 		}
 		
 		//GAME
 		boolStartGame = true;
 		if(boolStartGame == true){
 		
-		/*
-			// THIS SECTION READS THE MAP AS THE GAME STARTS, SHOULD FOLLOW THE .csv FILE VALUES			
-			//Import Array
-			BufferedReader board = null;
-			try{
-				board = new BufferedReader(new FileReader("board.csv"));
-			}catch(FileNotFoundException e){
-				System.out.println("File not found!!!");
-			}
-
-			//read array
-			for(intCount = 0; intCount < 20; intCount++){
-				try{
-					intLine = board.readLine();
-					intARow = intLine.split(",");
-				}catch(IOException e){
-					intLine = "0";
-				}
-				for(intCount2 = 0; intCount2 < 20; intCount2++){
-					strBoard[intCount][intCount2] = intARow[intCount2];
-				}
-			}
-		*/
-
+		
 			//Draw array
-			for(intRow = 0; intRow < 20; intRow++){
-				for(intCol = 0; intCol < 20; intCol++){
+			for(intRow = 2; intRow <22; intRow++){
+				for(intCol = 2; intCol <22; intCol++){
 					if(strBoard[intRow][intCol].equals("0")){
-						g.drawImage(white, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(white, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}else if(strBoard[intRow][intCol].equals("1")){
-						g.drawImage(yellow, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(yellow, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}else if(strBoard[intRow][intCol].equals("2")){
-						g.drawImage(green, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(green, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}else if(strBoard[intRow][intCol].equals("3")){
-						g.drawImage(blue, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(blue, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}else if(strBoard[intRow][intCol].equals("4")){
-						g.drawImage(red, 370 + intCol * 27, 27 + intRow * 27, null);
+						g.drawImage(red, 370 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
 					}
 				}
 			}
@@ -216,18 +196,7 @@ public class BlokusPanelTest2 extends JPanel{
 				System.out.println("PieceGrid found");
 				newPiece = false;
 			}
-			/*
-			if(dropped == true){
-				if(mouseX > 369 && mouseX < 910){
-					if(mouseY > 26 && mouseY < 567){
-						
-						intPiece = intPiece + 1;
-						newPiece = true;
-					}
-				}
-				dropped = false;		
-			}
-			*/
+			
 			
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
 				
@@ -281,70 +250,37 @@ public class BlokusPanelTest2 extends JPanel{
 						}
 					}
 				}
-			}/*else if(boolDragAndDrop == false && boolDropped == true){
-				for(intCount = 0; intCount < 5; intCount++){
-					System.out.println();
-					for(intCount2 = 0; intCount2 < 5; intCount2++){
-						System.out.print(PieceGrid[intCount][intCount2]);
-						if(PieceGrid[intCount][intCount2] == 1){
-							g.drawImage(yellow, -68 + (27*intCount2) + intDropX, -68 + (27*intCount) + intDropY, null);
-						}
-					}
-				}
-			}*/
+			}
 			
 			if(boolDropped == true){
-//change the board array instead...
+				int intTurn = 0;
+				intTurn++;
+				System.out.println("Turn #: "+intTurn);
+				//change the board array instead...
 				//place the values (not 0) of piece grid into the board array 
 				
-				System.out.println("piece dropped: drop x "+intDropX+" | drop y " +intDropY);
+				System.out.println("piece dropped");
+				System.out.println("drop x "+intDropX+" | drop y " +intDropY);
 				
 				intColDrop= Math.round((intDropX-369)/27);
 				intRowDrop = Math.round((intDropY-26)/27); 		
 				
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
-				boolOverlap = false;	
-				for(intCount = 0; intCount < 5; intCount++){
-					System.out.println();
-					for(intCount2 = 0; intCount2 < 5; intCount2++){
-						if(PieceGrid[intCount][intCount2] == 1){
-							//check for overlap
-							if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] == "1"){
-								boolOverlap = true;
-							}
-						}
-					}
-				}
 				
-				if(boolOverlap == false){
-					boolCorner = false;
-					boolSide = false;
+				if(boolFirstTime == true){
+					System.out.println("BOOLFIRSTIME STARTED");
 					for(intCount = 0; intCount < 5; intCount++){
-						System.out.println();
 						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							if(PieceGrid[intCount][intCount2] == 1){
-							//determine row & column based on mouse drop (x,y) coordinates.
-								//build from intRow & intCol
-								if(strBoard[(intRowDrop-2)+intCount-1][(intColDrop-2)+intCount2] == "1"){
-									boolSide = true;
-								}else if(strBoard[(intRowDrop-2)+intCount+1][(intColDrop-2)+intCount2] == "1"){
-									boolSide = true;
-								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2+1] == "1"){
-									boolSide = true;
-								}else if(strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2-1] == "1"){
-									boolSide = true;
+								//check for overlap
+								if(intRowDrop + intCount - 2 == 0 && intColDrop+ intCount2 - 2 == 0){
+									boolFirstCorner = true;
 								}
 							}
 						}
 					}
-					
-					if(boolCorner == true){
-						boolCorner = false;
-					}else{
-						boolCorner = true;
-					}
-					
-					if(boolCorner == true && boolSide == false){
+					System.out.println(boolFirstCorner);
+					if(boolFirstCorner == true){
 						for(intCount = 0; intCount < 5; intCount++){
 							System.out.println();
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
@@ -352,39 +288,115 @@ public class BlokusPanelTest2 extends JPanel{
 								if(PieceGrid[intCount][intCount2] == 1){
 								//determine row & column based on mouse drop (x,y) coordinates.
 									//build from intRow & intCol
-									strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] = "1";
+									strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "1";
 									
 								}
 							}
 						}
+						boolFirstTime = false;
+						intPiece = intPiece+1;
 					}
-				
-					System.out.println("board array");
-					
-					for(intRow = 0; intRow < 20; intRow++){
-						System.out.println("");
-						for(intCol = 0; intCol < 20; intCol++){
-							System.out.print(strBoard[intRow][intCol]);
-						}
-					}
-						
-		// fix errors... array index out of bounds
-
-										
-						if(mouseX > 369 && mouseX < 910){
-							if(mouseY > 26 && mouseY < 567){
-								if(intPiece > 22){
-									intPiece = 1;
-								}else{	
-									intPiece = intPiece + 1;
-								}						
-								newPiece = true;
+					newPiece = true;
+					boolDropped = false;
+				}else{
+					boolOverlap = false;	
+					for(intCount = 0; intCount < 5; intCount++){
+						System.out.println();
+						for(intCount2 = 0; intCount2 < 5; intCount2++){
+							if(PieceGrid[intCount][intCount2] == 1){
+								//check for overlap
+								if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "1" || strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == null){
+									boolOverlap = true;
+								}
 							}
 						}
+					}
+					
+					//figure out how to place pieces along the edge
+					//then find how to place 1st piece in corner
+					if(intTurn == 1){
+						
+					}
+					
+					if(boolOverlap == false){
+						boolCorner = false;
+						boolSide = false;
+						for(intCount = 0; intCount < 5; intCount++){
+							System.out.println();
+							for(intCount2 = 0; intCount2 < 5; intCount2++){
+								if(PieceGrid[intCount][intCount2] == 1){
+								//determine row & column based on mouse drop (x,y) coordinates.
+									//build from intRow & intCol
+									if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "1"){
+										boolSide = true;
+									}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "1"){
+										boolSide = true;
+									}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "1"){
+										boolSide = true;
+									}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "1"){
+										boolSide = true;
+									}
+								}
+							}
+						}
+						for(intCount = 0; intCount < 5; intCount++){
+							System.out.println();
+							for(intCount2 = 0; intCount2 < 5; intCount2++){
+								if(PieceGrid[intCount][intCount2] == 1){
+								//determine row & column based on mouse drop (x,y) coordinates.
+									//build from intRow & intCol
+									if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "1"){
+										boolCorner = true;
+									}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "1"){
+										boolCorner = true;
+									}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "1"){
+										boolCorner = true;
+									}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "1"){
+										boolCorner = true;
+									}
+								}
+							}
+						}
+						/*if(boolCorner == true){
+							boolCorner = false;
+						}else{
+							boolCorner = true;
+						}*/
+						
+						if(boolCorner == true && boolSide == false){
+							for(intCount = 0; intCount < 5; intCount++){
+								System.out.println();
+								for(intCount2 = 0; intCount2 < 5; intCount2++){
+									System.out.print(PieceGrid[intCount][intCount2]);
+									if(PieceGrid[intCount][intCount2] == 1){
+									//determine row & column based on mouse drop (x,y) coordinates.
+										//build from intRow & intCol
+										strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "1";
+										
+									}
+								}
+							}
+							if(intPiece > 21){
+								intPiece = 1;
+							}else{	
+								intPiece = intPiece + 1;
+							}						
+							newPiece = true;
+						}
+					
+						System.out.println("board array");
+						
+						for(intRow = 0; intRow <24; intRow++){
+							System.out.println("");
+							for(intCol = 0; intCol <24; intCol++){
+								System.out.print(strBoard[intRow][intCol]);
+							}
+						}
+						
 						boolDropped = false;
+					}
 				}
 			}		
-			
 		}else{
 			//game not started
 		}
