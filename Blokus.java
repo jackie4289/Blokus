@@ -152,6 +152,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						startButton.setEnabled(false);
 						theLoginPanel.strName[0] = theGamePanel.strUsername;
 						theGamePanel.strName[0] = theGamePanel.strUsername;
+						theLoginPanel.boolisServer = true;
+						theLoginPanel.strAddress = ssm.getMyAddress();
 						intConnected++;
 						
 					}else{
@@ -446,20 +448,20 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theFrame.setResizable(false);
 		
 		//Login Button Menu
-		loginButton.setSize(300, 50);
-		loginButton.setLocation(170, 500);
+		loginButton.setSize(240,50);
+		loginButton.setLocation(200, 510);
 		loginButton.addActionListener(this);
 		theMenuPanel.add(loginButton);
 		
 		//High Score Button Menu
 		highscoreButton.setSize(240,50);
-		highscoreButton.setLocation(200, 555);
+		highscoreButton.setLocation(200, 580);
 		highscoreButton.addActionListener(this);
 		theMenuPanel.add(highscoreButton);
 		
 		//Quit Button Menu
 		quitButton.setSize(240, 50);
-		quitButton.setLocation(200, 610);
+		quitButton.setLocation(200, 635);
 		quitButton.addActionListener(this);
 		theMenuPanel.add(quitButton);
 		

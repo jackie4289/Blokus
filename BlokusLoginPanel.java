@@ -12,7 +12,8 @@ public class BlokusLoginPanel extends JPanel{
 	String strName[] = new String[4];
 	int intConnected = 0;
 	int intPlayerNum;
-	boolean boolFirstTime = true;
+	String strAddress;
+	boolean boolisServer;
 	BufferedImage login = null;
 	//Methods
 	public void paintComponent(Graphics g){
@@ -20,8 +21,12 @@ public class BlokusLoginPanel extends JPanel{
 		//Draw image
 		g.drawImage(login, 0, 0, null);
 		g.setColor(Color.BLACK);
-		//Print player list
 		g.setFont(new Font("TimesRoman", Font.BOLD, 25));
+		//Print ip if server
+		if(boolisServer == true){
+			g.drawString("Local IP: " + strAddress, 955, 210);
+		}
+		//Print player list
 		if(strName[0] != null){
 			g.drawString("" + strName[0],1000, 310);
 		}
