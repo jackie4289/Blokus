@@ -203,12 +203,12 @@ public class BlokusPanel extends JPanel{
 		try{
 			yellow = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/yellowblock.png"));
 		}catch(IOException e){
-			System.out.println("Invalid picture(blueblock.png)");
+			System.out.println("Invalid picture(yellowblock.png)");
 		}
 		try{
 			green = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/greenblock.png"));
 		}catch(IOException e){
-			System.out.println("Invalid picture(blueblock.png)");
+			System.out.println("Invalid picture(greenblock.png)");
 		}
 	}
 }
