@@ -16,6 +16,8 @@ public class BlokusPanelTest extends JPanel{
 	int PieceGrid[][] = new int [4][4];
 	int BoardGrid[][] = new int[23][23];
 	int TempGrid[][] = new int[23][23];
+	int PlayerGrid[][] = new int[4][4];
+	int PieceTaken[][] = new int[4][22]; // (int [player#] [piece#])
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -52,6 +54,7 @@ public class BlokusPanelTest extends JPanel{
 	int mouseX = 0;
 	int mouseY = 0;
 	int intPiece = 1;
+	int intPlayerCount = 1;
 	
 	int intDropX;
 	int intDropY;
@@ -166,14 +169,143 @@ public class BlokusPanelTest extends JPanel{
 					strBoard[intCount+2][intCount2+2] = intARow[intCount2];
 				}
 			}
-			//boolFirstTime = false;
+			
+			// Set player pieces to all on
+			for(intCount = 1; intCount < 22; intCount++){
+				for(intCount2 = 0; intCount2 < 4; intCount2++){
+					PieceTaken[intCount2][intCount] = 1;
+				}
+			}
 		}
+		
 		
 		//GAME
 		boolStartGame = true;
 		if(boolStartGame == true){
-		
-		
+			//REMOVE LINE BELOW WHEN INTEGRATING
+			intPlayerCount = 0;
+			
+			g.setColor(Color.WHITE);
+			g.fillRect(0,0,1280,720);
+			
+			g.setColor(new Color(255, 208, 132));
+			g.fillRect(0, 0, 640, 360);
+			g.setColor(new Color(204, 166, 105));
+			g.fillRect(350, 0, 290, 360);
+			//P1 NameCard
+			g.setColor(new Color(178, 145, 92));
+			g.fillRect(0, 0, 350, 40);
+			g.setColor(Color.BLACK);
+			g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+			g.drawString("P1: " + strP1Name, 15, 30);
+			
+			//P2 (Green)
+			g.setColor(new Color(98, 218, 166));
+			g.fillRect(640, 0, 640, 360);
+			g.setColor(new Color(75, 166, 127));
+			g.fillRect(640, 0, 290, 360);
+			//P2 NameCard
+			g.setColor(new Color(63, 140, 106));
+			g.fillRect(930, 0, 350, 40);
+			g.setColor(Color.BLACK);
+			g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+			g.drawString("P2: " + strP1Name, 945, 30);
+			
+			//P3 (Blue)
+			g.setColor(new Color(115, 217, 219));
+			g.fillRect(640, 360, 640, 360);
+			g.setColor(new Color(88, 166, 167));
+			g.fillRect(640, 360, 290, 360);
+			//P3 NameCard
+			g.setColor(new Color(74, 141, 142));
+			g.fillRect(930, 680, 350, 40);
+			g.setColor(Color.BLACK);
+			g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+			g.drawString("P3: " + strP4Name, 945, 710);
+			
+			//P4 (Red)
+			g.setColor(new Color(226, 97, 95));
+			g.fillRect(0, 360, 640, 360);
+			g.setColor(new Color(185, 94, 93));
+			g.fillRect(350, 360, 290, 360);
+			//P4 NameCard
+			g.setColor(new Color(149, 64, 62));
+			g.fillRect(0, 680, 350, 40);
+			g.setColor(Color.BLACK);
+			g.setFont(new Font("TimesRoman", Font.BOLD, 25)); 
+			g.drawString("P4: " + strP4Name, 15, 710);
+			
+			//Board
+			g.setColor(Color.BLACK);
+			g.drawRect(369, 26, 541, 541);
+			g.drawRect(350, 0, 580, 719);
+			//ChatBox
+			g.drawRect(369, 580, 541, 135);
+			//Logo
+			g.drawString("BLOKUS", 588, 23);
+			
+			//Draw Player pieces
+			for(intCount2 = 0; intCount2 < 4; intCount2++){ // Player nums 0-3
+				for(intCount = 1;intCount < 22;intCount++){ // Piece Nums 1-21
+					if(PieceTaken[intCount2][intCount] == 1){
+						PlayerGrid = BlokObject.PickPiece(intCount);
+
+						if(intCount2 == 0){
+							if(intCount == 1){
+								g.drawImage(yellow,10-(27*2),45-(27*2),null);
+							}else if(intCount == 2){
+								
+							}else if(intCount == 3){
+								
+							}else if(intCount == 4){
+								
+							}else if(intCount == 5){
+								
+							}else if(intCount == 6){
+								
+							}else if(intCount == 7){
+								
+							}else if(intCount == 8){
+								
+							}else if(intCount == 9){
+								
+							}else if(intCount == 10){
+								
+							}else if(intCount == 11){
+								
+							}else if(intCount == 12){
+								
+							}else if(intCount == 13){
+								
+							}else if(intCount == 14){
+								
+							}else if(intCount == 15){
+								
+							}else if(intCount == 16){
+								
+							}else if(intCount == 17){
+								
+							}else if(intCount == 18){
+								
+							}else if(intCount == 19){
+								
+							}else if(intCount == 20){
+								
+							}else if(intCount == 21){
+								
+							}
+						}else if(intCount2 == 2){
+							
+						}else if(intCount2 == 3){
+							
+						}else if(intCount2 == 4){
+							
+						}
+					}
+				}
+			}
+			
+			
 			//Draw array
 			for(intRow = 2; intRow <22; intRow++){
 				for(intCol = 2; intCol <22; intCol++){
@@ -218,8 +350,6 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, ((-68) + (27*intCount2) + mouseX), ((-68) + (27*intCount) + mouseY),null);
-							}else{
-								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -230,8 +360,6 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
-							}else{
-								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -244,8 +372,6 @@ public class BlokusPanelTest extends JPanel{
 							System.out.print(PieceGrid[intCount][intCount2]);
 							if(PieceGrid[intCount][intCount2] == 1){
 								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
-							}else{
-								g.drawImage(blue, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
 							}
 						}
 					}
@@ -295,6 +421,7 @@ public class BlokusPanelTest extends JPanel{
 						}
 						boolFirstTime = false;
 						intPiece = intPiece+1;
+						
 					}
 					newPiece = true;
 					boolDropped = false;
@@ -353,15 +480,10 @@ public class BlokusPanelTest extends JPanel{
 										boolCorner = true;
 									}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "1"){
 										boolCorner = true;
-									}
+									}	
 								}
 							}
 						}
-						/*if(boolCorner == true){
-							boolCorner = false;
-						}else{
-							boolCorner = true;
-						}*/
 						
 						if(boolCorner == true && boolSide == false){
 							for(intCount = 0; intCount < 5; intCount++){
@@ -376,11 +498,13 @@ public class BlokusPanelTest extends JPanel{
 									}
 								}
 							}
+							
+							PieceTaken[intPlayerCount][intPiece] = 0;
+							
+							intPiece = intPiece + 1;
 							if(intPiece > 21){
 								intPiece = 1;
-							}else{	
-								intPiece = intPiece + 1;
-							}						
+							}					
 							newPiece = true;
 						}
 					
