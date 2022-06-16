@@ -36,6 +36,13 @@ public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionLi
 			}else if(theGamePanel.intTurn == 4){
 				skipButton.setLocation(250, 680);
 			}
+		}else if(evt.getSource() == skipButton){
+			if(theGamePanel.intTurn < 4){
+				theGamePanel.intTurn++;
+			}else{
+				theGamePanel.intTurn = 1;
+			}
+			System.out.println("turn: " + theGamePanel.intTurn);
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -65,7 +72,7 @@ public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionLi
 			theGamePanel.boolDropped = true;
 			theFrame.requestFocus();
 		}
-
+		
 	}
 	public void mouseClicked(MouseEvent evt){
 		
@@ -90,13 +97,6 @@ public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionLi
 		if(evt.getKeyCode() == 32){
 			theGamePanel.boolRotate = true;
 			System.out.println("ROTATE");
-		}else if(evt.getKeyCode() == 16){
-			if(theGamePanel.intTurn < 4){
-				theGamePanel.intTurn++;
-			}else{
-				theGamePanel.intTurn = 1;
-			}
-			System.out.println("turn: " + theGamePanel.intTurn);
 		}
 	}
 	public void keyTyped(KeyEvent evt){
