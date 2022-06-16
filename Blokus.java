@@ -56,6 +56,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		if(evt.getSource() == theTimer){
 			//timer
 			theGamePanel.repaint();
+			theHelpPanel.repaint();
 			theLoginPanel.repaint();
 		}else if(evt.getSource() == quitButton){
 			//quit
@@ -382,7 +383,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 
 	}
 	public void mouseReleased(MouseEvent evt){
-
+		theHelpPanel.intDropX = evt.getX();
+		theHelpPanel.intDropY = evt.getY();
+		System.out.println("DROP | x: "+theHelpPanel.intDropX+" | y: "+theHelpPanel.intDropY);
 	}
 	public void mouseClicked(MouseEvent evt){
 
@@ -393,16 +396,22 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				theGamePanel.mouseX = evt.getX();
 				theGamePanel.mouseY = evt.getY();
 			}
-		}
-		
+		}		
 	}
 	public void mouseDragged(MouseEvent evt){
-		
+		theHelpPanel.mouseX = evt.getX();
+		theHelpPanel.mouseY = evt.getY();
+		System.out.println("mouse | x: "+theHelpPanel.mouseX+" | y: "+theHelpPanel.mouseY);
 	}
 	public void keyReleased(KeyEvent evt){
 	
 	}
 	public void keyPressed(KeyEvent evt){
+		if(evt.getKeyCode() == 32){
+			//theGamePanel.boolRotate = true;
+			//theHelpPanel.boolRotate = true;
+			System.out.println("ROTATE");
+		}
 
 	}
 	public void keyTyped(KeyEvent evt){
@@ -435,6 +444,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		//Help Panel
 		theHelpPanel.setLayout(null);
 		theHelpPanel.setPreferredSize(new Dimension(1280, 720));
+		theHelpPanel.addMouseMotionListener(this);
+		theHelpPanel.addMouseListener(this);
+		theGamePanel.addKeyListener(this);
 		theHelpPanel.setVisible(false);
 		
 		//HighScore Panel

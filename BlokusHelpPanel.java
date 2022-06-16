@@ -26,6 +26,8 @@ public class BlokusHelpPanel extends JPanel{
 	//coordinates
 	int mouseX = 0;
 	int mouseY = 0;
+	int pieceX = 450;
+	int pieceY = 300;
 	int intPiece = 1;
 	int intDropX;
 	int intDropY;
@@ -41,6 +43,7 @@ public class BlokusHelpPanel extends JPanel{
 	//Methods
 	
 	public void paintComponent(Graphics g){
+		Blok Pieces = new Blok();
 		super.paintComponent(g);
 		g.drawImage(help, 0, 0, null);
 		
@@ -62,6 +65,47 @@ public class BlokusHelpPanel extends JPanel{
 				}
 			}
 		}	
+		
+		
+		//draw piece
+		
+		//test
+		
+		g.drawImage(blue, pieceX, pieceY, null);
+		
+		if(mouseX > pieceX - 20 && mouseX < pieceX +20){
+			if(mouseY > pieceY-20 && mouseY < pieceY+20){
+				pieceX = mouseX;
+				pieceY = mouseY;
+			}
+		}
+		
+		/*
+		if(boolRotate == true){
+			System.out.println("ROTATE AGAIN");
+			PieceGrid = BlokObject.rotatePiece(PieceGrid);
+			boolRotate = false;
+		}
+		*/
+		
+		
+		
+		//PieceGrid = Pieces.PickPiece(4);
+		
+		/*
+		for(intCount = 0; intCount < 5; intCount++){
+			System.out.println();
+			for(intCount2 = 0; intCount2 < 5; intCount2++){
+				System.out.print(PieceGrid[intCount][intCount2]);
+				if(PieceGrid[intCount][intCount2] == 1){
+					g.drawImage(blue, 250 + intCol * 27, 270 + intRow * 27, null);
+					//strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] = "1";			
+				}
+			}
+		}
+		*/
+		
+		
 		
 		
 		
