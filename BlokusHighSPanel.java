@@ -73,7 +73,6 @@ public class BlokusHighSPanel extends JPanel{
 					strLine = scoreFile.readLine();		
 					if(strLine != null){
 						strSplit = strLine.split(",");
-						System.out.println(strSplit[0] + strSplit[1] + strSplit[2]);
 						strPlayers[intCount][0] = strSplit[0];
 						strPlayers[intCount][1] = strSplit[1];
 						strPlayers[intCount][2] = strSplit[2];
@@ -108,10 +107,6 @@ public class BlokusHighSPanel extends JPanel{
 					strPlayers[intCount + 1][2] = strTemp;
 				}
 			}
-		}
-		//Print player list to console
-		for(intCount = 0; intCount < intCountList; intCount++){
-			System.out.println(strPlayers[intCount][0] + strPlayers[intCount][1] + strPlayers[intCount][2] );
 		}
 		
 		//draw top 4 players on screen
