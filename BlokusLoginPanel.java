@@ -20,9 +20,10 @@ public class BlokusLoginPanel extends JPanel{
 		super.paintComponent(g);
 		//Draw image
 		g.drawImage(login, 0, 0, null);
-		g.setColor(Color.BLACK);
+		g.setColor(Color.RED);
 		g.setFont(new Font("TimesRoman", Font.BOLD, 25));
 		//Print ip if server
+		g.setColor(Color.BLACK);
 		if(boolisServer == true){
 			g.drawString("Local IP: " + strAddress, 955, 210);
 		}
@@ -46,7 +47,7 @@ public class BlokusLoginPanel extends JPanel{
 		super();
 		//import images
 		try{
-			login = ImageIO.read(this.getClass().getResourceAsStream("login.png"));
+			login = ImageIO.read(this.getClass().getResourceAsStream("Assets/panels/login.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(login.png)");
 		}

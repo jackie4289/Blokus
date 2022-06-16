@@ -35,7 +35,7 @@ public class BlokusHighSPanel extends JPanel{
 		//Counting people
 		//Open File
 		try{
-			scoreFile = new BufferedReader(new FileReader("HighScores.txt"));
+			scoreFile = new BufferedReader(new FileReader("Data_Files/HighScores.txt"));
 		}catch(FileNotFoundException e){
 			System.out.println("File not found!!!(HighScores.txt)");
 		}
@@ -62,7 +62,7 @@ public class BlokusHighSPanel extends JPanel{
 		
 		//Array names, scores and colors
 		try{
-			scoreFile = new BufferedReader(new FileReader("HighScores.txt"));
+			scoreFile = new BufferedReader(new FileReader("Data_Files/HighScores.txt"));
 		}catch(FileNotFoundException e){
 			System.out.println("File not found!!!(HighScores.txt");
 		}
@@ -131,27 +131,27 @@ public class BlokusHighSPanel extends JPanel{
 		super();
 		//import images
 		try{
-			highscore = ImageIO.read(this.getClass().getResourceAsStream("highscores.png"));
+			highscore = ImageIO.read(this.getClass().getResourceAsStream("Assets/panels/highscores.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(highscores.png)");
 		}
 		try{
-			red = ImageIO.read(this.getClass().getResourceAsStream("redblock.png"));
+			red = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/redblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(redblock.png)");
 		}
 		try{
-			blue = ImageIO.read(this.getClass().getResourceAsStream("blueblock.png"));
+			blue = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/blueblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(blueblock.png)");
 		}
 		try{
-			yellow = ImageIO.read(this.getClass().getResourceAsStream("yellowblock.png"));
+			yellow = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/yellowblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(blueblock.png)");
 		}
 		try{
-			green = ImageIO.read(this.getClass().getResourceAsStream("greenblock.png"));
+			green = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/greenblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(blueblock.png)");
 		}

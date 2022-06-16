@@ -73,22 +73,22 @@ public class BlokusHelpPanel extends JPanel{
 		super();
 		//import images
 		try{
-			help = ImageIO.read(this.getClass().getResourceAsStream("help.png"));
+			help = ImageIO.read(this.getClass().getResourceAsStream("Assets/panels/help.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(help.png)");
 		}
 		try{
-			white = ImageIO.read(this.getClass().getResourceAsStream("whiteblock.png"));
+			white = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/whiteblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(whiteblock.png)");
 		}
 		try{
-			red = ImageIO.read(this.getClass().getResourceAsStream("redblock.png"));
+			red = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/redblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(redblock.png)");
 		}
 		try{
-			blue = ImageIO.read(this.getClass().getResourceAsStream("blueblock.png"));
+			blue = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/blueblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(blueblock.png)");
 		}

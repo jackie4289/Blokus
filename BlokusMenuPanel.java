@@ -23,7 +23,7 @@ public class BlokusMenuPanel extends JPanel{
 		super();
 		//import images
 		try{
-			menu = ImageIO.read(this.getClass().getResourceAsStream("menu.png"));
+			menu = ImageIO.read(this.getClass().getResourceAsStream("Assets/panels/menu.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(menu.png)");
 		}
