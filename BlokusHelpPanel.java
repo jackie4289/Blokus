@@ -76,8 +76,8 @@ public class BlokusHelpPanel extends JPanel{
 		
 		g.drawImage(blue, pieceX, pieceY, null);
 		
-		if(mouseX > pieceX - 20 && mouseX < pieceX +20){
-			if(mouseY > pieceY-20 && mouseY < pieceY+20){
+		if(mouseX > pieceX - 50 && mouseX < pieceX +50){
+			if(mouseY > pieceY-50 && mouseY < pieceY+50){
 				pieceX = mouseX;
 				pieceY = mouseY;
 			}
