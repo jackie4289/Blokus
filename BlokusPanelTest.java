@@ -199,7 +199,7 @@ public class BlokusPanelTest extends JPanel{
 								for (intCol = 0; intCol < 5; intCol++){
 									for (intRow = 0; intRow < 5; intRow++){
 										if(PlayerGrid[intCol][intRow] == 1){
-											g.drawImage(yellow, 15 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
+											g.drawImage(yellow, 1 + (intCol-2) * 27, 40 + (intRow-2) * 27, null);
 										}
 									}
 								}
@@ -371,7 +371,6 @@ public class BlokusPanelTest extends JPanel{
 						intPiece = intPiece+1;
 						
 					}else{
-						PieceTaken[intPlayerCount][intPiece] = 1;	
 					}
 					newPiece = true;
 					boolDropped = false;
