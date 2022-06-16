@@ -185,7 +185,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				
 				//Send with name + time
 				ssm.sendText("chat,"+dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText());
-				chatArea.append(dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText() + "\n");
+				chatArea.append("CHAT | "+dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText() + "\n");
 				sendTextField.setText("");
 				
 				//Focus cycle
@@ -248,6 +248,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					intServerTurn = 0;
 				}
 				System.out.println("TURNS SENT rbutton");
+				chatArea.append("GAMEPLAY | P" +theGamePanel.intTurn+ " - " +theGamePanel.strUsername + "'s Turn, Turn #" + theGamePanel.intTurn);
 			}
 			//CLIENT SIDE MESSAGES LOGIN
 			}else if(clientRButton.isSelected() && theGamePanel.boolStartGame == false){
