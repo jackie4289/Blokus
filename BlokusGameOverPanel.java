@@ -30,7 +30,7 @@ public class BlokusGameOverPanel extends JPanel{
 		//Draw image
 		g.drawImage(gameover, 0, 0, null);
 		g.setColor(Color.BLACK);
-	
+	/*
 		//Counting people
 		//Open File
 		try{
@@ -124,6 +124,7 @@ public class BlokusGameOverPanel extends JPanel{
 				g.drawImage(red, 724, (intCount *  92) + 267, null);
 			}
 		}
+		*/
 	}
 	//Constructor
 	public BlokusGameOverPanel(){

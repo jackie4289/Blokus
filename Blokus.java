@@ -213,7 +213,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				theGamePanel.strName[intConnected] = ssm.readText();
 				intConnected++;
 				System.out.println("playerCount: " + intConnected);
-				if(intConnected == 4){
+				if(intConnected == 2){
 					startButton.setEnabled(true);
 				}
 				
@@ -383,9 +383,18 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					
 		}else if(evt.getSource() == skipButton){
 			//When skip is equal to 4 then end game
+			if(theGamePanel.intTurn < 4){
+				theGamePanel.intTurn++;
+			}else{
+				theGamePanel.intTurn = 1;
+			}
 			theGamePanel.intSkip++;
-			if(theGamePanel.intSkip == 4){
-				theGamePanel.boolEndGame = true;
+			System.out.println("Turn: " + theGamePanel.intTurn);
+			if(theGamePanel.intSkip >= 4){
+				theGamePanel.setVisible(false);
+				theGameOverPanel.add(backButton);
+				theGameOverPanel.setVisible(true);
+				theFrame.setContentPane(theGameOverPanel);
 			}
 		}
 	}
@@ -522,7 +531,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		backButton.setSize(200,55);
 		backButton.setLocation(950,600);
 		backButton.addActionListener(this);
-		theGameOverPanel.add(backButton);
 		//add to other panels when panels is selected...
 		
 		//Skip Button Game
