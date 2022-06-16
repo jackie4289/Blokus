@@ -194,9 +194,15 @@ public class BlokusPanelTest extends JPanel{
 				for(intCount = 1;intCount < 22;intCount++){ // Piece Nums 1-21
 					if(PieceTaken[intCount2][intCount] == 1){
 						PlayerGrid = BlokObject.PickPiece(intCount);
-						if(intCount2 == 0){
+						if(intCount2 == 0){ // Player 1
 							if(intCount == 1){
-								
+								for (intCol = 0; intCol < 5; intCol++){
+									for (intRow = 0; intRow < 5; intRow++){
+										if(PlayerGrid[intCol][intRow] == 1){
+											g.drawImage(yellow, 15 + (intCol-2) * 27, 27 + (intRow-2) * 27, null);
+										}
+									}
+								}
 							}else if(intCount == 2){
 								
 							}else if(intCount == 3){
@@ -238,11 +244,11 @@ public class BlokusPanelTest extends JPanel{
 							}else if(intCount == 21){
 								
 							}
-						}else if(intCount2 == 2){
+						}else if(intCount2 == 1){ // Player 2
 							
-						}else if(intCount2 == 3){
+						}else if(intCount2 == 2){ // Player 3
 							
-						}else if(intCount2 == 4){
+						}else if(intCount2 == 3){ // Player 4
 							
 						}
 					}
@@ -282,6 +288,8 @@ public class BlokusPanelTest extends JPanel{
 				//
 				// CURSOR WILL CONTROL BOTTOM LEFT CORNER OF THE PIECE
 				// (54,81)
+				
+				PieceTaken[intPlayerCount][intPiece] = 0;
 				if(boolRotate == true){
 					System.out.println("ROTATE AGAIN");
 					PieceGrid = BlokObject.rotatePiece(PieceGrid);
@@ -441,13 +449,14 @@ public class BlokusPanelTest extends JPanel{
 								}
 							}
 							
-							PieceTaken[intPlayerCount][intPiece] = 0;
-							System.out.println(PieceTaken[intPlayerCount][intPiece]);
+							
 							intPiece = intPiece + 1;
 							if(intPiece > 21){
 								intPiece = 1;
 							}					
 							newPiece = true;
+						}else{
+							PieceTaken[intPlayerCount][intPiece] = 1;
 						}
 					
 						System.out.println("board array");
@@ -460,7 +469,10 @@ public class BlokusPanelTest extends JPanel{
 						}
 						
 						boolDropped = false;
+					}else{
+						PieceTaken[intPlayerCount][intPiece] = 1;
 					}
+					System.out.println(PieceTaken[intPlayerCount][intPiece]);
 				}
 			}		
 		}else{
