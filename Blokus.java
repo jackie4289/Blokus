@@ -450,6 +450,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		//Login Button Menu
 		loginButton.setSize(240,50);
 		loginButton.setLocation(200, 510);
+		loginButton.setFont(loginButton.getFont().deriveFont(Font.BOLD, 24));
 		loginButton.addActionListener(this);
 		theMenuPanel.add(loginButton);
 		
