@@ -12,88 +12,124 @@ public class BlokusHighSPanel extends JPanel{
 	String strName;
 	String strTemp;
 	String strLine = "";
-	String strSplit[];
+	String strSplit[] = new String[2];
 	int intCountList = 0;
 	int intScore = 0;
 	int intCount;
 	int intOuter;
 	BufferedImage highscore = null;
 	BufferedReader scoreFile = null;
-	String strPlayers[][] = new String[intCountList][2];
+	BufferedImage red = null;
+	BufferedImage blue = null;
+	BufferedImage green = null;
+	BufferedImage yellow = null;
+
 	//Methods
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
 		//Draw image
 		g.drawImage(highscore, 0, 0, null);
 		g.setColor(Color.BLACK);
-		
+		//reset variable after each run
+		intCountList = 0;
 		//Counting people
 		//Open File
 		try{
 			scoreFile = new BufferedReader(new FileReader("HighScores.txt"));
 		}catch(FileNotFoundException e){
-			System.out.println("File not found!!!(HighScores.txt");
+			System.out.println("File not found!!!(HighScores.txt)");
 		}
-		//Count number of names
+		//Count number of names for intCountList
 		if(scoreFile != null){
 			while(strLine != null){
 				try{
 					strLine = scoreFile.readLine();
-					strSplit = strLine.split(",");
-					strPlayers[intCountList][0] = strSplit[0];
-					strPlayers[intCountList][1] = strSplit[1];
-					strPlayers[intCountList][2] = strSplit[2];
-					if(strLine != null){
+					if(strLine != null){			
 						intCountList++;
 					}
 				}catch(IOException e){
 					System.out.println("Error reading from file");
 				}
 			}
-			try{
-				scoreFile.close();
-			}catch(IOException e){
-				System.out.println("Unable to close file");
-			}
 			System.out.println("HighScore list count: " + intCountList);
 		}
-		
-
-		
-		//Array
-		for(intCount = 0; intCount < intCountList; intCount++){
-			try{
-				strName = scoreFile.readLine();
-				intScore = Integer.parseInt(scoreFile.readLine());
-				strHighScore[intCount][0] = strName;
-				strHighScore[intCount][1] = intScore + "";
-			}catch(IOException e){
-				System.out.println("error");
-			}
-		scoreFile.close();
+		//close file
+		try{
+			scoreFile.close();
+		}catch(IOException e){
+			System.out.println("error closing file");
 		}
-		/*
-		//BubbleSort
 		
-
-		for(intOuter = 0; intOuter < intCountList-1; intOuter++){
-			for(intCount = 0; intCount < intCountList-1; intCount++){
-				// compare "left" to "right"
-				if(Double.parseDouble(strHighScore[intCount][1]) < Double.parseDouble(strHighScore[intCount + 1][1])){
-					strTemp = strHighScore[intCount][1];
-					strHighScore[intCount][1] = strHighScore[intCount + 1][1];
-					strHighScore[intCount + 1][1] = strTemp;
-
-					strTemp = strHighScore[intCount][0];
-					strHighScore[intCount][0] = strHighScore[intCount + 1][0];
-					strHighScore[intCount + 1][0] = strTemp;
+		//Array names, scores and colors
+		try{
+			scoreFile = new BufferedReader(new FileReader("HighScores.txt"));
+		}catch(FileNotFoundException e){
+			System.out.println("File not found!!!(HighScores.txt");
+		}
+		String strPlayers[][] = new String[intCountList][3]; //0 Name, 1 Score, 2 Color
+		for(intCount = 0; intCount < intCountList; intCount++){
+			if(scoreFile != null){
+				try{
+					strLine = scoreFile.readLine();		
+					if(strLine != null){
+						strSplit = strLine.split(",");
+						System.out.println(strSplit[0] + strSplit[1] + strSplit[2]);
+						strPlayers[intCount][0] = strSplit[0];
+						strPlayers[intCount][1] = strSplit[1];
+						strPlayers[intCount][2] = strSplit[2];
+					}
+				}catch(IOException e){
+					System.out.println("Error reading from file");
 				}
 			}
 		}
-		scoreFile.close();
-		//Print player list
-		*/
-	
+		//close file
+		try{
+			scoreFile.close();
+		}catch(IOException e){
+			System.out.println("error closing file");
+		}
+		
+		//BubbleSort from highest to lowest depending on score
+		for(intOuter = 0; intOuter < intCountList-1; intOuter++){
+			for(intCount = 0; intCount < intCountList-1; intCount++){
+				// compare "left" to "right"
+				if(Integer.parseInt(strPlayers[intCount][1]) < Integer.parseInt(strPlayers[intCount + 1][1])){
+					strTemp = strPlayers[intCount][0];
+					strPlayers[intCount][0] = strPlayers[intCount + 1][0];
+					strPlayers[intCount + 1][0] = strTemp;
+				
+					strTemp = strPlayers[intCount][1];
+					strPlayers[intCount][1] = strPlayers[intCount + 1][1];
+					strPlayers[intCount + 1][1] = strTemp;
+					
+					strTemp = strPlayers[intCount][2];
+					strPlayers[intCount][2] = strPlayers[intCount + 1][2];
+					strPlayers[intCount + 1][2] = strTemp;
+				}
+			}
+		}
+		//Print player list to console
+		for(intCount = 0; intCount < intCountList; intCount++){
+			System.out.println(strPlayers[intCount][0] + strPlayers[intCount][1] + strPlayers[intCount][2] );
+		}
+		
+		//draw top 4 players on screen
+		g.setColor(Color.WHITE);
+		g.setFont(new Font("TimesRoman", Font.BOLD, 28)); 
+		for(intCount = 0; intCount < 4; intCount++){
+			g.drawString(strPlayers[intCount][0], 491, (intCount *  90) + 295);
+			g.drawString(strPlayers[intCount][1], 830, (intCount *  90) + 295 );
+			if(strPlayers[intCount][2].equals("yellow")){
+				g.drawImage(yellow, 724, (intCount *  92) + 267, null);
+			}else if(strPlayers[intCount][2].equals("green")){
+				g.drawImage(green, 724, (intCount *  92) + 267, null);
+			}else if(strPlayers[intCount][2].equals("blue")){
+				g.drawImage(blue, 724, (intCount *  92) + 267, null);
+			}else if(strPlayers[intCount][2].equals("red")){
+				g.drawImage(red, 724, (intCount *  92) + 267, null);
+			}
+		}
 	}
 	//Constructor
 	public BlokusHighSPanel(){
@@ -103,6 +139,26 @@ public class BlokusHighSPanel extends JPanel{
 			highscore = ImageIO.read(this.getClass().getResourceAsStream("highscores.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(highscores.png)");
+		}
+		try{
+			red = ImageIO.read(this.getClass().getResourceAsStream("redblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(redblock.png)");
+		}
+		try{
+			blue = ImageIO.read(this.getClass().getResourceAsStream("blueblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(blueblock.png)");
+		}
+		try{
+			yellow = ImageIO.read(this.getClass().getResourceAsStream("yellowblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(blueblock.png)");
+		}
+		try{
+			green = ImageIO.read(this.getClass().getResourceAsStream("greenblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(blueblock.png)");
 		}
 	}
 }
