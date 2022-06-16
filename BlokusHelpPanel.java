@@ -82,6 +82,13 @@ public class BlokusHelpPanel extends JPanel{
 				pieceY = mouseY;
 			}
 		}
+		if(pieceX > 600 || pieceX < 100){
+			pieceX = 450;
+			pieceY = 300;
+		}else if(pieceY > 500 || pieceY < 200){
+			pieceX = 450;
+			pieceY = 300;
+		}
 		
 		if(boolFirstTime == true){
 			PieceGrid = BlokObject.PickPiece(4);
