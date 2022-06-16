@@ -38,6 +38,7 @@ public class BlokusPanelTest2 extends JPanel{
 	int intCol;
 	int intCount;
 	int intCount2;
+	int intTurn = 1;
 
 	//Player coords
 	int P1X;

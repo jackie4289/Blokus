@@ -29,6 +29,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	JTextField sendTextField = new JTextField();
 	JTextArea chatArea = new JTextArea();
 	JScrollPane chatScroll = new JScrollPane(chatArea);
+	JButton skipButton = new JButton("Skip?");
 	BlokusMenuPanel theMenuPanel = new BlokusMenuPanel();
 	JButton loginButton = new JButton("Login");
 	JButton quitButton = new JButton("Quit");
@@ -44,12 +45,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	JRadioButton clientRButton = new JRadioButton("Client");
 	ButtonGroup buttonGroup = new ButtonGroup();
 	BlokusHelpPanel theHelpPanel = new BlokusHelpPanel();
-	JButton backButton = new JButton("Back");
+	JButton backButton = new JButton("Return to menu");
 	JTextField helpTextField = new JTextField();
 	JTextArea helpChatArea = new JTextArea();
 	JScrollPane helpChatScroll = new JScrollPane(helpChatArea);
 	BlokusHighSPanel theHighScorePanel = new BlokusHighSPanel();
-	
+	BlokusGameOverPanel theGameOverPanel = new BlokusGameOverPanel();
 	//Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
@@ -57,6 +58,16 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theGamePanel.repaint();
 			theHelpPanel.repaint();
 			theLoginPanel.repaint();
+			//refresh skip button
+			if(theGamePanel.intTurn == 1){
+				skipButton.setLocation(250, 0);
+			}else if(theGamePanel.intTurn == 2){
+				skipButton.setLocation(1180, 0);		
+			}else if(theGamePanel.intTurn == 3){
+				skipButton.setLocation(250, 680);
+			}else if(theGamePanel.intTurn == 4){
+				skipButton.setLocation(1180, 680);
+			}
 		}else if(evt.getSource() == quitButton){
 			//quit
 			System.exit(0);
@@ -77,7 +88,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theMenuPanel.setVisible(false);
 			theLoginPanel.add(backButton);
 			theLoginPanel.setVisible(true);
-			theFrame.setContentPane(theLoginPanel);		
+			theFrame.setContentPane(theLoginPanel);	
 		}else if(evt.getSource() == connectButton){
 			boolPort = false;
 			boolIp = false;
@@ -363,7 +374,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			LocalTime localTime = LocalTime.now();
 			
 			//Send with name + time
-			helpChatArea.append(dtf.format(localTime)+ " User: " + helpTextField.getText() + "\n");
+			helpChatArea.append(dtf.format(localTime)+ " You: " + helpTextField.getText() + "\n");
 			helpTextField.setText("");
 			
 			//Focus cycle
@@ -453,6 +464,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theHighScorePanel.setPreferredSize(new Dimension(1280, 720));
 		theHighScorePanel.setVisible(false);
 		
+		//GameOver Panel
+		theGameOverPanel.setLayout(null);
+		theGameOverPanel.setPreferredSize(new Dimension(1280, 720));
+		theGameOverPanel.setVisible(false);
+		
 		//theFrame.setContentPane(theGamePanel);
 		theFrame.setContentPane(theMenuPanel);
 		theFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -500,7 +516,13 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		backButton.setSize(200,55);
 		backButton.setLocation(950,600);
 		backButton.addActionListener(this);
-		//add to panel when panel is selected...
+		theGameOverPanel.add(backButton);
+		//add to other panels when panels is selected...
+		
+		//Skip Button Game
+		skipButton.setSize(100,40);
+		skipButton.addActionListener(this);
+		theGamePanel.add(skipButton);
 		
 		//username Textfield
 		usernameField = new JTextField();
