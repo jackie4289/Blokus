@@ -32,9 +32,9 @@ public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionLi
 			}else if(theGamePanel.intTurn == 2){
 				skipButton.setLocation(1180, 0);		
 			}else if(theGamePanel.intTurn == 3){
-				skipButton.setLocation(250, 680);
-			}else if(theGamePanel.intTurn == 4){
 				skipButton.setLocation(1180, 680);
+			}else if(theGamePanel.intTurn == 4){
+				skipButton.setLocation(250, 680);
 			}
 		}
 	}
