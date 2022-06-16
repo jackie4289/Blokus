@@ -22,7 +22,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
-	
 
 	//J Properties
 	BlokusPanel theGamePanel = new BlokusPanel();
@@ -409,7 +408,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyCode() == 32){
 			//theGamePanel.boolRotate = true;
-			//theHelpPanel.boolRotate = true;
+			theHelpPanel.boolRotate = true;
 			System.out.println("ROTATE");
 		}
 
@@ -446,7 +445,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theHelpPanel.setPreferredSize(new Dimension(1280, 720));
 		theHelpPanel.addMouseMotionListener(this);
 		theHelpPanel.addMouseListener(this);
-		theGamePanel.addKeyListener(this);
+		theFrame.addKeyListener(this);
 		theHelpPanel.setVisible(false);
 		
 		//HighScore Panel

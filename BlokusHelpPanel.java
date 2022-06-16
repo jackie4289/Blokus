@@ -34,6 +34,9 @@ public class BlokusHelpPanel extends JPanel{
 	int intColDrop;
 	int intRowDrop;
 	
+	boolean boolRotate = false;
+	boolean boolFirstTime = true;
+	
 	// Images
 	BufferedImage help = null;
 	BufferedImage white = null;
@@ -43,7 +46,7 @@ public class BlokusHelpPanel extends JPanel{
 	//Methods
 	
 	public void paintComponent(Graphics g){
-		Blok Pieces = new Blok();
+		BlokTest2 BlokObject = new BlokTest2();
 		super.paintComponent(g);
 		g.drawImage(help, 0, 0, null);
 		
@@ -80,30 +83,28 @@ public class BlokusHelpPanel extends JPanel{
 			}
 		}
 		
-		/*
+		if(boolFirstTime == true){
+			PieceGrid = BlokObject.PickPiece(4);
+			boolFirstTime = false;
+		}
+		
 		if(boolRotate == true){
 			System.out.println("ROTATE AGAIN");
 			PieceGrid = BlokObject.rotatePiece(PieceGrid);
 			boolRotate = false;
 		}
-		*/
 		
-		
-		
-		//PieceGrid = Pieces.PickPiece(4);
-		
-		/*
 		for(intCount = 0; intCount < 5; intCount++){
 			System.out.println();
 			for(intCount2 = 0; intCount2 < 5; intCount2++){
 				System.out.print(PieceGrid[intCount][intCount2]);
 				if(PieceGrid[intCount][intCount2] == 1){
-					g.drawImage(blue, 250 + intCol * 27, 270 + intRow * 27, null);
-					//strBoard[(intRowDrop-2)+intCount][(intColDrop-2)+intCount2] = "1";			
+					g.drawImage(red, 750 + intCount*27, 270 + intCount2*27, null);	
+				}else{
+					g.drawImage(white, 750 + intCount*27, 270 +intCount2*27,null);
 				}
 			}
 		}
-		*/
 		
 		
 		
