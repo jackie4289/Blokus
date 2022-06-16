@@ -381,6 +381,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			helpTextField.setFocusable(false);
 			helpTextField.setFocusable(true);
 					
+		}else if(evt.getSource() == skipButton){
+			//When skip is equal to 4 then end game
+			theGamePanel.intSkip++;
+			if(theGamePanel.intSkip == 4){
+				theGamePanel.boolEndGame = true;
+			}
 		}
 	}
 	public void mouseExited(MouseEvent evt){

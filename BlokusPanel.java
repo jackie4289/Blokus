@@ -24,14 +24,14 @@ public class BlokusPanel extends JPanel{
 	boolean boolStartGame = false;
 	boolean boolDragAndDrop = false; // read below
 	boolean boolYourTurn = false; // we can change this later so that bool value is decided within later code
-	
+	boolean boolEndGame = false;
 	// Integers
 	int intRow;
 	int intCol;
 	int intCount;
 	int intCount2;
 	int intTurn = 1;
-
+	int intSkip = 0;
 	//Player coords
 	int P1X;
 	int P1Y;
