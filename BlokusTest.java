@@ -126,6 +126,6 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 
 	//Main Program
 	public static void main(String [] args){
-		BlokusTest2 Block = new BlokusTest2();
+		BlokusTest Block = new BlokusTest();
 	}
 }
