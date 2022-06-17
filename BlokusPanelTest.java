@@ -76,6 +76,11 @@ public class BlokusPanelTest extends JPanel{
 	BufferedImage blue = null;
 	BufferedImage green = null;
 	BufferedImage yellow = null;
+	BufferedImage swhite = null;
+	BufferedImage sred = null;
+	BufferedImage sblue = null;
+	BufferedImage sgreen = null;
+	BufferedImage syellow = null;
 
 	//Methods
 	public void paintComponent(/*graphics variable*/Graphics g){
@@ -219,71 +224,7 @@ public class BlokusPanelTest extends JPanel{
 			//Logo
 			g.drawString("BLOKUS", 588, 23);
 			
-			//Draw Player pieces
-			for(intCount2 = 0; intCount2 < 4; intCount2++){ // Player nums 0-3
-				for(intCount = 1;intCount < 22;intCount++){ // Piece Nums 1-21
-					if(PieceTaken[intCount2][intCount] == 1){
-						PlayerGrid = BlokObject.PickPiece(intCount);
-						if(intCount2 == 0){ // Player 1
-							if(intCount == 1){
-								for (intCol = 0; intCol < 5; intCol++){
-									for (intRow = 0; intRow < 5; intRow++){
-										if(PlayerGrid[intCol][intRow] == 1){
-											g.drawImage(yellow, 1 + (intCol-2) * 27, 40 + (intRow-2) * 27, null);
-										}
-									}
-								}
-							}else if(intCount == 2){
-								
-							}else if(intCount == 3){
-								
-							}else if(intCount == 4){
-								
-							}else if(intCount == 5){
-								
-							}else if(intCount == 6){
-								
-							}else if(intCount == 7){
-								
-							}else if(intCount == 8){
-								
-							}else if(intCount == 9){
-								
-							}else if(intCount == 10){
-								
-							}else if(intCount == 11){
-								
-							}else if(intCount == 12){
-								
-							}else if(intCount == 13){
-								
-							}else if(intCount == 14){
-								
-							}else if(intCount == 15){
-								
-							}else if(intCount == 16){
-								
-							}else if(intCount == 17){
-								
-							}else if(intCount == 18){
-								
-							}else if(intCount == 19){
-								
-							}else if(intCount == 20){
-								
-							}else if(intCount == 21){
-								
-							}
-						}else if(intCount2 == 1){ // Player 2
-							
-						}else if(intCount2 == 2){ // Player 3
-							
-						}else if(intCount2 == 3){ // Player 4
-							
-						}
-					}
-				}
-			}
+			
 			
 			
 			//Draw array
@@ -536,6 +477,30 @@ public class BlokusPanelTest extends JPanel{
 			green = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/greenblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(greenblock.png)");
+		}try{
+			swhite = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/swhiteblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(swhiteblock.png)");
+		}
+		try{
+			sred = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sredblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(sredblock.png)");
+		}
+		try{
+			sblue = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sblueblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(sblueblock.png)");
+		}
+		try{
+			syellow = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/syellowblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(syellowblock.png)");
+		}
+		try{
+			sgreen = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sgreenblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(sgreenblock.png)");
 		}
 	}
 }
