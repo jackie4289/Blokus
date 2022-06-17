@@ -366,7 +366,17 @@ public class BlokusPanelTest extends JPanel{
 				System.out.println("drop x "+intDropX+" | drop y " +intDropY);
 				
 				intColDrop= Math.round((intDropX-369)/27);
-				intRowDrop = Math.round((intDropY-26)/27); 		
+				intRowDrop = Math.round((intDropY-26)/27); 
+
+
+
+
+
+
+
+
+
+						
 				
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
 				
