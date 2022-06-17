@@ -95,8 +95,14 @@ public class BlokusPanelTest extends JPanel{
 			//Import Array
 		if(boolFirstTime == true){
 			BufferedReader board = null;
+			BufferedReader sideLayout = null;
 			try{
 				board = new BufferedReader(new FileReader("Data_Files/board.csv"));
+			}catch(FileNotFoundException e){
+				System.out.println("File not found!!!");
+			}
+			try{
+				sideLayout = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
 			}catch(FileNotFoundException e){
 				System.out.println("File not found!!!");
 			}
