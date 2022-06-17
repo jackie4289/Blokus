@@ -514,6 +514,457 @@ public class BlokusPanelTest2 extends JPanel{
 							}
 						}
 						PieceTaken[intPlayerCount][intPiece] = 0;
+						
+						if(intPlayerCount == 0){
+								if(intPiece == 1){
+									strP1SidePieces[0][0] = "0";
+								}else if(intPiece == 2){
+									strP1SidePieces[2][0] = "0";
+									strP1SidePieces[3][0] = "0";
+								}else if(intPiece == 3){
+									strP1SidePieces[5][0] = "0";
+									strP1SidePieces[6][0] = "0";
+									strP1SidePieces[7][0] = "0";
+								}else if(intPiece == 4){
+									strP1SidePieces[1][5] = "0";
+									strP1SidePieces[1][6] = "0";
+									strP1SidePieces[0][6] = "0";						
+								}else if(intPiece == 5){
+									strP1SidePieces[6][2] = "0";
+									strP1SidePieces[7][2] = "0";
+									strP1SidePieces[8][2] = "0";
+									strP1SidePieces[9][2] = "0";
+								}else if(intPiece == 6){
+									strP1SidePieces[6][4] = "0";
+									strP1SidePieces[7][4] = "0";
+									strP1SidePieces[8][4] = "0";
+									strP1SidePieces[8][5] = "0";								
+								}else if(intPiece == 7){
+									strP1SidePieces[10][12] = "0";
+									strP1SidePieces[10][13] = "0";
+									strP1SidePieces[11][13] = "0";
+									strP1SidePieces[10][14] = "0";								
+								}else if(intPiece == 8){
+									strP1SidePieces[0][2] = "0";
+									strP1SidePieces[1][2] = "0";
+									strP1SidePieces[0][3] = "0";
+									strP1SidePieces[1][3] = "0";							
+								}else if(intPiece == 9){
+									strP1SidePieces[4][2] = "0";
+									strP1SidePieces[4][3] = "0";
+									strP1SidePieces[3][3] = "0";
+									strP1SidePieces[3][4] = "0"; 
+								}else if(intPiece == 10){
+									strP1SidePieces[9][0] = "0";
+									strP1SidePieces[10][0] = "0";
+									strP1SidePieces[11][0] = "0";
+									strP1SidePieces[12][0] = "0";
+									strP1SidePieces[13][0] = "0";
+								}else if(intPiece == 11){
+									strP1SidePieces[11][2] = "0";
+									strP1SidePieces[12][2] = "0";
+									strP1SidePieces[13][2] = "0";
+									strP1SidePieces[14][2] = "0";
+									strP1SidePieces[14][3] = "0";
+								}else if(intPiece == 12){
+									strP1SidePieces[11][4] = "0";
+									strP1SidePieces[11][5] = "0";
+									strP1SidePieces[11][6] = "0";
+									strP1SidePieces[10][6] = "0";
+									strP1SidePieces[10][7] = "0";
+								}else if(intPiece == 13){
+									strP1SidePieces[14][5] = "0";
+									strP1SidePieces[14][6] = "0";
+									strP1SidePieces[14][7] = "0";
+									strP1SidePieces[13][6] = "0";
+									strP1SidePieces[13][7] = "0";
+								}else if(intPiece == 14){
+									strP1SidePieces[12][15] = "0";
+									strP1SidePieces[13][15] = "0";
+									strP1SidePieces[14][15] = "0";
+									strP1SidePieces[14][14] = "0";
+									strP1SidePieces[14][13] = "0";
+								}else if(intPiece == 15){
+									strP1SidePieces[6][11] = "0";
+									strP1SidePieces[5][11] = "0";
+									strP1SidePieces[5][12] = "0";
+									strP1SidePieces[4][12] = "0";
+									strP1SidePieces[4][13] = "0";
+								}else if(intPiece == 16){
+									strP1SidePieces[2][13] = "0";
+									strP1SidePieces[1][13] = "0";
+									strP1SidePieces[1][14] = "0";
+									strP1SidePieces[1][15] = "0";
+									strP1SidePieces[0][15] = "0";
+								}else if(intPiece == 17){
+									strP1SidePieces[0][8] = "0";
+									strP1SidePieces[0][9] = "0";
+									strP1SidePieces[0][10] = "0";
+									strP1SidePieces[1][8] = "0";
+									strP1SidePieces[1][10] = "0";
+								}else if(intPiece == 18){
+									strP1SidePieces[10][10] = "0";
+									strP1SidePieces[11][10] = "0";
+									strP1SidePieces[12][10] = "0";
+									strP1SidePieces[13][10] = "0";
+									strP1SidePieces[11][9] = "0";
+								}else if(intPiece == 19){
+									strP1SidePieces[6][8] = "0";
+									strP1SidePieces[7][7] = "0";
+									strP1SidePieces[7][8] = "0";
+									strP1SidePieces[7][9] = "0";
+									strP1SidePieces[8][8] = "0";
+								}else if(intPiece == 20){
+									strP1SidePieces[3][7] = "0";
+									strP1SidePieces[4][6] = "0";
+									strP1SidePieces[4][7] = "0";
+									strP1SidePieces[4][8] = "0";
+									strP1SidePieces[5][6] = "0";
+								}else if(intPiece == 21){
+									strP1SidePieces[6][14] = "0";
+									strP1SidePieces[7][14] = "0";
+									strP1SidePieces[8][14] = "0";
+									strP1SidePieces[8][13] = "0";
+									strP1SidePieces[8][15] = "0";
+								}
+							}else if(intPlayerCount == 1){
+								if(intPiece == 1){
+									strP2SidePieces[0][0] = "0";
+								}else if(intPiece == 2){
+									strP2SidePieces[2][0] = "0";
+									strP2SidePieces[3][0] = "0";
+								}else if(intPiece == 3){
+									strP2SidePieces[5][0] = "0";
+									strP2SidePieces[6][0] = "0";
+									strP2SidePieces[7][0] = "0";
+								}else if(intPiece == 4){
+									strP2SidePieces[1][5] = "0";
+									strP2SidePieces[1][6] = "0";
+									strP2SidePieces[0][6] = "0";						
+								}else if(intPiece == 5){
+									strP2SidePieces[6][2] = "0";
+									strP2SidePieces[7][2] = "0";
+									strP2SidePieces[8][2] = "0";
+									strP2SidePieces[9][2] = "0";
+								}else if(intPiece == 6){
+									strP2SidePieces[6][4] = "0";
+									strP2SidePieces[7][4] = "0";
+									strP2SidePieces[8][4] = "0";
+									strP2SidePieces[8][5] = "0";								
+								}else if(intPiece == 7){
+									strP2SidePieces[10][12] = "0";
+									strP2SidePieces[10][13] = "0";
+									strP2SidePieces[11][13] = "0";
+									strP2SidePieces[10][14] = "0";								
+								}else if(intPiece == 8){
+									strP2SidePieces[0][2] = "0";
+									strP2SidePieces[1][2] = "0";
+									strP2SidePieces[0][3] = "0";
+									strP2SidePieces[1][3] = "0";							
+								}else if(intPiece == 9){
+									strP2SidePieces[4][2] = "0";
+									strP2SidePieces[4][3] = "0";
+									strP2SidePieces[3][3] = "0";
+									strP2SidePieces[3][4] = "0"; 
+								}else if(intPiece == 10){
+									strP2SidePieces[9][0] = "0";
+									strP2SidePieces[10][0] = "0";
+									strP2SidePieces[11][0] = "0";
+									strP2SidePieces[12][0] = "0";
+									strP2SidePieces[13][0] = "0";
+								}else if(intPiece == 11){
+									strP2SidePieces[11][2] = "0";
+									strP2SidePieces[12][2] = "0";
+									strP2SidePieces[13][2] = "0";
+									strP2SidePieces[14][2] = "0";
+									strP2SidePieces[14][3] = "0";
+								}else if(intPiece == 12){
+									strP2SidePieces[11][4] = "0";
+									strP2SidePieces[11][5] = "0";
+									strP2SidePieces[11][6] = "0";
+									strP2SidePieces[10][6] = "0";
+									strP2SidePieces[10][7] = "0";
+								}else if(intPiece == 13){
+									strP2SidePieces[14][5] = "0";
+									strP2SidePieces[14][6] = "0";
+									strP2SidePieces[14][7] = "0";
+									strP2SidePieces[13][6] = "0";
+									strP2SidePieces[13][7] = "0";
+								}else if(intPiece == 14){
+									strP2SidePieces[12][15] = "0";
+									strP2SidePieces[13][15] = "0";
+									strP2SidePieces[14][15] = "0";
+									strP2SidePieces[14][14] = "0";
+									strP2SidePieces[14][13] = "0";
+								}else if(intPiece == 15){
+									strP2SidePieces[6][11] = "0";
+									strP2SidePieces[5][11] = "0";
+									strP2SidePieces[5][12] = "0";
+									strP2SidePieces[4][12] = "0";
+									strP2SidePieces[4][13] = "0";
+								}else if(intPiece == 16){
+									strP2SidePieces[2][13] = "0";
+									strP2SidePieces[1][13] = "0";
+									strP2SidePieces[1][14] = "0";
+									strP2SidePieces[1][15] = "0";
+									strP2SidePieces[0][15] = "0";
+								}else if(intPiece == 17){
+									strP2SidePieces[0][8] = "0";
+									strP2SidePieces[0][9] = "0";
+									strP2SidePieces[0][10] = "0";
+									strP2SidePieces[1][8] = "0";
+									strP2SidePieces[1][10] = "0";
+								}else if(intPiece == 18){
+									strP2SidePieces[10][10] = "0";
+									strP2SidePieces[11][10] = "0";
+									strP2SidePieces[12][10] = "0";
+									strP2SidePieces[13][10] = "0";
+									strP2SidePieces[11][9] = "0";
+								}else if(intPiece == 19){
+									strP2SidePieces[6][8] = "0";
+									strP2SidePieces[7][7] = "0";
+									strP2SidePieces[7][8] = "0";
+									strP2SidePieces[7][9] = "0";
+									strP2SidePieces[8][8] = "0";
+								}else if(intPiece == 20){
+									strP2SidePieces[3][7] = "0";
+									strP2SidePieces[4][6] = "0";
+									strP2SidePieces[4][7] = "0";
+									strP2SidePieces[4][8] = "0";
+									strP2SidePieces[5][6] = "0";
+								}else if(intPiece == 21){
+									strP2SidePieces[6][14] = "0";
+									strP2SidePieces[7][14] = "0";
+									strP2SidePieces[8][14] = "0";
+									strP2SidePieces[8][13] = "0";
+									strP2SidePieces[8][15] = "0";
+								}
+							}else if(intPlayerCount == 2){
+								if(intPiece == 1){
+									strP3SidePieces[0][0] = "0";
+								}else if(intPiece == 2){
+									strP3SidePieces[2][0] = "0";
+									strP3SidePieces[3][0] = "0";
+								}else if(intPiece == 3){
+									strP3SidePieces[5][0] = "0";
+									strP3SidePieces[6][0] = "0";
+									strP3SidePieces[7][0] = "0";
+								}else if(intPiece == 4){
+									strP3SidePieces[1][5] = "0";
+									strP3SidePieces[1][6] = "0";
+									strP3SidePieces[0][6] = "0";						
+								}else if(intPiece == 5){
+									strP3SidePieces[6][2] = "0";
+									strP3SidePieces[7][2] = "0";
+									strP3SidePieces[8][2] = "0";
+									strP3SidePieces[9][2] = "0";
+								}else if(intPiece == 6){
+									strP3SidePieces[6][4] = "0";
+									strP3SidePieces[7][4] = "0";
+									strP3SidePieces[8][4] = "0";
+									strP3SidePieces[8][5] = "0";								
+								}else if(intPiece == 7){
+									strP3SidePieces[10][12] = "0";
+									strP3SidePieces[10][13] = "0";
+									strP3SidePieces[11][13] = "0";
+									strP3SidePieces[10][14] = "0";								
+								}else if(intPiece == 8){
+									strP3SidePieces[0][2] = "0";
+									strP3SidePieces[1][2] = "0";
+									strP3SidePieces[0][3] = "0";
+									strP3SidePieces[1][3] = "0";							
+								}else if(intPiece == 9){
+									strP3SidePieces[4][2] = "0";
+									strP3SidePieces[4][3] = "0";
+									strP3SidePieces[3][3] = "0";
+									strP3SidePieces[3][4] = "0"; 
+								}else if(intPiece == 10){
+									strP3SidePieces[9][0] = "0";
+									strP3SidePieces[10][0] = "0";
+									strP3SidePieces[11][0] = "0";
+									strP3SidePieces[12][0] = "0";
+									strP3SidePieces[13][0] = "0";
+								}else if(intPiece == 11){
+									strP3SidePieces[11][2] = "0";
+									strP3SidePieces[12][2] = "0";
+									strP3SidePieces[13][2] = "0";
+									strP3SidePieces[14][2] = "0";
+									strP3SidePieces[14][3] = "0";
+								}else if(intPiece == 12){
+									strP3SidePieces[11][4] = "0";
+									strP3SidePieces[11][5] = "0";
+									strP3SidePieces[11][6] = "0";
+									strP3SidePieces[10][6] = "0";
+									strP3SidePieces[10][7] = "0";
+								}else if(intPiece == 13){
+									strP3SidePieces[14][5] = "0";
+									strP3SidePieces[14][6] = "0";
+									strP3SidePieces[14][7] = "0";
+									strP3SidePieces[13][6] = "0";
+									strP3SidePieces[13][7] = "0";
+								}else if(intPiece == 14){
+									strP3SidePieces[12][15] = "0";
+									strP3SidePieces[13][15] = "0";
+									strP3SidePieces[14][15] = "0";
+									strP3SidePieces[14][14] = "0";
+									strP3SidePieces[14][13] = "0";
+								}else if(intPiece == 15){
+									strP3SidePieces[6][11] = "0";
+									strP3SidePieces[5][11] = "0";
+									strP3SidePieces[5][12] = "0";
+									strP3SidePieces[4][12] = "0";
+									strP3SidePieces[4][13] = "0";
+								}else if(intPiece == 16){
+									strP3SidePieces[2][13] = "0";
+									strP3SidePieces[1][13] = "0";
+									strP3SidePieces[1][14] = "0";
+									strP3SidePieces[1][15] = "0";
+									strP3SidePieces[0][15] = "0";
+								}else if(intPiece == 17){
+									strP3SidePieces[0][8] = "0";
+									strP3SidePieces[0][9] = "0";
+									strP3SidePieces[0][10] = "0";
+									strP3SidePieces[1][8] = "0";
+									strP3SidePieces[1][10] = "0";
+								}else if(intPiece == 18){
+									strP3SidePieces[10][10] = "0";
+									strP3SidePieces[11][10] = "0";
+									strP3SidePieces[12][10] = "0";
+									strP3SidePieces[13][10] = "0";
+									strP3SidePieces[11][9] = "0";
+								}else if(intPiece == 19){
+									strP3SidePieces[6][8] = "0";
+									strP3SidePieces[7][7] = "0";
+									strP3SidePieces[7][8] = "0";
+									strP3SidePieces[7][9] = "0";
+									strP3SidePieces[8][8] = "0";
+								}else if(intPiece == 20){
+									strP3SidePieces[3][7] = "0";
+									strP3SidePieces[4][6] = "0";
+									strP3SidePieces[4][7] = "0";
+									strP3SidePieces[4][8] = "0";
+									strP3SidePieces[5][6] = "0";
+								}else if(intPiece == 21){
+									strP3SidePieces[6][14] = "0";
+									strP3SidePieces[7][14] = "0";
+									strP3SidePieces[8][14] = "0";
+									strP3SidePieces[8][13] = "0";
+									strP3SidePieces[8][15] = "0";
+								}
+							}else if(intPlayerCount == 3){
+								if(intPiece == 1){
+									strP4SidePieces[0][0] = "0";
+								}else if(intPiece == 2){
+									strP4SidePieces[2][0] = "0";
+									strP4SidePieces[3][0] = "0";
+								}else if(intPiece == 3){
+									strP4SidePieces[5][0] = "0";
+									strP4SidePieces[6][0] = "0";
+									strP4SidePieces[7][0] = "0";
+								}else if(intPiece == 4){
+									strP4SidePieces[1][5] = "0";
+									strP4SidePieces[1][6] = "0";
+									strP4SidePieces[0][6] = "0";						
+								}else if(intPiece == 5){
+									strP4SidePieces[6][2] = "0";
+									strP4SidePieces[7][2] = "0";
+									strP4SidePieces[8][2] = "0";
+									strP4SidePieces[9][2] = "0";
+								}else if(intPiece == 6){
+									strP4SidePieces[6][4] = "0";
+									strP4SidePieces[7][4] = "0";
+									strP4SidePieces[8][4] = "0";
+									strP4SidePieces[8][5] = "0";								
+								}else if(intPiece == 7){
+									strP4SidePieces[10][12] = "0";
+									strP4SidePieces[10][13] = "0";
+									strP4SidePieces[11][13] = "0";
+									strP4SidePieces[10][14] = "0";								
+								}else if(intPiece == 8){
+									strP4SidePieces[0][2] = "0";
+									strP4SidePieces[1][2] = "0";
+									strP4SidePieces[0][3] = "0";
+									strP4SidePieces[1][3] = "0";							
+								}else if(intPiece == 9){
+									strP4SidePieces[4][2] = "0";
+									strP4SidePieces[4][3] = "0";
+									strP4SidePieces[3][3] = "0";
+									strP4SidePieces[3][4] = "0"; 
+								}else if(intPiece == 10){
+									strP4SidePieces[9][0] = "0";
+									strP4SidePieces[10][0] = "0";
+									strP4SidePieces[11][0] = "0";
+									strP4SidePieces[12][0] = "0";
+									strP4SidePieces[13][0] = "0";
+								}else if(intPiece == 11){
+									strP4SidePieces[11][2] = "0";
+									strP4SidePieces[12][2] = "0";
+									strP4SidePieces[13][2] = "0";
+									strP4SidePieces[14][2] = "0";
+									strP4SidePieces[14][3] = "0";
+								}else if(intPiece == 12){
+									strP4SidePieces[11][4] = "0";
+									strP4SidePieces[11][5] = "0";
+									strP4SidePieces[11][6] = "0";
+									strP4SidePieces[10][6] = "0";
+									strP4SidePieces[10][7] = "0";
+								}else if(intPiece == 13){
+									strP4SidePieces[14][5] = "0";
+									strP4SidePieces[14][6] = "0";
+									strP4SidePieces[14][7] = "0";
+									strP4SidePieces[13][6] = "0";
+									strP4SidePieces[13][7] = "0";
+								}else if(intPiece == 14){
+									strP4SidePieces[12][15] = "0";
+									strP4SidePieces[13][15] = "0";
+									strP4SidePieces[14][15] = "0";
+									strP4SidePieces[14][14] = "0";
+									strP4SidePieces[14][13] = "0";
+								}else if(intPiece == 15){
+									strP4SidePieces[6][11] = "0";
+									strP4SidePieces[5][11] = "0";
+									strP4SidePieces[5][12] = "0";
+									strP4SidePieces[4][12] = "0";
+									strP4SidePieces[4][13] = "0";
+								}else if(intPiece == 16){
+									strP4SidePieces[2][13] = "0";
+									strP4SidePieces[1][13] = "0";
+									strP4SidePieces[1][14] = "0";
+									strP4SidePieces[1][15] = "0";
+									strP4SidePieces[0][15] = "0";
+								}else if(intPiece == 17){
+									strP4SidePieces[0][8] = "0";
+									strP4SidePieces[0][9] = "0";
+									strP4SidePieces[0][10] = "0";
+									strP4SidePieces[1][8] = "0";
+									strP4SidePieces[1][10] = "0";
+								}else if(intPiece == 18){
+									strP4SidePieces[10][10] = "0";
+									strP4SidePieces[11][10] = "0";
+									strP4SidePieces[12][10] = "0";
+									strP4SidePieces[13][10] = "0";
+									strP4SidePieces[11][9] = "0";
+								}else if(intPiece == 19){
+									strP4SidePieces[6][8] = "0";
+									strP4SidePieces[7][7] = "0";
+									strP4SidePieces[7][8] = "0";
+									strP4SidePieces[7][9] = "0";
+									strP4SidePieces[8][8] = "0";
+								}else if(intPiece == 20){
+									strP4SidePieces[3][7] = "0";
+									strP4SidePieces[4][6] = "0";
+									strP4SidePieces[4][7] = "0";
+									strP4SidePieces[4][8] = "0";
+									strP4SidePieces[5][6] = "0";
+								}else if(intPiece == 21){
+									strP4SidePieces[6][14] = "0";
+									strP4SidePieces[7][14] = "0";
+									strP4SidePieces[8][14] = "0";
+									strP4SidePieces[8][13] = "0";
+									strP4SidePieces[8][15] = "0";
+								}
+							}
+						
 						boolFirstTime = false;
 						checkPieces = true;
 					}else{
@@ -703,6 +1154,342 @@ public class BlokusPanelTest2 extends JPanel{
 									strP1SidePieces[8][14] = "0";
 									strP1SidePieces[8][13] = "0";
 									strP1SidePieces[8][15] = "0";
+								}
+							}else if(intPlayerCount == 1){
+								if(intPiece == 1){
+									strP2SidePieces[0][0] = "0";
+								}else if(intPiece == 2){
+									strP2SidePieces[2][0] = "0";
+									strP2SidePieces[3][0] = "0";
+								}else if(intPiece == 3){
+									strP2SidePieces[5][0] = "0";
+									strP2SidePieces[6][0] = "0";
+									strP2SidePieces[7][0] = "0";
+								}else if(intPiece == 4){
+									strP2SidePieces[1][5] = "0";
+									strP2SidePieces[1][6] = "0";
+									strP2SidePieces[0][6] = "0";						
+								}else if(intPiece == 5){
+									strP2SidePieces[6][2] = "0";
+									strP2SidePieces[7][2] = "0";
+									strP2SidePieces[8][2] = "0";
+									strP2SidePieces[9][2] = "0";
+								}else if(intPiece == 6){
+									strP2SidePieces[6][4] = "0";
+									strP2SidePieces[7][4] = "0";
+									strP2SidePieces[8][4] = "0";
+									strP2SidePieces[8][5] = "0";								
+								}else if(intPiece == 7){
+									strP2SidePieces[10][12] = "0";
+									strP2SidePieces[10][13] = "0";
+									strP2SidePieces[11][13] = "0";
+									strP2SidePieces[10][14] = "0";								
+								}else if(intPiece == 8){
+									strP2SidePieces[0][2] = "0";
+									strP2SidePieces[1][2] = "0";
+									strP2SidePieces[0][3] = "0";
+									strP2SidePieces[1][3] = "0";							
+								}else if(intPiece == 9){
+									strP2SidePieces[4][2] = "0";
+									strP2SidePieces[4][3] = "0";
+									strP2SidePieces[3][3] = "0";
+									strP2SidePieces[3][4] = "0"; 
+								}else if(intPiece == 10){
+									strP2SidePieces[9][0] = "0";
+									strP2SidePieces[10][0] = "0";
+									strP2SidePieces[11][0] = "0";
+									strP2SidePieces[12][0] = "0";
+									strP2SidePieces[13][0] = "0";
+								}else if(intPiece == 11){
+									strP2SidePieces[11][2] = "0";
+									strP2SidePieces[12][2] = "0";
+									strP2SidePieces[13][2] = "0";
+									strP2SidePieces[14][2] = "0";
+									strP2SidePieces[14][3] = "0";
+								}else if(intPiece == 12){
+									strP2SidePieces[11][4] = "0";
+									strP2SidePieces[11][5] = "0";
+									strP2SidePieces[11][6] = "0";
+									strP2SidePieces[10][6] = "0";
+									strP2SidePieces[10][7] = "0";
+								}else if(intPiece == 13){
+									strP2SidePieces[14][5] = "0";
+									strP2SidePieces[14][6] = "0";
+									strP2SidePieces[14][7] = "0";
+									strP2SidePieces[13][6] = "0";
+									strP2SidePieces[13][7] = "0";
+								}else if(intPiece == 14){
+									strP2SidePieces[12][15] = "0";
+									strP2SidePieces[13][15] = "0";
+									strP2SidePieces[14][15] = "0";
+									strP2SidePieces[14][14] = "0";
+									strP2SidePieces[14][13] = "0";
+								}else if(intPiece == 15){
+									strP2SidePieces[6][11] = "0";
+									strP2SidePieces[5][11] = "0";
+									strP2SidePieces[5][12] = "0";
+									strP2SidePieces[4][12] = "0";
+									strP2SidePieces[4][13] = "0";
+								}else if(intPiece == 16){
+									strP2SidePieces[2][13] = "0";
+									strP2SidePieces[1][13] = "0";
+									strP2SidePieces[1][14] = "0";
+									strP2SidePieces[1][15] = "0";
+									strP2SidePieces[0][15] = "0";
+								}else if(intPiece == 17){
+									strP2SidePieces[0][8] = "0";
+									strP2SidePieces[0][9] = "0";
+									strP2SidePieces[0][10] = "0";
+									strP2SidePieces[1][8] = "0";
+									strP2SidePieces[1][10] = "0";
+								}else if(intPiece == 18){
+									strP2SidePieces[10][10] = "0";
+									strP2SidePieces[11][10] = "0";
+									strP2SidePieces[12][10] = "0";
+									strP2SidePieces[13][10] = "0";
+									strP2SidePieces[11][9] = "0";
+								}else if(intPiece == 19){
+									strP2SidePieces[6][8] = "0";
+									strP2SidePieces[7][7] = "0";
+									strP2SidePieces[7][8] = "0";
+									strP2SidePieces[7][9] = "0";
+									strP2SidePieces[8][8] = "0";
+								}else if(intPiece == 20){
+									strP2SidePieces[3][7] = "0";
+									strP2SidePieces[4][6] = "0";
+									strP2SidePieces[4][7] = "0";
+									strP2SidePieces[4][8] = "0";
+									strP2SidePieces[5][6] = "0";
+								}else if(intPiece == 21){
+									strP2SidePieces[6][14] = "0";
+									strP2SidePieces[7][14] = "0";
+									strP2SidePieces[8][14] = "0";
+									strP2SidePieces[8][13] = "0";
+									strP2SidePieces[8][15] = "0";
+								}
+							}else if(intPlayerCount == 2){
+								if(intPiece == 1){
+									strP3SidePieces[0][0] = "0";
+								}else if(intPiece == 2){
+									strP3SidePieces[2][0] = "0";
+									strP3SidePieces[3][0] = "0";
+								}else if(intPiece == 3){
+									strP3SidePieces[5][0] = "0";
+									strP3SidePieces[6][0] = "0";
+									strP3SidePieces[7][0] = "0";
+								}else if(intPiece == 4){
+									strP3SidePieces[1][5] = "0";
+									strP3SidePieces[1][6] = "0";
+									strP3SidePieces[0][6] = "0";						
+								}else if(intPiece == 5){
+									strP3SidePieces[6][2] = "0";
+									strP3SidePieces[7][2] = "0";
+									strP3SidePieces[8][2] = "0";
+									strP3SidePieces[9][2] = "0";
+								}else if(intPiece == 6){
+									strP3SidePieces[6][4] = "0";
+									strP3SidePieces[7][4] = "0";
+									strP3SidePieces[8][4] = "0";
+									strP3SidePieces[8][5] = "0";								
+								}else if(intPiece == 7){
+									strP3SidePieces[10][12] = "0";
+									strP3SidePieces[10][13] = "0";
+									strP3SidePieces[11][13] = "0";
+									strP3SidePieces[10][14] = "0";								
+								}else if(intPiece == 8){
+									strP3SidePieces[0][2] = "0";
+									strP3SidePieces[1][2] = "0";
+									strP3SidePieces[0][3] = "0";
+									strP3SidePieces[1][3] = "0";							
+								}else if(intPiece == 9){
+									strP3SidePieces[4][2] = "0";
+									strP3SidePieces[4][3] = "0";
+									strP3SidePieces[3][3] = "0";
+									strP3SidePieces[3][4] = "0"; 
+								}else if(intPiece == 10){
+									strP3SidePieces[9][0] = "0";
+									strP3SidePieces[10][0] = "0";
+									strP3SidePieces[11][0] = "0";
+									strP3SidePieces[12][0] = "0";
+									strP3SidePieces[13][0] = "0";
+								}else if(intPiece == 11){
+									strP3SidePieces[11][2] = "0";
+									strP3SidePieces[12][2] = "0";
+									strP3SidePieces[13][2] = "0";
+									strP3SidePieces[14][2] = "0";
+									strP3SidePieces[14][3] = "0";
+								}else if(intPiece == 12){
+									strP3SidePieces[11][4] = "0";
+									strP3SidePieces[11][5] = "0";
+									strP3SidePieces[11][6] = "0";
+									strP3SidePieces[10][6] = "0";
+									strP3SidePieces[10][7] = "0";
+								}else if(intPiece == 13){
+									strP3SidePieces[14][5] = "0";
+									strP3SidePieces[14][6] = "0";
+									strP3SidePieces[14][7] = "0";
+									strP3SidePieces[13][6] = "0";
+									strP3SidePieces[13][7] = "0";
+								}else if(intPiece == 14){
+									strP3SidePieces[12][15] = "0";
+									strP3SidePieces[13][15] = "0";
+									strP3SidePieces[14][15] = "0";
+									strP3SidePieces[14][14] = "0";
+									strP3SidePieces[14][13] = "0";
+								}else if(intPiece == 15){
+									strP3SidePieces[6][11] = "0";
+									strP3SidePieces[5][11] = "0";
+									strP3SidePieces[5][12] = "0";
+									strP3SidePieces[4][12] = "0";
+									strP3SidePieces[4][13] = "0";
+								}else if(intPiece == 16){
+									strP3SidePieces[2][13] = "0";
+									strP3SidePieces[1][13] = "0";
+									strP3SidePieces[1][14] = "0";
+									strP3SidePieces[1][15] = "0";
+									strP3SidePieces[0][15] = "0";
+								}else if(intPiece == 17){
+									strP3SidePieces[0][8] = "0";
+									strP3SidePieces[0][9] = "0";
+									strP3SidePieces[0][10] = "0";
+									strP3SidePieces[1][8] = "0";
+									strP3SidePieces[1][10] = "0";
+								}else if(intPiece == 18){
+									strP3SidePieces[10][10] = "0";
+									strP3SidePieces[11][10] = "0";
+									strP3SidePieces[12][10] = "0";
+									strP3SidePieces[13][10] = "0";
+									strP3SidePieces[11][9] = "0";
+								}else if(intPiece == 19){
+									strP3SidePieces[6][8] = "0";
+									strP3SidePieces[7][7] = "0";
+									strP3SidePieces[7][8] = "0";
+									strP3SidePieces[7][9] = "0";
+									strP3SidePieces[8][8] = "0";
+								}else if(intPiece == 20){
+									strP3SidePieces[3][7] = "0";
+									strP3SidePieces[4][6] = "0";
+									strP3SidePieces[4][7] = "0";
+									strP3SidePieces[4][8] = "0";
+									strP3SidePieces[5][6] = "0";
+								}else if(intPiece == 21){
+									strP3SidePieces[6][14] = "0";
+									strP3SidePieces[7][14] = "0";
+									strP3SidePieces[8][14] = "0";
+									strP3SidePieces[8][13] = "0";
+									strP3SidePieces[8][15] = "0";
+								}
+							}else if(intPlayerCount == 3){
+								if(intPiece == 1){
+									strP4SidePieces[0][0] = "0";
+								}else if(intPiece == 2){
+									strP4SidePieces[2][0] = "0";
+									strP4SidePieces[3][0] = "0";
+								}else if(intPiece == 3){
+									strP4SidePieces[5][0] = "0";
+									strP4SidePieces[6][0] = "0";
+									strP4SidePieces[7][0] = "0";
+								}else if(intPiece == 4){
+									strP4SidePieces[1][5] = "0";
+									strP4SidePieces[1][6] = "0";
+									strP4SidePieces[0][6] = "0";						
+								}else if(intPiece == 5){
+									strP4SidePieces[6][2] = "0";
+									strP4SidePieces[7][2] = "0";
+									strP4SidePieces[8][2] = "0";
+									strP4SidePieces[9][2] = "0";
+								}else if(intPiece == 6){
+									strP4SidePieces[6][4] = "0";
+									strP4SidePieces[7][4] = "0";
+									strP4SidePieces[8][4] = "0";
+									strP4SidePieces[8][5] = "0";								
+								}else if(intPiece == 7){
+									strP4SidePieces[10][12] = "0";
+									strP4SidePieces[10][13] = "0";
+									strP4SidePieces[11][13] = "0";
+									strP4SidePieces[10][14] = "0";								
+								}else if(intPiece == 8){
+									strP4SidePieces[0][2] = "0";
+									strP4SidePieces[1][2] = "0";
+									strP4SidePieces[0][3] = "0";
+									strP4SidePieces[1][3] = "0";							
+								}else if(intPiece == 9){
+									strP4SidePieces[4][2] = "0";
+									strP4SidePieces[4][3] = "0";
+									strP4SidePieces[3][3] = "0";
+									strP4SidePieces[3][4] = "0"; 
+								}else if(intPiece == 10){
+									strP4SidePieces[9][0] = "0";
+									strP4SidePieces[10][0] = "0";
+									strP4SidePieces[11][0] = "0";
+									strP4SidePieces[12][0] = "0";
+									strP4SidePieces[13][0] = "0";
+								}else if(intPiece == 11){
+									strP4SidePieces[11][2] = "0";
+									strP4SidePieces[12][2] = "0";
+									strP4SidePieces[13][2] = "0";
+									strP4SidePieces[14][2] = "0";
+									strP4SidePieces[14][3] = "0";
+								}else if(intPiece == 12){
+									strP4SidePieces[11][4] = "0";
+									strP4SidePieces[11][5] = "0";
+									strP4SidePieces[11][6] = "0";
+									strP4SidePieces[10][6] = "0";
+									strP4SidePieces[10][7] = "0";
+								}else if(intPiece == 13){
+									strP4SidePieces[14][5] = "0";
+									strP4SidePieces[14][6] = "0";
+									strP4SidePieces[14][7] = "0";
+									strP4SidePieces[13][6] = "0";
+									strP4SidePieces[13][7] = "0";
+								}else if(intPiece == 14){
+									strP4SidePieces[12][15] = "0";
+									strP4SidePieces[13][15] = "0";
+									strP4SidePieces[14][15] = "0";
+									strP4SidePieces[14][14] = "0";
+									strP4SidePieces[14][13] = "0";
+								}else if(intPiece == 15){
+									strP4SidePieces[6][11] = "0";
+									strP4SidePieces[5][11] = "0";
+									strP4SidePieces[5][12] = "0";
+									strP4SidePieces[4][12] = "0";
+									strP4SidePieces[4][13] = "0";
+								}else if(intPiece == 16){
+									strP4SidePieces[2][13] = "0";
+									strP4SidePieces[1][13] = "0";
+									strP4SidePieces[1][14] = "0";
+									strP4SidePieces[1][15] = "0";
+									strP4SidePieces[0][15] = "0";
+								}else if(intPiece == 17){
+									strP4SidePieces[0][8] = "0";
+									strP4SidePieces[0][9] = "0";
+									strP4SidePieces[0][10] = "0";
+									strP4SidePieces[1][8] = "0";
+									strP4SidePieces[1][10] = "0";
+								}else if(intPiece == 18){
+									strP4SidePieces[10][10] = "0";
+									strP4SidePieces[11][10] = "0";
+									strP4SidePieces[12][10] = "0";
+									strP4SidePieces[13][10] = "0";
+									strP4SidePieces[11][9] = "0";
+								}else if(intPiece == 19){
+									strP4SidePieces[6][8] = "0";
+									strP4SidePieces[7][7] = "0";
+									strP4SidePieces[7][8] = "0";
+									strP4SidePieces[7][9] = "0";
+									strP4SidePieces[8][8] = "0";
+								}else if(intPiece == 20){
+									strP4SidePieces[3][7] = "0";
+									strP4SidePieces[4][6] = "0";
+									strP4SidePieces[4][7] = "0";
+									strP4SidePieces[4][8] = "0";
+									strP4SidePieces[5][6] = "0";
+								}else if(intPiece == 21){
+									strP4SidePieces[6][14] = "0";
+									strP4SidePieces[7][14] = "0";
+									strP4SidePieces[8][14] = "0";
+									strP4SidePieces[8][13] = "0";
+									strP4SidePieces[8][15] = "0";
 								}
 							}
 							
