@@ -36,6 +36,7 @@ public class BlokusPanelTest extends JPanel{
 	boolean boolCorner = false;
 	boolean boolSide = false;
 	boolean boolRepaint = true;
+	boolean checkPieces = false;
 	
 	// Integers
 	int intRow;
@@ -56,7 +57,7 @@ public class BlokusPanelTest extends JPanel{
 	int mouseX = 0;
 	int mouseY = 0;
 	int intPiece = 1;
-	int intPlayerCount = 1;
+	int intPlayerCount = 0;
 	
 	int intDropX;
 	int intDropY;
@@ -222,6 +223,15 @@ public class BlokusPanelTest extends JPanel{
 			//Logo
 			g.drawString("BLOKUS", 588, 23);
 			
+			
+			if(checkPieces == true){
+				if(PieceTaken[0][0] == 0){
+					strSidePieces[0][0] = "0";
+				}else if(PieceTaken[0][1] == 0){
+					
+				}
+				checkPieces = false;
+			}
 			/* CORNERS FOR SIDE PIECES
 				
 				P1:
@@ -238,9 +248,10 @@ public class BlokusPanelTest extends JPanel{
 			for(intRow = 0;intRow < 15;intRow++){
 				for(intCol = 0;intCol < 16;intCol++){
 					if(strSidePieces[intRow][intCol].equals("1")){
-						System.out.println("if statement met");
-						g.drawImage(syellow,(intCol*20),40+(intRow*20),null);
-						System.out.println("drawn");
+						g.drawImage(syellow,12+(intCol*20),49+(intRow*20),null);
+						g.drawImage(sgreen,943+(intCol*20),49+(intRow*20),null);
+						g.drawImage(sblue,943+(intCol*20),368+(intRow*20),null);
+						g.drawImage(sred,12+(intCol*20), 368 + (intRow*20),null);
 					}
 				}
 			}
@@ -248,9 +259,9 @@ public class BlokusPanelTest extends JPanel{
 			// Player 2 (green)
 			System.out.println("green started");
 			for(intRow = 0;intRow < 15;intRow++){
-				for(intCol = 0;intCol < 16;intCol++){
+				for(intCol = 0;intCol < 16;intCol++){						
 					//g.drawImage(sgreen, , ,null);
-				}
+				} 
 			}
 			
 			// Player 3 (blue)
@@ -385,6 +396,7 @@ public class BlokusPanelTest extends JPanel{
 						intPiece = intPiece+1;
 						
 					}else{
+						PieceTaken[intPlayerCount][intPiece] = 1;
 					}
 					newPiece = true;
 					boolDropped = false;
@@ -462,11 +474,12 @@ public class BlokusPanelTest extends JPanel{
 								}
 							}
 							
-							
+							PieceTaken[intPlayerCount][intPiece] = 0;
 							intPiece = intPiece + 1;
 							if(intPiece > 21){
 								intPiece = 1;
-							}					
+							}				
+							checkPieces = true;
 							newPiece = true;
 						}else{
 							PieceTaken[intPlayerCount][intPiece] = 1;
@@ -480,7 +493,6 @@ public class BlokusPanelTest extends JPanel{
 								System.out.print(strBoard[intRow][intCol]);
 							}
 						}
-						
 						boolDropped = false;
 					}else{
 						PieceTaken[intPlayerCount][intPiece] = 1;
