@@ -59,7 +59,7 @@ public class BlokTest{
 			intBoard[3][2] = 1;
 			intBoard[3][3] = 1;
 		}else if(pieceType == 7){
-			intBoard[1][2] = 1;
+			intBoard[2][3] = 1;
 			intBoard[2][2] = 1;
 			intBoard[3][2] = 1;
 			intBoard[2][1] = 1;
