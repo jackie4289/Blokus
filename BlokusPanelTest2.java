@@ -729,7 +729,7 @@ public class BlokusPanelTest2 extends JPanel{
 					}
 					System.out.println();
 					System.out.println();
-					System.out.println("Piece Taken: " + PieceTaken[intPlayerCount][intPiece-1]);
+					System.out.println("Piece Taken: " + PieceTaken[intPlayerCount][intPiece]);
 					System.out.println();
 					System.out.println("intPlayerCount: " + intPlayerCount);
 					System.out.println("intPiece: " + intPiece);
