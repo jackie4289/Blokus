@@ -198,7 +198,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			//turn,name,turn(1 or 2), (string,string,int)
 			String strRecieve = ssm.readText();
 			strMsgSplit = strRecieve.split(",");
-			System.out.println("raw text: " + strRecieve);
+			System.out.println("raw text" + strRecieve);
 			if(theGamePanel.boolStartGame == true){
 				//Recieve Chat Text
 				if(strMsgSplit[0].equals("chat")){
