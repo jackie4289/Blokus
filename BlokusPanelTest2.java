@@ -42,6 +42,7 @@ public class BlokusPanelTest2 extends JPanel{
 	boolean boolSide = false;
 	boolean boolRepaint = true;
 	boolean checkPieces = false;
+	boolean sidePieceCode = true;
 	
 	// Integers
 	int intRow;
@@ -50,6 +51,8 @@ public class BlokusPanelTest2 extends JPanel{
 	int intCount2;
 	int intColPick;
 	int intRowPick;
+	int intPickX = 0;
+	int intPickY = 0;
 
 	//Player coords
 	int P1X;
@@ -156,7 +159,6 @@ public class BlokusPanelTest2 extends JPanel{
 				System.out.println("");
 				for(intCount2 = 0; intCount2 < 16; intCount2++){
 					strP1SidePieces[intCount][intCount2] = intARow[intCount2];
-					System.out.print(strP1SidePieces[intCount][intCount2]);
 				}
 			}
 			
@@ -295,7 +297,7 @@ public class BlokusPanelTest2 extends JPanel{
 				
 				*/
 				
-			 
+			
 			
 			// Draw side pieces	
 			for(intRow = 0;intRow < 15;intRow++){
@@ -333,12 +335,7 @@ public class BlokusPanelTest2 extends JPanel{
 				}
 			}
 			
-			//Draw Pieces
-			if(newPiece == true){
-				PieceGrid = BlokObject.PickPiece(intPiece);
-				System.out.println("PieceGrid found");
-				newPiece = false;
-			}
+
 			
 			//Drag & Drop
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
@@ -402,138 +399,146 @@ public class BlokusPanelTest2 extends JPanel{
 				
 				
 				
+				intColPick = Math.round((intPickX-12)/20);
+				intRowPick = Math.round((intPickY-49)/20); 
 				
-				intColPick = Math.round((intPickX-intBoardStartX)/20);
-				intRowPick = Math.round((intPickY-intBoardStartY)/20); 
+				System.out.println(intColPick +"," + intRowPick);
 				
 						
 				// SIDE PIECES
-				if(intColPick == 0){
-					if(intRowPick == 0){
-						intPiece = 1;
-					}else if(intRowPick == 2 || intRowPick == 3){
-						intPiece = 2;
-					}else if(intRowPick == 5 || intRowPick == 6|| intRowPick == 7){
-						intPiece = 3;
-					}else if(intRowPick == 9 || intRowPick == 10 || intRowPick == 11 || intRowPick == 12 || intRowPick == 13){
-						intPiece = 10;
+				if(sidePieceCode == true){
+					if(intColPick == 0){
+						if(intRowPick == 0){
+							intPiece = 1;
+						}else if(intRowPick == 2 || intRowPick == 3){
+							intPiece = 2;
+						}else if(intRowPick == 5 || intRowPick == 6|| intRowPick == 7){
+							intPiece = 3;
+						}else if(intRowPick == 9 || intRowPick == 10 || intRowPick == 11 || intRowPick == 12 || intRowPick == 13){
+							intPiece = 10;
+						}
+					}else if(intColPick == 2){
+						if(intRowPick == 0 || intRowPick == 1){
+							intPiece = 8;
+						}else if(intRowPick == 4){
+							intPiece = 9;
+						}else if(intRowPick == 6 || intRowPick == 7|| intRowPick == 8 || intRowPick == 9){
+							intPiece = 5;
+						}else if(intRowPick == 11 || intRowPick == 12 || intRowPick == 13 || intRowPick == 14){
+							intPiece = 11;
+						}					
+					}else if(intColPick == 3){
+						if(intRowPick == 0 || intRowPick == 1){
+							intPiece = 8;
+						}else if(intRowPick == 3 || intRowPick == 4){
+							intPiece = 9;
+						}else if(intRowPick == 14){
+							intPiece = 11;
+						}					
+					}else if(intColPick == 4){
+						if(intRowPick == 3){
+							intPiece = 8;
+						}else if(intRowPick == 6 || intRowPick == 7|| intRowPick == 8 ){
+							intPiece = 6;
+						}else if(intRowPick == 11){
+							intPiece = 12;
+						}					
+					}else if(intColPick == 5){
+						if(intRowPick == 1){
+							intPiece = 4;
+						}else if(intRowPick == 8 ){
+							intPiece = 6;
+						}else if(intRowPick == 11){
+							intPiece = 12;
+						}else if(intRowPick == 14){
+							intPiece = 13;
+						}					
+					}else if(intColPick == 6){
+						if(intRowPick == 0 || intRowPick == 1){
+							intPiece = 4;
+						}else if(intRowPick == 4){
+							intPiece = 7;
+						}else if(intRowPick == 10 || intRowPick == 11){
+							intPiece = 12;
+						}else if(intRowPick == 13 || intRowPick == 14){
+							intPiece = 13;
+						}					
+					}else if(intColPick == 7){
+						if(intRowPick == 3 || intRowPick == 4 || intRowPick == 5){
+							intPiece = 7;
+						}else if(intRowPick == 7){
+							intPiece = 19;
+						}else if(intRowPick == 10){
+							intPiece = 12;
+						}else if(intRowPick == 13 || intRowPick == 14){
+							intPiece = 13;
+						}					
+					}else if(intColPick == 8){
+						if(intRowPick == 0|| intRowPick == 1){
+							intPiece = 17;
+						}else if(intRowPick == 6 || intRowPick == 7 || intRowPick == 8 ){
+							intPiece = 19;
+						}					
+					}else if(intColPick == 9){
+						if(intRowPick == 0){
+							intPiece = 17;
+						}else if(intRowPick == 7){
+							intPiece = 19;
+						}else if(intRowPick == 11){
+							intPiece = 18;
+						}
+					}else if(intColPick == 10){
+						if(intRowPick == 0 || intRowPick == 1){
+							intPiece = 17;
+						}else if(intRowPick == 10 || intRowPick == 11 || intRowPick == 12 || intRowPick == 13){
+							intPiece = 18;
+						}
+					}else if(intColPick == 11){
+						if(intRowPick == 5 || intRowPick == 6){
+							intPiece = 15;
+						}
+					}else if(intColPick == 12){
+						if(intRowPick == 4 || intRowPick == 5){
+							intPiece = 15;
+						}else if(intRowPick == 10){
+							intPiece = 7;
+						}
+					}else if(intColPick == 13){
+						if(intRowPick == 1 || intRowPick == 2){
+							intPiece = 16;
+						}else if(intRowPick == 4){
+							intPiece = 15;
+						}else if(intRowPick == 8){
+							intPiece = 21;
+						}else if(intRowPick == 10 || intRowPick == 11){
+							intPiece = 7;
+						}else if(intRowPick == 14){
+							intPiece = 14;
+						}
+					}else if(intColPick == 14){
+						if(intRowPick == 1){
+							intPiece = 16;
+						}else if(intRowPick == 6 || intRowPick == 7 || intRowPick == 8){
+							intPiece = 21;
+						}else if(intRowPick == 10){
+							intPiece = 7;
+						}else if(intRowPick == 14){
+							intPiece = 14;
+						}
+					}else if(intColPick == 15){
+						if(intRowPick == 0 || intRowPick == 1){
+							intPiece = 16;
+						}else if(intRowPick == 8){
+							intPiece = 21;
+						}else if (intRowPick == 12 || intRowPick == 13 || intRowPick == 14){
+							intPiece = 14;
+						}
 					}
-				}else if(intColPick == 2){
-					if(intRowPick == 0 || intRowPick == 1){
-						intPiece = 8;
-					}else if(intRowPick == 4){
-						intPiece = 9;
-					}else if(intRowPick == 6 || intRowPick == 7|| intRowPick == 8 || intRowPick == 9){
-						intPiece = 5;
-					}else if(intRowPick == 11 || intRowPick == 12 || intRowPick == 13 || intRowPick == 14){
-						intPiece = 11;
-					}					
-				}else if(intColPick == 3){
-					if(intRowPick == 0 || intRowPick == 1){
-						intPiece = 8;
-					}else if(intRowPick == 3 || intRowPick == 4){
-						intPiece = 9;
-					}else if(intRowPick == 14){
-						intPiece = 11;
-					}					
-				}else if(intColPick == 4){
-					if(intRowPick == 3){
-						intPiece = 8;
-					}else if(intRowPick == 6 || intRowPick == 7|| intRowPick == 8 ){
-						intPiece = 6;
-					}else if(intRowPick == 11){
-						intPiece = 12;
-					}					
-				}else if(intColPick == 5){
-					if(intRowPick == 1){
-						intPiece = 4;
-					}else if(intRowPick == 8 ){
-						intPiece = 6;
-					}else if(intRowPick == 11){
-						intPiece = 12;
-					}else if(intRowPick == 14){
-						intPiece = 13;
-					}					
-				}else if(intColPick == 6){
-					if(intRowPick == 0 || intRowPick == 1){
-						intPiece = 4;
-					}else if(intRowPick == 4){
-						intPiece = 7;
-					}else if(intRowPick == 10 || intRowPick == 11){
-						intPiece = 12;
-					}else if(intRowPick == 13 || intRowPick == 14){
-						intPiece = 13;
-					}					
-				}else if(intColPick == 7){
-					if(intRowPick == 3 || intRowPick == 4 || intRowPick == 5){
-						intPiece = 7;
-					}else if(intRowPick == 7){
-						intPiece = 19;
-					}else if(intRowPick == 10){
-						intPiece = 12;
-					}else if(intRowPick == 13 || intRowPick == 14){
-						intPiece = 13;
-					}					
-				}else if(intColPick == 8){
-					if(intRowPick == 0|| intRowPick == 1){
-						intPiece = 17;
-					}else if(intRowPick == 6 || intRowPick == 7 || intRowPick == 8 ){
-						intPiece = 19;
-					}					
-				}else if(intColPick == 9){
-					if(intRowPick == 0){
-						intPiece = 17;
-					}else if(intRowPick == 7){
-						intPiece = 19;
-					}else if(intRowPick == 11){
-						intPiece = 18;
-					}
-				}else if(intColPick == 10){
-					if(intRowPick == 0 || intRowPick == 1){
-						intPiece = 17;
-					}else if(intRowPick == 10 || intRowPick == 11 || intRowPick == 12 || intRowPick == 13){
-						intPiece = 18;
-					}
-				}else if(intColPick == 11){
-					if(intRowPick == 5 || intRowPick == 6){
-						intPiece = 15;
-				}else if(intColPick == 12){
-					if(intRowPick == 4 || intRowPick == 5){
-						intPiece = 15;
-					}else if(intRowPick == 10){
-						intPiece = 7;
-					}
-				}else if(intColPick == 13){
-					if(intRowPick == 1 || intRowPick == 2){
-						intPiece = 16;
-					}else if(intRowPick == 4){
-						intPiece = 15;
-					}else if(intRowPick == 8){
-						intPiece = 21;
-					}else if(intRowPick == 10 || intRowPick == 11){
-						intPiece = 7;
-					}else if(intRowPick == 14){
-						intPiece = 14;
-					}
-				}else if(intColPick == 14){
-					if(intRowPick == 1){
-						intPiece = 16;
-					}else if(intRowPick == 6 || intRowPick == 7 || intRowPick == 8){
-						intPiece = 21;
-					}else if(intRowPick == 10){
-						intPiece = 7;
-					}else if(intRowPick == 14){
-						intPiece = 14;
-					}
-				}else if(intColPick == 15){
-					if(intRowPick == 0 || intRowPick == 1){
-						intPiece = 16;
-					}else if(intRowPick == 8){
-						intPiece = 21;
-					}else if (intRowPick == 12 || intRowPick == 13 || intRowPick == 14){
-						intPiece = 14;
-					}
+					sidePieceCode = false;
 				}
+				//Draw Pieces
+				PieceGrid = BlokObject.PickPiece(intPiece);
+				System.out.println(intPiece);
 				
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
 				
@@ -552,9 +557,7 @@ public class BlokusPanelTest2 extends JPanel{
 					System.out.println(boolFirstCorner);
 					if(boolFirstCorner == true){
 						for(intCount = 0; intCount < 5; intCount++){
-							System.out.println();
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
-								System.out.print(PieceGrid[intCount][intCount2]);
 								if(PieceGrid[intCount][intCount2] == 1){
 								//determine row & column based on mouse drop (x,y) coordinates.
 									//build from intRow & intCol
@@ -565,17 +568,14 @@ public class BlokusPanelTest2 extends JPanel{
 						}
 						PieceTaken[intPlayerCount][intPiece] = 0;
 						boolFirstTime = false;
-						intPiece = intPiece+1;
 						checkPieces = true;
 					}else{
 						PieceTaken[intPlayerCount][intPiece] = 1;
 					}
-					newPiece = true;
 					boolDropped = false;
 				}else{
 					boolOverlap = false;	
 					for(intCount = 0; intCount < 5; intCount++){
-						System.out.println();
 						for(intCount2 = 0; intCount2 < 5; intCount2++){
 							if(PieceGrid[intCount][intCount2] == 1){
 								//check for overlap
@@ -596,7 +596,6 @@ public class BlokusPanelTest2 extends JPanel{
 						boolCorner = false;
 						boolSide = false;
 						for(intCount = 0; intCount < 5; intCount++){
-							System.out.println();
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
 								if(PieceGrid[intCount][intCount2] == 1){
 								//determine row & column based on mouse drop (x,y) coordinates.
@@ -614,7 +613,6 @@ public class BlokusPanelTest2 extends JPanel{
 							}
 						}
 						for(intCount = 0; intCount < 5; intCount++){
-							System.out.println();
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
 								if(PieceGrid[intCount][intCount2] == 1){
 								//determine row & column based on mouse drop (x,y) coordinates.
@@ -634,9 +632,7 @@ public class BlokusPanelTest2 extends JPanel{
 						
 						if(boolCorner == true && boolSide == false){
 							for(intCount = 0; intCount < 5; intCount++){
-								System.out.println();
 								for(intCount2 = 0; intCount2 < 5; intCount2++){
-									System.out.print(PieceGrid[intCount][intCount2]);
 									if(PieceGrid[intCount][intCount2] == 1){
 									//determine row & column based on mouse drop (x,y) coordinates.
 										//build from intRow & intCol
@@ -661,12 +657,11 @@ public class BlokusPanelTest2 extends JPanel{
 						System.out.println("board array");
 						
 						for(intRow = 0; intRow <24; intRow++){
-							System.out.println("");
+							//System.out.println("");
 							for(intCol = 0; intCol <24; intCol++){
-								System.out.print(strBoard[intRow][intCol]);
+								//System.out.print(strBoard[intRow][intCol]);
 							}
 						}
-						System.out.println();
 						boolDropped = false;
 					}else{
 						PieceTaken[intPlayerCount][intPiece] = 1;
