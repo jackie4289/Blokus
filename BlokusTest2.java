@@ -10,7 +10,7 @@ import java.time.format.DateTimeFormatter;
 public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
 	//Properties
 	BlokusPanelTest2 theGamePanel = new BlokusPanelTest2();
-	
+
 	Timer theTimer = new Timer(1000/60, this);
 	Block BlockModel;
 
@@ -20,29 +20,13 @@ public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionLi
 	JTextField sendTextField = new JTextField();
 	JTextArea chatArea = new JTextArea();
 	JScrollPane chatScroll = new JScrollPane(chatArea);
-	JButton skipButton = new JButton("Skip?");
+	
 	//int intTurn = 0;
 	
 	//Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			theGamePanel.repaint();
-			if(theGamePanel.intTurn == 1){
-				skipButton.setLocation(250, 0);
-			}else if(theGamePanel.intTurn == 2){
-				skipButton.setLocation(1180, 0);		
-			}else if(theGamePanel.intTurn == 3){
-				skipButton.setLocation(1180, 680);
-			}else if(theGamePanel.intTurn == 4){
-				skipButton.setLocation(250, 680);
-			}
-		}else if(evt.getSource() == skipButton){
-			if(theGamePanel.intTurn < 4){
-				theGamePanel.intTurn++;
-			}else{
-				theGamePanel.intTurn = 1;
-			}
-			System.out.println("turn: " + theGamePanel.intTurn);
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -72,7 +56,7 @@ public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionLi
 			theGamePanel.boolDropped = true;
 			theFrame.requestFocus();
 		}
-		
+
 	}
 	public void mouseClicked(MouseEvent evt){
 		
@@ -132,10 +116,6 @@ public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionLi
 		sendTextField.setBackground(new Color(157, 156, 154));
 		sendTextField.addActionListener(this);
 		theGamePanel.add(sendTextField);
-		
-		skipButton.setSize(100,40);
-		skipButton.addActionListener(this);
-		theGamePanel.add(skipButton);
 		
 		//Pack Frame
 		theFrame.pack();
