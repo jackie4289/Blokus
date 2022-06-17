@@ -240,9 +240,13 @@ public class BlokusPanelTest extends JPanel{
 			
 			
 			if(checkPieces == true){
-				if(PieceTaken[0][0] == 0){
+				//Player 1 check pieces
+				if(PieceTaken[0][0] == 0){ 
 					strP1SidePieces[0][0] = "0";
 				}else if(PieceTaken[0][1] == 0){
+					strP1SidePieces[2][0] = "0";
+					strP1SidePieces[3][0] = "0";
+				}else if(PieceTaken[0][2] == 0){
 					
 				}
 				checkPieces = false;
@@ -258,46 +262,20 @@ public class BlokusPanelTest extends JPanel{
 			 
 			
 			// Draw side pieces	
-			// Player 1 (yellow)
 			for(intRow = 0;intRow < 15;intRow++){
 				for(intCol = 0;intCol < 16;intCol++){
-					if(strP1SidePieces[intRow][intCol].equals("1")){
+					if(strP1SidePieces[intRow][intCol].equals("1")){ // Player 1
 						g.drawImage(syellow,12+(intCol*20),49+(intRow*20),null);
 					}
-					if(strP2SidePieces[intRow][intCol].equals("1")){
+					if(strP2SidePieces[intRow][intCol].equals("1")){ // Player 2
 						g.drawImage(sgreen,943+(intCol*20),49+(intRow*20),null);
-
 					}
-					if(strP3SidePieces[intRow][intCol].equals("1")){
+					if(strP3SidePieces[intRow][intCol].equals("1")){ // Player 3 
 						g.drawImage(sblue,943+(intCol*20),368+(intRow*20),null);
 					}
-					if(strP4SidePieces[intRow][intCol].equals("1")){
+					if(strP4SidePieces[intRow][intCol].equals("1")){ // Player 4
 						g.drawImage(sred,12+(intCol*20), 368 + (intRow*20),null);
 					}
-				}
-			}
-			
-			// Player 2 (green)
-			System.out.println("green started");
-			for(intRow = 0;intRow < 15;intRow++){
-				for(intCol = 0;intCol < 16;intCol++){						
-					//g.drawImage(sgreen, , ,null);
-				} 
-			}
-			
-			// Player 3 (blue)
-			System.out.println("blue started");
-			for(intRow = 0;intRow < 15;intRow++){
-				for(intCol = 0;intCol < 16;intCol++){
-					//g.drawImage(sblue, , ,null);
-				}
-			}
-			
-			// Player 4 (red)
-			System.out.println("red started");
-			for(intRow = 0;intRow < 15;intRow++){
-				for(intCol = 0;intCol < 16;intCol++){
-					//g.drawImage(sred, , ,null);
 				}
 			}
 			
@@ -318,6 +296,7 @@ public class BlokusPanelTest extends JPanel{
 					}
 				}
 			}
+			
 			//Draw Pieces
 			if(newPiece == true){
 				PieceGrid = BlokObject.PickPiece(intPiece);
@@ -382,17 +361,7 @@ public class BlokusPanelTest extends JPanel{
 				System.out.println("drop x "+intDropX+" | drop y " +intDropY);
 				
 				intColDrop= Math.round((intDropX-369)/27);
-				intRowDrop = Math.round((intDropY-26)/27); 
-
-
-
-
-
-
-
-
-
-						
+				intRowDrop = Math.round((intDropY-26)/27);
 				
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
 				
@@ -425,7 +394,7 @@ public class BlokusPanelTest extends JPanel{
 						PieceTaken[intPlayerCount][intPiece] = 0;
 						boolFirstTime = false;
 						intPiece = intPiece+1;
-						
+						checkPieces = true;
 					}else{
 						PieceTaken[intPlayerCount][intPiece] = 1;
 					}
