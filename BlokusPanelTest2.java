@@ -663,11 +663,20 @@ public class BlokusPanelTest2 extends JPanel{
 								strP1SidePieces[1][6] = "0";
 								strP1SidePieces[0][6] = "0";						
 							}else if(intPiece == 5){
-								
+								strP1SidePieces[6][2] = "0";
+								strP1SidePieces[7][2] = "0";
+								strP1SidePieces[8][2] = "0";
+								strP1SidePieces[9][2] = "0";
 							}else if(intPiece == 6){
-								
+								strP1SidePieces[6][4] = "0";
+								strP1SidePieces[7][4] = "0";
+								strP1SidePieces[8][4] = "0";
+								strP1SidePieces[8][5] = "0";								
 							}else if(intPiece == 7){
-								
+								strP1SidePieces[10][12] = "0";
+								strP1SidePieces[10][13] = "0";
+								strP1SidePieces[11][13] = "0";
+								strP1SidePieces[10][14] = "0";								
 							}else if(intPiece == 8){
 								strP1SidePieces[0][2] = "0";
 								strP1SidePieces[1][2] = "0";
