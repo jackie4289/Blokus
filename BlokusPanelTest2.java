@@ -339,66 +339,6 @@ public class BlokusPanelTest2 extends JPanel{
 			
 			//Drag & Drop
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
-				
-				// Corners for boarder: g.drawRect(369, 26, 541, 541);
-				// So all four: (369,26)            (910,26)
-				//              (369,567)           (910,567)
-				//
-				// CURSOR WILL CONTROL BOTTOM LEFT CORNER OF THE PIECE
-				// (54,81)
-				
-				PieceTaken[intPlayerCount][intPiece] = 0;
-				if(boolRotate == true){
-					System.out.println("ROTATE AGAIN");
-					PieceGrid = BlokObject.rotatePiece(PieceGrid);
-					boolRotate = false;
-				}
-				if(mouseX < 369 || mouseX > 910){
-					System.out.println("OUT");
-					for(intCount = 0; intCount < 5; intCount++){
-						for(intCount2 = 0; intCount2 < 5; intCount2++){
-							if(PieceGrid[intCount][intCount2] == 1){
-								g.drawImage(yellow, ((-68) + (27*intCount2) + mouseX), ((-68) + (27*intCount) + mouseY),null);
-							}
-						}
-					}
-				}else if(mouseY < 26 || mouseY > 567){
-					System.out.println("OUT");
-					for(intCount = 0; intCount < 5; intCount++){
-						for(intCount2 = 0; intCount2 < 5; intCount2++){
-							if(PieceGrid[intCount][intCount2] == 1){
-								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
-							}
-						}
-					}
-				}else{
-					System.out.println("IN");
-					for(intCount = 0; intCount < 5; intCount++){
-						for(intCount2 = 0; intCount2 < 5; intCount2++){
-							if(PieceGrid[intCount][intCount2] == 1){
-								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
-							}
-						}
-					}
-				}
-			}
-			
-			//Dropped
-			if(boolDropped == true){
-				int intTurn = 0;
-				intTurn++;
-				System.out.println("Turn #: "+intTurn);
-				//change the board array instead...
-				//place the values (not 0) of piece grid into the board array 
-				
-				System.out.println("piece dropped");
-				System.out.println("drop x "+intDropX+" | drop y " +intDropY);
-				
-				intColDrop= Math.round((intDropX-369)/27);
-				intRowDrop = Math.round((intDropY-26)/27);
-				
-				
-				
 				intColPick = Math.round((intPickX-12)/20);
 				intRowPick = Math.round((intPickY-49)/20); 
 				
@@ -537,9 +477,72 @@ public class BlokusPanelTest2 extends JPanel{
 						}
 					}
 					sidePieceCode = false;
+					if(PieceTaken[intPlayerCount][intPiece] == 0){
+						intPiece = 0;
+					}
 					PieceGrid = BlokObject.PickPiece(intPiece);
 					System.out.println(intPiece);
 				}
+				// Corners for boarder: g.drawRect(369, 26, 541, 541);
+				// So all four: (369,26)            (910,26)
+				//              (369,567)           (910,567)
+				//
+				// CURSOR WILL CONTROL BOTTOM LEFT CORNER OF THE PIECE
+				// (54,81)
+				
+				PieceTaken[intPlayerCount][intPiece] = 0;
+				if(boolRotate == true){
+					System.out.println("ROTATE AGAIN");
+					PieceGrid = BlokObject.rotatePiece(PieceGrid);
+					boolRotate = false;
+				}
+				if(mouseX < 369 || mouseX > 910){
+					System.out.println("OUT");
+					for(intCount = 0; intCount < 5; intCount++){
+						for(intCount2 = 0; intCount2 < 5; intCount2++){
+							if(PieceGrid[intCount][intCount2] == 1){
+								g.drawImage(yellow, ((-68) + (27*intCount2) + mouseX), ((-68) + (27*intCount) + mouseY),null);
+							}
+						}
+					}
+				}else if(mouseY < 26 || mouseY > 567){
+					System.out.println("OUT");
+					for(intCount = 0; intCount < 5; intCount++){
+						for(intCount2 = 0; intCount2 < 5; intCount2++){
+							if(PieceGrid[intCount][intCount2] == 1){
+								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
+							}
+						}
+					}
+				}else{
+					System.out.println("IN");
+					for(intCount = 0; intCount < 5; intCount++){
+						for(intCount2 = 0; intCount2 < 5; intCount2++){
+							if(PieceGrid[intCount][intCount2] == 1){
+								g.drawImage(yellow, -68 + (27*intCount2) + mouseX, -68 + (27*intCount) + mouseY,null);
+							}
+						}
+					}
+				}
+			}
+			
+			//Dropped
+			if(boolDropped == true){
+				int intTurn = 0;
+				intTurn++;
+				System.out.println("Turn #: "+intTurn);
+				//change the board array instead...
+				//place the values (not 0) of piece grid into the board array 
+				
+				System.out.println("piece dropped");
+				System.out.println("drop x "+intDropX+" | drop y " +intDropY);
+				
+				intColDrop= Math.round((intDropX-369)/27);
+				intRowDrop = Math.round((intDropY-26)/27);
+				
+				
+				
+				
 				//Draw Pieces
 				
 				
