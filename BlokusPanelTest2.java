@@ -652,11 +652,24 @@ public class BlokusPanelTest2 extends JPanel{
 								}else if(intPiece == 18){
 									
 								}else if(intPiece == 19){
-									
+									strP1SidePieces[6][8] = "0";
+									strP1SidePieces[7][7] = "0";
+									strP1SidePieces[7][8] = "0";
+									strP1SidePieces[7][9] = "0";
+									strP1SidePieces[8][8] = "0";
 								}else if(intPiece == 20){
+									strP1SidePieces[3][7] = "0";
+									strP1SidePieces[4][6] = "0";
+									strP1SidePieces[4][7] = "0";
+									strP1SidePieces[4][8] = "0";
+									strP1SidePieces[5][6] = "0";
 									
 								}else if(intPiece == 21){
-									
+									strP1SidePieces[6][14] = "0";
+									strP1SidePieces[7][14] = "0";
+									strP1SidePieces[8][14] = "0";
+									strP1SidePieces[8][13] = "0";
+									strP1SidePieces[8][15] = "0";
 								}
 							}
 							
