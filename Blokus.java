@@ -442,7 +442,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 
 	}
 	public void keyTyped(KeyEvent evt){
-
+		
 	}
 	
 	
@@ -473,6 +473,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theHelpPanel.setPreferredSize(new Dimension(1280, 720));
 		theHelpPanel.addMouseMotionListener(this);
 		theHelpPanel.addMouseListener(this);
+		theHelpPanel.addKeyListener(this);
 		theFrame.addKeyListener(this);
 		theHelpPanel.setVisible(false);
 		
