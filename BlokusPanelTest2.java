@@ -641,6 +641,62 @@ public class BlokusPanelTest2 extends JPanel{
 									}
 								}
 							}
+							System.out.println("intPiece: "+intPiece);
+							if(intPiece == 1){
+								strP1SidePieces[0][0] = "0";
+							}else if(intPiece == 2){
+								strP1SidePieces[2][0] = "0";
+								strP1SidePieces[3][0] = "0";
+							}else if(intPiece == 3){
+								strP1SidePieces[5][0] = "";
+								strP1SidePieces[6][0] = "0";
+								strP1SidePieces[7][0] = "0";
+							}else if(intPiece == 3){
+							}else if(intPiece == 3){
+								
+							}else if(intPiece == 4){
+								
+							}else if(intPiece == 5){
+								
+							}else if(intPiece == 6){
+								
+							}else if(intPiece == 7){
+								
+							}else if(intPiece == 8){
+								strP1SidePieces[0][2] = "0";
+								strP1SidePieces[1][2] = "0";
+								strP1SidePieces[0][3] = "0";
+								strP1SidePieces[1][3] = "0";
+								System.out.println("changed side array");								
+							}else if(intPiece == 9){
+								
+							}else if(intPiece == 10){
+								
+							}else if(intPiece == 11){
+								
+							}else if(intPiece == 12){
+								
+							}else if(intPiece == 13){
+								
+							}else if(intPiece == 14){
+								
+							}else if(intPiece == 15){
+								
+							}else if(intPiece == 16){
+								
+							}else if(intPiece == 17){
+								
+							}else if(intPiece == 18){
+								
+							}else if(intPiece == 19){
+								
+							}else if(intPiece == 20){
+								
+							}else if(intPiece == 21){
+								
+							}
+					
+							
 							PieceTaken[intPlayerCount][intPiece] = 0;
 							System.out.println();
 							System.out.println("Piece Taken: " + PieceTaken[intPlayerCount][intPiece]);
