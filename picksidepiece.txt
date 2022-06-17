@@ -11,7 +11,7 @@
 				if(intColPick == 0){
 					if(intRowPick == 0){
 						intPiece = 1;
-				a	}else if(intRowPick == 2 || intRowPick == 3){
+					}else if(intRowPick == 2 || intRowPick == 3){
 						intPiece = 2;
 					}else if(intRowPick == 5 || intRowPick == 6|| intRowPick == 7){
 						intPiece = 3;
