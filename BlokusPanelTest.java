@@ -18,7 +18,7 @@ public class BlokusPanelTest extends JPanel{
 	int TempGrid[][] = new int[23][23];
 	int PlayerGrid[][] = new int[4][4];
 	int PieceTaken[][] = new int[4][22]; // (int [player#] [piece#])
-	String strSidePieces[][] = new String[14][14];
+	String strSidePieces[][] = new String[15][16]; // (row)(column)
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -35,6 +35,8 @@ public class BlokusPanelTest extends JPanel{
 	boolean boolOverlap = false;
 	boolean boolCorner = false;
 	boolean boolSide = false;
+	boolean boolRepaint = true;
+	boolean checkPieces = false;
 	
 	// Integers
 	int intRow;
@@ -55,7 +57,7 @@ public class BlokusPanelTest extends JPanel{
 	int mouseX = 0;
 	int mouseY = 0;
 	int intPiece = 1;
-	int intPlayerCount = 1;
+	int intPlayerCount = 0;
 	
 	int intDropX;
 	int intDropY;
@@ -76,6 +78,11 @@ public class BlokusPanelTest extends JPanel{
 	BufferedImage blue = null;
 	BufferedImage green = null;
 	BufferedImage yellow = null;
+	BufferedImage swhite = null;
+	BufferedImage sred = null;
+	BufferedImage sblue = null;
+	BufferedImage sgreen = null;
+	BufferedImage syellow = null;
 
 	//Methods
 	public void paintComponent(/*graphics variable*/Graphics g){
@@ -101,11 +108,6 @@ public class BlokusPanelTest extends JPanel{
 			}catch(FileNotFoundException e){
 				System.out.println("File not found!!!");
 			}
-			try{
-				sideLayout = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
-			}catch(FileNotFoundException e){
-				System.out.println("File not found!!!");
-			}
 			//read array
 			intRow = 0;
 			intCol = 0;
@@ -127,31 +129,32 @@ public class BlokusPanelTest extends JPanel{
 					PieceTaken[intCount2][intCount] = 1;
 				}
 			}
-		}
-		
-		BufferedReader sidepieces = null;
-		try{
-			sidepieces = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
-		}catch(FileNotFoundException e){
-			System.out.println("File not found!!!");
-		}
-		
-		//read array
-		intRow = 0;
-		intCol = 0;
-		for(intCount = 0; intCount < 14; intCount++){
+			BufferedReader sidepieces = null;
 			try{
-				intLine = sidepieces.readLine();
-				intARow = intLine.split(",");
-			}catch(IOException e){
-				intLine = "0";
+				sidepieces = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
+			}catch(FileNotFoundException e){
+				System.out.println("File not found!!!");
 			}
-			System.out.println("");
-			for(intCount2 = 0; intCount2 < 14; intCount2++){
-				strSidePieces[intCount][intCount2] = intARow[intCount2];
-				System.out.print(strSidePieces[intCount][intCount2]);
+			
+			//read array
+			intRow = 0;
+			intCol = 0;
+			for(intCount = 0; intCount < 15; intCount++){
+				try{
+					intLine = sidepieces.readLine();
+					intARow = intLine.split(",");
+				}catch(IOException e){
+					intLine = "0";
+				}
+				System.out.println("");
+				for(intCount2 = 0; intCount2 < 16; intCount2++){
+					strSidePieces[intCount][intCount2] = intARow[intCount2];
+					System.out.print(strSidePieces[intCount][intCount2]);
+				}
 			}
 		}
+		
+		
 		
 		//GAME
 		boolStartGame = true;
@@ -160,9 +163,10 @@ public class BlokusPanelTest extends JPanel{
 			intPlayerCount = 0;
 			
 			// UI
-			g.setColor(Color.WHITE);
-			g.fillRect(0,0,1280,720);
+			//	g.setColor(Color.WHITE);
+			//	g.fillRect(0,0,1280,720);
 			
+			// P1 (Yellow)
 			g.setColor(new Color(255, 208, 132));
 			g.fillRect(0, 0, 640, 360);
 			g.setColor(new Color(204, 166, 105));
@@ -219,69 +223,60 @@ public class BlokusPanelTest extends JPanel{
 			//Logo
 			g.drawString("BLOKUS", 588, 23);
 			
-			//Draw Player pieces
-			for(intCount2 = 0; intCount2 < 4; intCount2++){ // Player nums 0-3
-				for(intCount = 1;intCount < 22;intCount++){ // Piece Nums 1-21
-					if(PieceTaken[intCount2][intCount] == 1){
-						PlayerGrid = BlokObject.PickPiece(intCount);
-						if(intCount2 == 0){ // Player 1
-							if(intCount == 1){
-								for (intCol = 0; intCol < 5; intCol++){
-									for (intRow = 0; intRow < 5; intRow++){
-										if(PlayerGrid[intCol][intRow] == 1){
-											g.drawImage(yellow, 1 + (intCol-2) * 27, 40 + (intRow-2) * 27, null);
-										}
-									}
-								}
-							}else if(intCount == 2){
-								
-							}else if(intCount == 3){
-								
-							}else if(intCount == 4){
-								
-							}else if(intCount == 5){
-								
-							}else if(intCount == 6){
-								
-							}else if(intCount == 7){
-								
-							}else if(intCount == 8){
-								
-							}else if(intCount == 9){
-								
-							}else if(intCount == 10){
-								
-							}else if(intCount == 11){
-								
-							}else if(intCount == 12){
-								
-							}else if(intCount == 13){
-								
-							}else if(intCount == 14){
-								
-							}else if(intCount == 15){
-								
-							}else if(intCount == 16){
-								
-							}else if(intCount == 17){
-								
-							}else if(intCount == 18){
-								
-							}else if(intCount == 19){
-								
-							}else if(intCount == 20){
-								
-							}else if(intCount == 21){
-								
-							}
-						}else if(intCount2 == 1){ // Player 2
-							
-						}else if(intCount2 == 2){ // Player 3
-							
-						}else if(intCount2 == 3){ // Player 4
-							
-						}
+			
+			if(checkPieces == true){
+				if(PieceTaken[0][0] == 0){
+					strSidePieces[0][0] = "0";
+				}else if(PieceTaken[0][1] == 0){
+					
+				}
+				checkPieces = false;
+			}
+			/* CORNERS FOR SIDE PIECES
+				
+				P1:
+				(0,40) 	(350,40)
+				(0,360)	(350,360)
+				
+				*/
+				
+			 
+			
+			// Draw side pieces	
+			// Player 1 (yellow)
+			System.out.println("yellow Started");
+			for(intRow = 0;intRow < 15;intRow++){
+				for(intCol = 0;intCol < 16;intCol++){
+					if(strSidePieces[intRow][intCol].equals("1")){
+						g.drawImage(syellow,12+(intCol*20),49+(intRow*20),null);
+						g.drawImage(sgreen,943+(intCol*20),49+(intRow*20),null);
+						g.drawImage(sblue,943+(intCol*20),368+(intRow*20),null);
+						g.drawImage(sred,12+(intCol*20), 368 + (intRow*20),null);
 					}
+				}
+			}
+			
+			// Player 2 (green)
+			System.out.println("green started");
+			for(intRow = 0;intRow < 15;intRow++){
+				for(intCol = 0;intCol < 16;intCol++){						
+					//g.drawImage(sgreen, , ,null);
+				} 
+			}
+			
+			// Player 3 (blue)
+			System.out.println("blue started");
+			for(intRow = 0;intRow < 15;intRow++){
+				for(intCol = 0;intCol < 16;intCol++){
+					//g.drawImage(sblue, , ,null);
+				}
+			}
+			
+			// Player 4 (red)
+			System.out.println("red started");
+			for(intRow = 0;intRow < 15;intRow++){
+				for(intCol = 0;intCol < 16;intCol++){
+					//g.drawImage(sred, , ,null);
 				}
 			}
 			
@@ -411,6 +406,7 @@ public class BlokusPanelTest extends JPanel{
 						intPiece = intPiece+1;
 						
 					}else{
+						PieceTaken[intPlayerCount][intPiece] = 1;
 					}
 					newPiece = true;
 					boolDropped = false;
@@ -488,11 +484,12 @@ public class BlokusPanelTest extends JPanel{
 								}
 							}
 							
-							
+							PieceTaken[intPlayerCount][intPiece] = 0;
 							intPiece = intPiece + 1;
 							if(intPiece > 21){
 								intPiece = 1;
-							}					
+							}				
+							checkPieces = true;
 							newPiece = true;
 						}else{
 							PieceTaken[intPlayerCount][intPiece] = 1;
@@ -506,7 +503,6 @@ public class BlokusPanelTest extends JPanel{
 								System.out.print(strBoard[intRow][intCol]);
 							}
 						}
-						
 						boolDropped = false;
 					}else{
 						PieceTaken[intPlayerCount][intPiece] = 1;
@@ -546,6 +542,30 @@ public class BlokusPanelTest extends JPanel{
 			green = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/greenblock.png"));
 		}catch(IOException e){
 			System.out.println("Invalid picture(greenblock.png)");
+		}try{
+			swhite = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/swhiteblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(swhiteblock.png)");
+		}
+		try{
+			sred = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sredblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(sredblock.png)");
+		}
+		try{
+			sblue = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sblueblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(sblueblock.png)");
+		}
+		try{
+			syellow = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/syellowblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(syellowblock.png)");
+		}
+		try{
+			sgreen = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sgreenblock.png"));
+		}catch(IOException e){
+			System.out.println("Invalid picture(sgreenblock.png)");
 		}
 	}
 }
