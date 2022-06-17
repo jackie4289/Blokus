@@ -77,6 +77,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theHelpPanel.add(backButton);
 			theHelpPanel.setVisible(true);
 			theFrame.setContentPane(theHelpPanel);	
+			theHelpPanel.requestFocusInWindow();
+			
 		}else if(evt.getSource() == highscoreButton){
 			//High Score Panel Visible
 			theMenuPanel.setVisible(false);
@@ -474,7 +476,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theHelpPanel.addMouseMotionListener(this);
 		theHelpPanel.addMouseListener(this);
 		theHelpPanel.addKeyListener(this);
-		theFrame.addKeyListener(this);
 		theHelpPanel.setVisible(false);
 		
 		//HighScore Panel
