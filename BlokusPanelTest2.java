@@ -627,30 +627,63 @@ public class BlokusPanelTest2 extends JPanel{
 									strP1SidePieces[0][3] = "0";
 									strP1SidePieces[1][3] = "0";							
 								}else if(intPiece == 9){
-									
+									strP1SidePieces[4][2] = "0";
+									strP1SidePieces[4][3] = "0";
+									strP1SidePieces[3][3] = "0";
+									strP1SidePieces[3][4] = "0"; 
 								}else if(intPiece == 10){
 									strP1SidePieces[9][0] = "0";
 									strP1SidePieces[10][0] = "0";
 									strP1SidePieces[11][0] = "0";
 									strP1SidePieces[12][0] = "0";
 									strP1SidePieces[13][0] = "0";
-									
 								}else if(intPiece == 11){
-									
+									strP1SidePieces[11][2] = "0";
+									strP1SidePieces[12][2] = "0";
+									strP1SidePieces[13][2] = "0";
+									strP1SidePieces[14][3] = "0";
 								}else if(intPiece == 12){
-									
+									strP1SidePieces[11][4] = "0";
+									strP1SidePieces[11][5] = "0";
+									strP1SidePieces[11][6] = "0";
+									strP1SidePieces[10][6] = "0";
+									strP1SidePieces[10][7] = "0";
 								}else if(intPiece == 13){
-									
+									strP1SidePieces[14][5] = "0";
+									strP1SidePieces[14][6] = "0";
+									strP1SidePieces[14][7] = "0";
+									strP1SidePieces[13][6] = "0";
+									strP1SidePieces[13][7] = "0";
 								}else if(intPiece == 14){
-									
+									strP1SidePieces[12][15] = "0";
+									strP1SidePieces[13][15] = "0";
+									strP1SidePieces[14][15] = "0";
+									strP1SidePieces[14][14] = "0";
+									strP1SidePieces[14][13] = "0";
 								}else if(intPiece == 15){
-									
+									strP1SidePieces[6][11] = "0";
+									strP1SidePieces[5][11] = "0";
+									strP1SidePieces[5][12] = "0";
+									strP1SidePieces[4][12] = "0";
+									strP1SidePieces[4][13] = "0";
 								}else if(intPiece == 16){
-									
+									strP1SidePieces[2][13] = "0";
+									strP1SidePieces[1][13] = "0";
+									strP1SidePieces[1][14] = "0";
+									strP1SidePieces[1][15] = "0";
+									strP1SidePieces[0][15] = "0";
 								}else if(intPiece == 17){
-									
+									strP1SidePieces[0][8] = "0";
+									strP1SidePieces[0][9] = "0";
+									strP1SidePieces[0][10] = "0";
+									strP1SidePieces[1][8] = "0";
+									strP1SidePieces[0][10] = "0";
 								}else if(intPiece == 18){
-									
+									strP1SidePieces[10][10] = "0";
+									strP1SidePieces[11][10] = "0";
+									strP1SidePieces[12][10] = "0";
+									strP1SidePieces[13][10] = "0";
+									strP1SidePieces[11][9] = "0";
 								}else if(intPiece == 19){
 									strP1SidePieces[6][8] = "0";
 									strP1SidePieces[7][7] = "0";
@@ -663,7 +696,6 @@ public class BlokusPanelTest2 extends JPanel{
 									strP1SidePieces[4][7] = "0";
 									strP1SidePieces[4][8] = "0";
 									strP1SidePieces[5][6] = "0";
-									
 								}else if(intPiece == 21){
 									strP1SidePieces[6][14] = "0";
 									strP1SidePieces[7][14] = "0";
