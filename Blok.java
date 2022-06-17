@@ -138,8 +138,8 @@ public class Blok{
 			intBoard[2][1] = 1;
 			intBoard[2][2] = 1;
 			intBoard[2][3] = 1;
-			intBoard[3][2] = 1;
-			intBoard[1][3] = 1;
+			intBoard[3][1] = 1;
+			intBoard[1][2] = 1;
 		}else if(pieceType == 21){
 			intBoard[2][1] = 1;
 			intBoard[2][2] = 1;
