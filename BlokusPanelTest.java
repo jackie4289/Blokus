@@ -18,6 +18,7 @@ public class BlokusPanelTest extends JPanel{
 	int TempGrid[][] = new int[23][23];
 	int PlayerGrid[][] = new int[4][4];
 	int PieceTaken[][] = new int[4][22]; // (int [player#] [piece#])
+	String strSidePieces[][] = new String[14][14];
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -122,6 +123,29 @@ public class BlokusPanelTest extends JPanel{
 			}
 		}
 		
+		BufferedReader sidepieces = null;
+		try{
+			sidepieces = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
+		}catch(FileNotFoundException e){
+			System.out.println("File not found!!!");
+		}
+		
+		//read array
+		intRow = 0;
+		intCol = 0;
+		for(intCount = 0; intCount < 14; intCount++){
+			try{
+				intLine = sidepieces.readLine();
+				intARow = intLine.split(",");
+			}catch(IOException e){
+				intLine = "0";
+			}
+			System.out.println("");
+			for(intCount2 = 0; intCount2 < 14; intCount2++){
+				strSidePieces[intCount][intCount2] = intARow[intCount2];
+				System.out.print(strSidePieces[intCount][intCount2]);
+			}
+		}
 		
 		//GAME
 		boolStartGame = true;
