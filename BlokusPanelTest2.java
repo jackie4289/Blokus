@@ -456,16 +456,16 @@ public class BlokusPanelTest2 extends JPanel{
 					}else if(intColPick == 6){
 						if(intRowPick == 0 || intRowPick == 1){
 							intPiece = 4;
-						}else if(intRowPick == 4){
-							intPiece = 7;
+						}else if(intRowPick == 4 || intRowPick == 5){
+							intPiece = 20; // 20 and 7
 						}else if(intRowPick == 10 || intRowPick == 11){
 							intPiece = 12;
 						}else if(intRowPick == 13 || intRowPick == 14){
 							intPiece = 13;
 						}					
 					}else if(intColPick == 7){
-						if(intRowPick == 3 || intRowPick == 4 || intRowPick == 5){
-							intPiece = 7;
+						if( intRowPick == 3 || intRowPick == 4){
+							intPiece = 20;
 						}else if(intRowPick == 7){
 							intPiece = 19;
 						}else if(intRowPick == 10){
@@ -478,7 +478,9 @@ public class BlokusPanelTest2 extends JPanel{
 							intPiece = 17;
 						}else if(intRowPick == 6 || intRowPick == 7 || intRowPick == 8 ){
 							intPiece = 19;
-						}					
+						}else if(intRowPick == 4){
+							intPiece = 20;
+						}		
 					}else if(intColPick == 9){
 						if(intRowPick == 0){
 							intPiece = 17;
@@ -535,10 +537,11 @@ public class BlokusPanelTest2 extends JPanel{
 						}
 					}
 					sidePieceCode = false;
+					PieceGrid = BlokObject.PickPiece(intPiece);
+					System.out.println(intPiece);
 				}
 				//Draw Pieces
-				PieceGrid = BlokObject.PickPiece(intPiece);
-				System.out.println(intPiece);
+				
 				
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
 				
@@ -644,10 +647,7 @@ public class BlokusPanelTest2 extends JPanel{
 							PieceTaken[intPlayerCount][intPiece] = 0;
 							System.out.println();
 							System.out.println("Piece Taken: " + PieceTaken[intPlayerCount][intPiece]);
-							intPiece = intPiece + 1;
-							if(intPiece > 21){
-								intPiece = 1;
-							}				
+										
 							checkPieces = true;
 							newPiece = true;
 						}else{
