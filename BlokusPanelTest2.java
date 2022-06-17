@@ -66,7 +66,7 @@ public class BlokusPanelTest2 extends JPanel{
 	
 	int mouseX = 0;
 	int mouseY = 0;
-	int intPiece = 1;
+	int intPiece = 0;
 	int intPlayerCount = 0;
 	
 	int intDropX;
