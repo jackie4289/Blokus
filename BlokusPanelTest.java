@@ -18,7 +18,12 @@ public class BlokusPanelTest extends JPanel{
 	int TempGrid[][] = new int[23][23];
 	int PlayerGrid[][] = new int[4][4];
 	int PieceTaken[][] = new int[4][22]; // (int [player#] [piece#])
-	String strSidePieces[][] = new String[15][16]; // (row)(column)
+	String strP1SidePieces[][] = new String[15][16]; // (row)(column)
+	String strP2SidePieces[][] = new String[15][16]; // (row)(column)
+	String strP3SidePieces[][] = new String[15][16]; // (row)(column)
+	String strP4SidePieces[][] = new String[15][16]; // (row)(column)
+
+	
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -148,10 +153,20 @@ public class BlokusPanelTest extends JPanel{
 				}
 				System.out.println("");
 				for(intCount2 = 0; intCount2 < 16; intCount2++){
-					strSidePieces[intCount][intCount2] = intARow[intCount2];
-					System.out.print(strSidePieces[intCount][intCount2]);
+					strP1SidePieces[intCount][intCount2] = intARow[intCount2];
+					System.out.print(strP1SidePieces[intCount][intCount2]);
 				}
 			}
+			
+			for(intCount = 0;intCount < 15; intCount++){
+				for(intCount2 = 0; intCount2 < 16; intCount2++){
+					strP2SidePieces[intCount][intCount2] = strP1SidePieces[intCount][intCount2];
+					strP3SidePieces[intCount][intCount2] = strP1SidePieces[intCount][intCount2];
+					strP4SidePieces[intCount][intCount2] = strP1SidePieces[intCount][intCount2];
+				}
+			}
+			
+			
 		}
 		
 		
@@ -226,7 +241,7 @@ public class BlokusPanelTest extends JPanel{
 			
 			if(checkPieces == true){
 				if(PieceTaken[0][0] == 0){
-					strSidePieces[0][0] = "0";
+					strP1SidePieces[0][0] = "0";
 				}else if(PieceTaken[0][1] == 0){
 					
 				}
@@ -244,13 +259,19 @@ public class BlokusPanelTest extends JPanel{
 			
 			// Draw side pieces	
 			// Player 1 (yellow)
-			System.out.println("yellow Started");
 			for(intRow = 0;intRow < 15;intRow++){
 				for(intCol = 0;intCol < 16;intCol++){
-					if(strSidePieces[intRow][intCol].equals("1")){
+					if(strP1SidePieces[intRow][intCol].equals("1")){
 						g.drawImage(syellow,12+(intCol*20),49+(intRow*20),null);
+					}
+					if(strP2SidePieces[intRow][intCol].equals("1")){
 						g.drawImage(sgreen,943+(intCol*20),49+(intRow*20),null);
+
+					}
+					if(strP3SidePieces[intRow][intCol].equals("1")){
 						g.drawImage(sblue,943+(intCol*20),368+(intRow*20),null);
+					}
+					if(strP4SidePieces[intRow][intCol].equals("1")){
 						g.drawImage(sred,12+(intCol*20), 368 + (intRow*20),null);
 					}
 				}
