@@ -18,7 +18,7 @@ public class BlokusPanelTest extends JPanel{
 	int TempGrid[][] = new int[23][23];
 	int PlayerGrid[][] = new int[4][4];
 	int PieceTaken[][] = new int[4][22]; // (int [player#] [piece#])
-	String strSidePieces[][] = new String[14][14];
+	String strSidePieces[][] = new String[15][16]; // (row)(column)
 	// 0 = EMPTY
 	// 1 = YELLOW (P1)
 	// 2 = GREEN (P2)
@@ -35,6 +35,7 @@ public class BlokusPanelTest extends JPanel{
 	boolean boolOverlap = false;
 	boolean boolCorner = false;
 	boolean boolSide = false;
+	boolean boolRepaint = true;
 	
 	// Integers
 	int intRow;
@@ -106,11 +107,6 @@ public class BlokusPanelTest extends JPanel{
 			}catch(FileNotFoundException e){
 				System.out.println("File not found!!!");
 			}
-			try{
-				sideLayout = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
-			}catch(FileNotFoundException e){
-				System.out.println("File not found!!!");
-			}
 			//read array
 			intRow = 0;
 			intCol = 0;
@@ -132,31 +128,32 @@ public class BlokusPanelTest extends JPanel{
 					PieceTaken[intCount2][intCount] = 1;
 				}
 			}
-		}
-		
-		BufferedReader sidepieces = null;
-		try{
-			sidepieces = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
-		}catch(FileNotFoundException e){
-			System.out.println("File not found!!!");
-		}
-		
-		//read array
-		intRow = 0;
-		intCol = 0;
-		for(intCount = 0; intCount < 14; intCount++){
+			BufferedReader sidepieces = null;
 			try{
-				intLine = sidepieces.readLine();
-				intARow = intLine.split(",");
-			}catch(IOException e){
-				intLine = "0";
+				sidepieces = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
+			}catch(FileNotFoundException e){
+				System.out.println("File not found!!!");
 			}
-			System.out.println("");
-			for(intCount2 = 0; intCount2 < 14; intCount2++){
-				strSidePieces[intCount][intCount2] = intARow[intCount2];
-				System.out.print(strSidePieces[intCount][intCount2]);
+			
+			//read array
+			intRow = 0;
+			intCol = 0;
+			for(intCount = 0; intCount < 15; intCount++){
+				try{
+					intLine = sidepieces.readLine();
+					intARow = intLine.split(",");
+				}catch(IOException e){
+					intLine = "0";
+				}
+				System.out.println("");
+				for(intCount2 = 0; intCount2 < 16; intCount2++){
+					strSidePieces[intCount][intCount2] = intARow[intCount2];
+					System.out.print(strSidePieces[intCount][intCount2]);
+				}
 			}
 		}
+		
+		
 		
 		//GAME
 		boolStartGame = true;
@@ -165,9 +162,10 @@ public class BlokusPanelTest extends JPanel{
 			intPlayerCount = 0;
 			
 			// UI
-			g.setColor(Color.WHITE);
-			g.fillRect(0,0,1280,720);
+			//	g.setColor(Color.WHITE);
+			//	g.fillRect(0,0,1280,720);
 			
+			// P1 (Yellow)
 			g.setColor(new Color(255, 208, 132));
 			g.fillRect(0, 0, 640, 360);
 			g.setColor(new Color(204, 166, 105));
@@ -224,7 +222,52 @@ public class BlokusPanelTest extends JPanel{
 			//Logo
 			g.drawString("BLOKUS", 588, 23);
 			
+			/* CORNERS FOR SIDE PIECES
+				
+				P1:
+				(0,40) 	(350,40)
+				(0,360)	(350,360)
+				
+				*/
+				
+			 
 			
+			// Draw side pieces	
+			// Player 1 (yellow)
+			System.out.println("yellow Started");
+			for(intRow = 0;intRow < 15;intRow++){
+				for(intCol = 0;intCol < 16;intCol++){
+					if(strSidePieces[intRow][intCol].equals("1")){
+						System.out.println("if statement met");
+						g.drawImage(syellow,(intCol*20),40+(intRow*20),null);
+						System.out.println("drawn");
+					}
+				}
+			}
+			
+			// Player 2 (green)
+			System.out.println("green started");
+			for(intRow = 0;intRow < 15;intRow++){
+				for(intCol = 0;intCol < 16;intCol++){
+					//g.drawImage(sgreen, , ,null);
+				}
+			}
+			
+			// Player 3 (blue)
+			System.out.println("blue started");
+			for(intRow = 0;intRow < 15;intRow++){
+				for(intCol = 0;intCol < 16;intCol++){
+					//g.drawImage(sblue, , ,null);
+				}
+			}
+			
+			// Player 4 (red)
+			System.out.println("red started");
+			for(intRow = 0;intRow < 15;intRow++){
+				for(intCol = 0;intCol < 16;intCol++){
+					//g.drawImage(sred, , ,null);
+				}
+			}
 			
 			
 			//Draw array
