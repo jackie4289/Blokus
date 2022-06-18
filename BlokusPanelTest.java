@@ -17,7 +17,7 @@ public class BlokusPanelTest extends JPanel{
 	int BoardGrid[][] = new int[23][23];
 	int TempGrid[][] = new int[23][23];
 	int PlayerGrid[][] = new int[4][4];
-	int PieceTaken[][] = new int[4][22]; // (int [player#] [piece#])
+	int PieceTaken[][] = new int[5][22]; // (int [player#] [piece#])
 	String strP1SidePieces[][] = new String[15][16]; // (row)(column)
 	String strP2SidePieces[][] = new String[15][16]; // (row)(column)
 	String strP3SidePieces[][] = new String[15][16]; // (row)(column)
@@ -67,8 +67,7 @@ public class BlokusPanelTest extends JPanel{
 	int mouseX = 0;
 	int mouseY = 0;
 	int intPiece = 0;
-	int intPlayerCount = 0;
-	
+	int intTurn = 1;
 	int intDropX;
 	int intDropY;
 	int intColDrop;
@@ -179,7 +178,6 @@ public class BlokusPanelTest extends JPanel{
 		boolStartGame = true;
 		if(boolStartGame == true){
 			//REMOVE LINE BELOW WHEN INTEGRATING
-			intPlayerCount = 0;
 			
 			// UI
 			//	g.setColor(Color.WHITE);
@@ -419,7 +417,7 @@ public class BlokusPanelTest extends JPanel{
 						}
 					}
 					sidePieceCode = false;
-					if(PieceTaken[intPlayerCount][intPiece] == 0){
+					if(PieceTaken[intTurn][intPiece] == 0){
 						intPiece = 0;
 					}
 					PieceGrid = BlokObject.PickPiece(intPiece);
@@ -469,8 +467,6 @@ public class BlokusPanelTest extends JPanel{
 			
 			//Dropped
 			if(boolDropped == true){
-				int intTurn = 0;
-				intTurn++;
 				System.out.println("Turn #: "+intTurn);
 				//change the board array instead...
 				//place the values (not 0) of piece grid into the board array 
@@ -513,10 +509,10 @@ public class BlokusPanelTest extends JPanel{
 								}
 							}
 						}
-						PieceTaken[intPlayerCount][intPiece] = 0;
+						PieceTaken[intTurn][intPiece] = 0;
 						
 						// Calculate Pieces for FIRST TIME
-						if(intPlayerCount == 0){
+						if(intTurn == 1){
 								if(intPiece == 1){
 									strP1SidePieces[0][0] = "0";
 								}else if(intPiece == 2){
@@ -628,7 +624,7 @@ public class BlokusPanelTest extends JPanel{
 									strP1SidePieces[8][13] = "0";
 									strP1SidePieces[8][15] = "0";
 								}
-							}else if(intPlayerCount == 1){
+							}else if(intTurn == 2){
 								if(intPiece == 1){
 									strP2SidePieces[0][0] = "0";
 								}else if(intPiece == 2){
@@ -740,7 +736,7 @@ public class BlokusPanelTest extends JPanel{
 									strP2SidePieces[8][13] = "0";
 									strP2SidePieces[8][15] = "0";
 								}
-							}else if(intPlayerCount == 2){
+							}else if(intTurn == 3){
 								if(intPiece == 1){
 									strP3SidePieces[0][0] = "0";
 								}else if(intPiece == 2){
@@ -852,7 +848,7 @@ public class BlokusPanelTest extends JPanel{
 									strP3SidePieces[8][13] = "0";
 									strP3SidePieces[8][15] = "0";
 								}
-							}else if(intPlayerCount == 3){
+							}else if(intTurn == 3){
 								if(intPiece == 1){
 									strP4SidePieces[0][0] = "0";
 								}else if(intPiece == 2){
@@ -969,7 +965,7 @@ public class BlokusPanelTest extends JPanel{
 						boolFirstTime = false;
 						checkPieces = true;
 					}else{
-						PieceTaken[intPlayerCount][intPiece] = 1;
+						PieceTaken[intTurn][intPiece] = 1;
 					}
 					boolDropped = false;
 				}else{
@@ -983,12 +979,6 @@ public class BlokusPanelTest extends JPanel{
 								}
 							}
 						}
-					}
-					
-					//figure out how to place pieces along the edge
-					//then find how to place 1st piece in corner
-					if(intTurn == 1){
-						
 					}
 					
 					if(boolOverlap == false){
@@ -1041,10 +1031,10 @@ public class BlokusPanelTest extends JPanel{
 								}
 							}
 							System.out.println("intPiece: "+intPiece);
-							PieceTaken[intPlayerCount][intPiece] = 0;
+							PieceTaken[intTurn][intPiece] = 0;
 														
 							System.out.println("changed side array");	
-							if(intPlayerCount == 0){
+							if(intTurn == 1){
 								if(intPiece == 1){
 									strP1SidePieces[0][0] = "0";
 								}else if(intPiece == 2){
@@ -1156,7 +1146,7 @@ public class BlokusPanelTest extends JPanel{
 									strP1SidePieces[8][13] = "0";
 									strP1SidePieces[8][15] = "0";
 								}
-							}else if(intPlayerCount == 1){
+							}else if(intTurn == 2){
 								if(intPiece == 1){
 									strP2SidePieces[0][0] = "0";
 								}else if(intPiece == 2){
@@ -1268,7 +1258,7 @@ public class BlokusPanelTest extends JPanel{
 									strP2SidePieces[8][13] = "0";
 									strP2SidePieces[8][15] = "0";
 								}
-							}else if(intPlayerCount == 2){
+							}else if(intTurn == 3){
 								if(intPiece == 1){
 									strP3SidePieces[0][0] = "0";
 								}else if(intPiece == 2){
@@ -1380,7 +1370,7 @@ public class BlokusPanelTest extends JPanel{
 									strP3SidePieces[8][13] = "0";
 									strP3SidePieces[8][15] = "0";
 								}
-							}else if(intPlayerCount == 3){
+							}else if(intTurn == 4){
 								if(intPiece == 1){
 									strP4SidePieces[0][0] = "0";
 								}else if(intPiece == 2){
@@ -1494,9 +1484,9 @@ public class BlokusPanelTest extends JPanel{
 								}
 							}
 							
-							PieceTaken[intPlayerCount][intPiece] = 0;
+							PieceTaken[intTurn][intPiece] = 0;
 							System.out.println();
-							System.out.println("Piece Taken: " + PieceTaken[intPlayerCount][intPiece]);
+							System.out.println("Piece Taken: " + PieceTaken[intTurn][intPiece]);
 										
 							checkPieces = true;
 							newPiece = true;
@@ -1514,9 +1504,9 @@ public class BlokusPanelTest extends JPanel{
 					}
 					System.out.println();
 					System.out.println();
-					System.out.println("Piece Taken: " + PieceTaken[intPlayerCount][intPiece]);
+					System.out.println("Piece Taken: " + PieceTaken[intTurn][intPiece]);
 					System.out.println();
-					System.out.println("intPlayerCount: " + intPlayerCount);
+					System.out.println("intPlayerCount: " + intTurn);
 					System.out.println("intPiece: " + intPiece);
 					
 				}
