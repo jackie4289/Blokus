@@ -19,7 +19,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	Blok BlokModel;
 	int intPort;
 	int intConnected = 0;
-	int intServerTurn = 0;
 	int intRow = 0;
 	int intCol = 0;
 	String strIp;
@@ -67,23 +66,21 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theHelpPanel.repaint();
 			theLoginPanel.repaint();
 			if(theGamePanel.boolStartGame == true){
-				//detect 
+				//detect if player turn# = turn
 				if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
-					//theGamePanel.requestFocusInWindow();
 					boolTurn = true;
 					theGamePanel.boolHideSkip = false;
 				}else if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn-1 || theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn+3){
 					if(boolTurn == true){
 						ssm.sendText("turnAdd");
 						System.out.println("next turn via placement");
-						
-						//test
+						//send main board
 						for(intRow = 2; intRow <22; intRow++){
 							for(intCol = 2; intCol <22; intCol++){
 								ssm.sendText("Board," + theGamePanel.strBoard[intRow][intCol] + "," + intRow + "," + intCol);
 							}
 						}
-						
+						//send player boards
 						for(intRow = 0;intRow < 15;intRow++){
 							for(intCol = 0;intCol < 16;intCol++){
 								if(theGamePanel.intPlayerTurnNumber == 1){
@@ -97,8 +94,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 								}
 							}
 						}
-						
 						boolTurn = false;
+						theGamePanel.intSkip = 0;
 						theGamePanel.boolHideSkip = true;
 					}
 				}
@@ -236,8 +233,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				LocalTime localTime = LocalTime.now();
 				
 				//Send with name + time
-				ssm.sendText("chat, CHAT | "+dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText());
-				chatArea.append(" CHAT | "+dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText() + "\n");
+				ssm.sendText("chat,"+dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText());
+				chatArea.append(dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText() + "\n");
 				sendTextField.setText("");
 				
 				//Focus cycle
@@ -280,10 +277,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					}else if(strMsgSplit[1].equals("4")){
 						theGamePanel.strP4SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
 					}
-					
 				}
-				
-				
+
 			//SERVER SIDE MESSAGES LOGIN
 			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
 				//Recieve name from client to server
@@ -383,7 +378,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				ssm.sendText("inital," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",2," + theGamePanel.strName[2] + ",3," + theGamePanel.strName[3] + ",4");
 				System.out.println("INITIAL TURNS SENT");
 			}
-			chatArea.append(" GAMEPLAY | Turn: P" +theGamePanel.intTurn+ " "+theGamePanel.strUsername + ", Turn #" + theGamePanel.intTurn);
 		}else if(evt.getSource() ==  backButton){
 			//Back Button
 			theHighScorePanel.setVisible(false);
@@ -409,12 +403,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			//turns++
 			if(theGamePanel.intTurn < 4){
 				theGamePanel.intTurn++;
+				theGamePanel.intSkip++;
 			}else{
 				theGamePanel.intTurn = 1;
 			}
-			theGamePanel.intSkip++;
-			System.out.println("Turn: " + theGamePanel.intTurn);
-			/*
+			System.out.println("Skip: " + theGamePanel.intSkip);
 			//End Game if skip = 4
 			if(theGamePanel.intSkip >= 4){
 				theGamePanel.setVisible(false);
@@ -422,7 +415,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				theGameOverPanel.setVisible(true);
 				theFrame.setContentPane(theGameOverPanel);
 			}
-			*/
+			
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -447,10 +440,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	}
 	public void mouseReleased(MouseEvent evt){
 		if(evt.getSource() == theHelpPanel){
+			//Help Panel Mouse
 			theHelpPanel.intDropX = evt.getX();
 			theHelpPanel.intDropY = evt.getY();
 			System.out.println("DROP | x: "+theHelpPanel.intDropX+" | y: "+theHelpPanel.intDropY);
 		}else if(evt.getSource() == theGamePanel){
+			//Game Panel Mouse
 			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
 				theGamePanel.boolDragAndDrop = false;
 				theGamePanel.intDropX = evt.getX();
@@ -459,7 +454,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					theGamePanel.intPiece = 0;
 				}
 				theGamePanel.boolDropped = true;
-				theGamePanel.repaint();
 				theFrame.requestFocus();
 			}
 		}
@@ -499,8 +493,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	}
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyCode() == 32){
-			//theGamePanel.boolRotate = true;
-			theHelpPanel.boolRotate = true;
+			if(theGamePanel.boolStartGame == true){
+				theGamePanel.boolRotate = true;
+			}else{
+				theHelpPanel.boolRotate = true;
+			}
 			System.out.println("ROTATE");
 		}
 

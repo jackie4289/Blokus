@@ -17,9 +17,9 @@ public class Blok{
 	
 	
 	//Methods
-	public void Read_ResetBoard(){
-
-	}
+	/**
+	 * This is to define each piece by shape and each shape is numbered from 1 - 21
+	 */
 	public int[][] PickPiece(int pieceType){
 		for(intCount = 0;intCount < 4;intCount++){
 			for(intCount2 = 0;intCount2 < 4; intCount++){
@@ -154,6 +154,9 @@ public class Blok{
 		}
 		return intBoard;
 	}
+	/**
+	 * This is to rotate the pieces by 90 degrees each run
+	 */
 	public void rotatePiece(){
 		for(intCount = 0;intCount < 4;intCount++){
 			for(intCount2 = 0;intCount2 < 4; intCount++){
