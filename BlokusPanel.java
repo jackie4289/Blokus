@@ -11,6 +11,7 @@ import java.awt.image.*;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.imageio.*;
+import java.lang.Math;
 
 public class BlokusPanel extends JPanel{
 	//Properties
@@ -36,7 +37,6 @@ public class BlokusPanel extends JPanel{
 	boolean boolStartGame = false;
 	boolean boolDragAndDrop = false; // read below
 	boolean boolRotate = false;
-	boolean newPiece = true;
 	boolean boolDropped = false;
 	boolean boolFirstTime = true;
 	boolean boolRealFirstTime = true;
@@ -194,7 +194,7 @@ public class BlokusPanel extends JPanel{
 			//REMOVE LINE BELOW WHEN INTEGRATING
 			// UI
 			//	g.setColor(Color.WHITE);
-			//	g.fillRect(0,0,1280,720);
+			//	g.fillRect(0,0,1280,720);			
 			
 			// P1 (Yellow)
 			g.setColor(new Color(255, 208, 132));
@@ -469,7 +469,7 @@ public class BlokusPanel extends JPanel{
 				// (54,81)
 				
 				if(boolRotate == true){
-					//System.out.println("ROTATE AGAIN");
+					System.out.println("ROTATE AGAIN");
 					PieceGrid = BlokObject.rotatePiece(PieceGrid);
 					boolRotate = false;
 				}
@@ -556,688 +556,51 @@ public class BlokusPanel extends JPanel{
 				//change the board array instead...
 				//place the values (not 0) of piece grid into the board array 
 				
-				//System.out.println("piece dropped");
-				//System.out.println("drop x "+intDropX+" | drop y " +intDropY);
+				System.out.println("piece dropped");
+				System.out.println("drop x "+intDropX+" | drop y " +intDropY);
 				
 				intColDrop= Math.round((intDropX-369)/27);
 				intRowDrop = Math.round((intDropY-26)/27);
 				
 				//Draw Pieces
-				//System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
-				
-				if(boolFirstTime == true){
-					boolFirstCorner = false;
-					System.out.println("BOOLFIRSTIME STARTED");
-					for(intCount = 0; intCount < 5; intCount++){
-						for(intCount2 = 0; intCount2 < 5; intCount2++){
-							if(PieceGrid[intCount][intCount2] == 1){
-								//check for overlap
-								if(intTurn == 1){
-									if(intRowDrop + intCount - 2 == 0 && intColDrop+ intCount2 - 2 == 0){
-										boolFirstCorner = true;
-									}
-								}else if(intTurn == 2){
-									if(intRowDrop + intCount - 2 == 0 && intColDrop+ intCount2 - 2 == 19){
-										boolFirstCorner = true;
-									}
-								}else if(intTurn == 3){
-									if(intRowDrop + intCount - 2 == 19 && intColDrop+ intCount2 - 2 == 19){
-										boolFirstCorner = true;
-									}
-								}else if(intTurn == 4){ 
-									if(intRowDrop + intCount - 2 == 19 && intColDrop+ intCount2 - 2 == 0){
-										boolFirstCorner = true;
-									}
-								}
-								
-								
-							}
-						}
-					}
-					
-					if(boolFirstCorner == true){
-						System.out.println("boolFirstCorner started");
-						for(intCount = 0; intCount < 5; intCount++){
-							for(intCount2 = 0; intCount2 < 5; intCount2++){
-								if(PieceGrid[intCount][intCount2] == 1){
-								//determine row & column based on mouse drop (x,y) coordinates.
-									//build from intRow & intCol
-									if(intTurn == 1){
-										strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "1";
-									}else if(intTurn == 2){
-										strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "2";
-									}else if(intTurn ==3){
-										strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "3";
-									}else if(intTurn == 4){
-										strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "4";
-									}
-								}
-							}
-						}
-						PieceTaken[intTurn][intPiece] = 0;
-						
-						// Calculate Pieces for FIRST TIME
-						if(intTurn == 1){
-							if(intPiece == 1){
-								strP1SidePieces[0][0] = "0";
-							}else if(intPiece == 2){
-								strP1SidePieces[2][0] = "0";
-								strP1SidePieces[3][0] = "0";
-							}else if(intPiece == 3){
-								strP1SidePieces[5][0] = "0";
-								strP1SidePieces[6][0] = "0";
-								strP1SidePieces[7][0] = "0";
-							}else if(intPiece == 4){
-								strP1SidePieces[1][5] = "0";
-								strP1SidePieces[1][6] = "0";
-								strP1SidePieces[0][6] = "0";						
-							}else if(intPiece == 5){
-								strP1SidePieces[6][2] = "0";
-								strP1SidePieces[7][2] = "0";
-								strP1SidePieces[8][2] = "0";
-								strP1SidePieces[9][2] = "0";
-							}else if(intPiece == 6){
-								strP1SidePieces[6][4] = "0";
-								strP1SidePieces[7][4] = "0";
-								strP1SidePieces[8][4] = "0";
-								strP1SidePieces[8][5] = "0";								
-							}else if(intPiece == 7){
-								strP1SidePieces[10][12] = "0";
-								strP1SidePieces[10][13] = "0";
-								strP1SidePieces[11][13] = "0";
-								strP1SidePieces[10][14] = "0";								
-							}else if(intPiece == 8){
-								strP1SidePieces[0][2] = "0";
-								strP1SidePieces[1][2] = "0";
-								strP1SidePieces[0][3] = "0";
-								strP1SidePieces[1][3] = "0";							
-							}else if(intPiece == 9){
-								strP1SidePieces[4][2] = "0";
-								strP1SidePieces[4][3] = "0";
-								strP1SidePieces[3][3] = "0";
-								strP1SidePieces[3][4] = "0"; 
-							}else if(intPiece == 10){
-								strP1SidePieces[9][0] = "0";
-								strP1SidePieces[10][0] = "0";
-								strP1SidePieces[11][0] = "0";
-								strP1SidePieces[12][0] = "0";
-								strP1SidePieces[13][0] = "0";
-							}else if(intPiece == 11){
-								strP1SidePieces[11][2] = "0";
-								strP1SidePieces[12][2] = "0";
-								strP1SidePieces[13][2] = "0";
-								strP1SidePieces[14][2] = "0";
-								strP1SidePieces[14][3] = "0";
-							}else if(intPiece == 12){
-								strP1SidePieces[11][4] = "0";
-								strP1SidePieces[11][5] = "0";
-								strP1SidePieces[11][6] = "0";
-								strP1SidePieces[10][6] = "0";
-								strP1SidePieces[10][7] = "0";
-							}else if(intPiece == 13){
-								strP1SidePieces[14][5] = "0";
-								strP1SidePieces[14][6] = "0";
-								strP1SidePieces[14][7] = "0";
-								strP1SidePieces[13][6] = "0";
-								strP1SidePieces[13][7] = "0";
-							}else if(intPiece == 14){
-								strP1SidePieces[12][15] = "0";
-								strP1SidePieces[13][15] = "0";
-								strP1SidePieces[14][15] = "0";
-								strP1SidePieces[14][14] = "0";
-								strP1SidePieces[14][13] = "0";
-							}else if(intPiece == 15){
-								strP1SidePieces[6][11] = "0";
-								strP1SidePieces[5][11] = "0";
-								strP1SidePieces[5][12] = "0";
-								strP1SidePieces[4][12] = "0";
-								strP1SidePieces[4][13] = "0";
-							}else if(intPiece == 16){
-								strP1SidePieces[2][13] = "0";
-								strP1SidePieces[1][13] = "0";
-								strP1SidePieces[1][14] = "0";
-								strP1SidePieces[1][15] = "0";
-								strP1SidePieces[0][15] = "0";
-							}else if(intPiece == 17){
-								strP1SidePieces[0][8] = "0";
-								strP1SidePieces[0][9] = "0";
-								strP1SidePieces[0][10] = "0";
-								strP1SidePieces[1][8] = "0";
-								strP1SidePieces[1][10] = "0";
-							}else if(intPiece == 18){
-								strP1SidePieces[10][10] = "0";
-								strP1SidePieces[11][10] = "0";
-								strP1SidePieces[12][10] = "0";
-								strP1SidePieces[13][10] = "0";
-								strP1SidePieces[11][9] = "0";
-							}else if(intPiece == 19){
-								strP1SidePieces[6][8] = "0";
-								strP1SidePieces[7][7] = "0";
-								strP1SidePieces[7][8] = "0";
-								strP1SidePieces[7][9] = "0";
-								strP1SidePieces[8][8] = "0";
-							}else if(intPiece == 20){
-								strP1SidePieces[3][7] = "0";
-								strP1SidePieces[4][6] = "0";
-								strP1SidePieces[4][7] = "0";
-								strP1SidePieces[4][8] = "0";
-								strP1SidePieces[5][6] = "0";
-							}else if(intPiece == 21){
-								strP1SidePieces[6][14] = "0";
-								strP1SidePieces[7][14] = "0";
-								strP1SidePieces[8][14] = "0";
-								strP1SidePieces[8][13] = "0";
-								strP1SidePieces[8][15] = "0";
-							}
-						}else if(intTurn == 2){
-							if(intPiece == 1){
-								strP2SidePieces[0][0] = "0";
-							}else if(intPiece == 2){
-								strP2SidePieces[2][0] = "0";
-								strP2SidePieces[3][0] = "0";
-							}else if(intPiece == 3){
-								strP2SidePieces[5][0] = "0";
-								strP2SidePieces[6][0] = "0";
-								strP2SidePieces[7][0] = "0";
-							}else if(intPiece == 4){
-								strP2SidePieces[1][5] = "0";
-								strP2SidePieces[1][6] = "0";
-								strP2SidePieces[0][6] = "0";						
-							}else if(intPiece == 5){
-								strP2SidePieces[6][2] = "0";
-								strP2SidePieces[7][2] = "0";
-								strP2SidePieces[8][2] = "0";
-								strP2SidePieces[9][2] = "0";
-							}else if(intPiece == 6){
-								strP2SidePieces[6][4] = "0";
-								strP2SidePieces[7][4] = "0";
-								strP2SidePieces[8][4] = "0";
-								strP2SidePieces[8][5] = "0";								
-							}else if(intPiece == 7){
-								strP2SidePieces[10][12] = "0";
-								strP2SidePieces[10][13] = "0";
-								strP2SidePieces[11][13] = "0";
-								strP2SidePieces[10][14] = "0";								
-							}else if(intPiece == 8){
-								strP2SidePieces[0][2] = "0";
-								strP2SidePieces[1][2] = "0";
-								strP2SidePieces[0][3] = "0";
-								strP2SidePieces[1][3] = "0";							
-							}else if(intPiece == 9){
-								strP2SidePieces[4][2] = "0";
-								strP2SidePieces[4][3] = "0";
-								strP2SidePieces[3][3] = "0";
-								strP2SidePieces[3][4] = "0"; 
-							}else if(intPiece == 10){
-								strP2SidePieces[9][0] = "0";
-								strP2SidePieces[10][0] = "0";
-								strP2SidePieces[11][0] = "0";
-								strP2SidePieces[12][0] = "0";
-								strP2SidePieces[13][0] = "0";
-							}else if(intPiece == 11){
-								strP2SidePieces[11][2] = "0";
-								strP2SidePieces[12][2] = "0";
-								strP2SidePieces[13][2] = "0";
-								strP2SidePieces[14][2] = "0";
-								strP2SidePieces[14][3] = "0";
-							}else if(intPiece == 12){
-								strP2SidePieces[11][4] = "0";
-								strP2SidePieces[11][5] = "0";
-								strP2SidePieces[11][6] = "0";
-								strP2SidePieces[10][6] = "0";
-								strP2SidePieces[10][7] = "0";
-							}else if(intPiece == 13){
-								strP2SidePieces[14][5] = "0";
-								strP2SidePieces[14][6] = "0";
-								strP2SidePieces[14][7] = "0";
-								strP2SidePieces[13][6] = "0";
-								strP2SidePieces[13][7] = "0";
-							}else if(intPiece == 14){
-								strP2SidePieces[12][15] = "0";
-								strP2SidePieces[13][15] = "0";
-								strP2SidePieces[14][15] = "0";
-								strP2SidePieces[14][14] = "0";
-								strP2SidePieces[14][13] = "0";
-							}else if(intPiece == 15){
-								strP2SidePieces[6][11] = "0";
-								strP2SidePieces[5][11] = "0";
-								strP2SidePieces[5][12] = "0";
-								strP2SidePieces[4][12] = "0";
-								strP2SidePieces[4][13] = "0";
-							}else if(intPiece == 16){
-								strP2SidePieces[2][13] = "0";
-								strP2SidePieces[1][13] = "0";
-								strP2SidePieces[1][14] = "0";
-								strP2SidePieces[1][15] = "0";
-								strP2SidePieces[0][15] = "0";
-							}else if(intPiece == 17){
-								strP2SidePieces[0][8] = "0";
-								strP2SidePieces[0][9] = "0";
-								strP2SidePieces[0][10] = "0";
-								strP2SidePieces[1][8] = "0";
-								strP2SidePieces[1][10] = "0";
-							}else if(intPiece == 18){
-								strP2SidePieces[10][10] = "0";
-								strP2SidePieces[11][10] = "0";
-								strP2SidePieces[12][10] = "0";
-								strP2SidePieces[13][10] = "0";
-								strP2SidePieces[11][9] = "0";
-							}else if(intPiece == 19){
-								strP2SidePieces[6][8] = "0";
-								strP2SidePieces[7][7] = "0";
-								strP2SidePieces[7][8] = "0";
-								strP2SidePieces[7][9] = "0";
-								strP2SidePieces[8][8] = "0";
-							}else if(intPiece == 20){
-								strP2SidePieces[3][7] = "0";
-								strP2SidePieces[4][6] = "0";
-								strP2SidePieces[4][7] = "0";
-								strP2SidePieces[4][8] = "0";
-								strP2SidePieces[5][6] = "0";
-							}else if(intPiece == 21){
-								strP2SidePieces[6][14] = "0";
-								strP2SidePieces[7][14] = "0";
-								strP2SidePieces[8][14] = "0";
-								strP2SidePieces[8][13] = "0";
-								strP2SidePieces[8][15] = "0";
-							}
-						}else if(intTurn == 3){
-							if(intPiece == 1){
-								strP3SidePieces[0][0] = "0";
-							}else if(intPiece == 2){
-								strP3SidePieces[2][0] = "0";
-								strP3SidePieces[3][0] = "0";
-							}else if(intPiece == 3){
-								strP3SidePieces[5][0] = "0";
-								strP3SidePieces[6][0] = "0";
-								strP3SidePieces[7][0] = "0";
-							}else if(intPiece == 4){
-								strP3SidePieces[1][5] = "0";
-								strP3SidePieces[1][6] = "0";
-								strP3SidePieces[0][6] = "0";						
-							}else if(intPiece == 5){
-								strP3SidePieces[6][2] = "0";
-								strP3SidePieces[7][2] = "0";
-								strP3SidePieces[8][2] = "0";
-								strP3SidePieces[9][2] = "0";
-							}else if(intPiece == 6){
-								strP3SidePieces[6][4] = "0";
-								strP3SidePieces[7][4] = "0";
-								strP3SidePieces[8][4] = "0";
-								strP3SidePieces[8][5] = "0";								
-							}else if(intPiece == 7){
-								strP3SidePieces[10][12] = "0";
-								strP3SidePieces[10][13] = "0";
-								strP3SidePieces[11][13] = "0";
-								strP3SidePieces[10][14] = "0";								
-							}else if(intPiece == 8){
-								strP3SidePieces[0][2] = "0";
-								strP3SidePieces[1][2] = "0";
-								strP3SidePieces[0][3] = "0";
-								strP3SidePieces[1][3] = "0";							
-							}else if(intPiece == 9){
-								strP3SidePieces[4][2] = "0";
-								strP3SidePieces[4][3] = "0";
-								strP3SidePieces[3][3] = "0";
-								strP3SidePieces[3][4] = "0"; 
-							}else if(intPiece == 10){
-								strP3SidePieces[9][0] = "0";
-								strP3SidePieces[10][0] = "0";
-								strP3SidePieces[11][0] = "0";
-								strP3SidePieces[12][0] = "0";
-								strP3SidePieces[13][0] = "0";
-							}else if(intPiece == 11){
-								strP3SidePieces[11][2] = "0";
-								strP3SidePieces[12][2] = "0";
-								strP3SidePieces[13][2] = "0";
-								strP3SidePieces[14][2] = "0";
-								strP3SidePieces[14][3] = "0";
-							}else if(intPiece == 12){
-								strP3SidePieces[11][4] = "0";
-								strP3SidePieces[11][5] = "0";
-								strP3SidePieces[11][6] = "0";
-								strP3SidePieces[10][6] = "0";
-								strP3SidePieces[10][7] = "0";
-							}else if(intPiece == 13){
-								strP3SidePieces[14][5] = "0";
-								strP3SidePieces[14][6] = "0";
-								strP3SidePieces[14][7] = "0";
-								strP3SidePieces[13][6] = "0";
-								strP3SidePieces[13][7] = "0";
-							}else if(intPiece == 14){
-								strP3SidePieces[12][15] = "0";
-								strP3SidePieces[13][15] = "0";
-								strP3SidePieces[14][15] = "0";
-								strP3SidePieces[14][14] = "0";
-								strP3SidePieces[14][13] = "0";
-							}else if(intPiece == 15){
-								strP3SidePieces[6][11] = "0";
-								strP3SidePieces[5][11] = "0";
-								strP3SidePieces[5][12] = "0";
-								strP3SidePieces[4][12] = "0";
-								strP3SidePieces[4][13] = "0";
-							}else if(intPiece == 16){
-								strP3SidePieces[2][13] = "0";
-								strP3SidePieces[1][13] = "0";
-								strP3SidePieces[1][14] = "0";
-								strP3SidePieces[1][15] = "0";
-								strP3SidePieces[0][15] = "0";
-							}else if(intPiece == 17){
-								strP3SidePieces[0][8] = "0";
-								strP3SidePieces[0][9] = "0";
-								strP3SidePieces[0][10] = "0";
-								strP3SidePieces[1][8] = "0";
-								strP3SidePieces[1][10] = "0";
-							}else if(intPiece == 18){
-								strP3SidePieces[10][10] = "0";
-								strP3SidePieces[11][10] = "0";
-								strP3SidePieces[12][10] = "0";
-								strP3SidePieces[13][10] = "0";
-								strP3SidePieces[11][9] = "0";
-							}else if(intPiece == 19){
-								strP3SidePieces[6][8] = "0";
-								strP3SidePieces[7][7] = "0";
-								strP3SidePieces[7][8] = "0";
-								strP3SidePieces[7][9] = "0";
-								strP3SidePieces[8][8] = "0";
-							}else if(intPiece == 20){
-								strP3SidePieces[3][7] = "0";
-								strP3SidePieces[4][6] = "0";
-								strP3SidePieces[4][7] = "0";
-								strP3SidePieces[4][8] = "0";
-								strP3SidePieces[5][6] = "0";
-							}else if(intPiece == 21){
-								strP3SidePieces[6][14] = "0";
-								strP3SidePieces[7][14] = "0";
-								strP3SidePieces[8][14] = "0";
-								strP3SidePieces[8][13] = "0";
-								strP3SidePieces[8][15] = "0";
-							}
-						}else if(intTurn == 4){
-							if(intPiece == 1){
-								strP4SidePieces[0][0] = "0";
-							}else if(intPiece == 2){
-								strP4SidePieces[2][0] = "0";
-								strP4SidePieces[3][0] = "0";
-							}else if(intPiece == 3){
-								strP4SidePieces[5][0] = "0";
-								strP4SidePieces[6][0] = "0";
-								strP4SidePieces[7][0] = "0";
-							}else if(intPiece == 4){
-								strP4SidePieces[1][5] = "0";
-								strP4SidePieces[1][6] = "0";
-								strP4SidePieces[0][6] = "0";						
-							}else if(intPiece == 5){
-								strP4SidePieces[6][2] = "0";
-								strP4SidePieces[7][2] = "0";
-								strP4SidePieces[8][2] = "0";
-								strP4SidePieces[9][2] = "0";
-							}else if(intPiece == 6){
-								strP4SidePieces[6][4] = "0";
-								strP4SidePieces[7][4] = "0";
-								strP4SidePieces[8][4] = "0";
-								strP4SidePieces[8][5] = "0";								
-							}else if(intPiece == 7){
-								strP4SidePieces[10][12] = "0";
-								strP4SidePieces[10][13] = "0";
-								strP4SidePieces[11][13] = "0";
-								strP4SidePieces[10][14] = "0";								
-							}else if(intPiece == 8){
-								strP4SidePieces[0][2] = "0";
-								strP4SidePieces[1][2] = "0";
-								strP4SidePieces[0][3] = "0";
-								strP4SidePieces[1][3] = "0";							
-							}else if(intPiece == 9){
-								strP4SidePieces[4][2] = "0";
-								strP4SidePieces[4][3] = "0";
-								strP4SidePieces[3][3] = "0";
-								strP4SidePieces[3][4] = "0"; 
-							}else if(intPiece == 10){
-								strP4SidePieces[9][0] = "0";
-								strP4SidePieces[10][0] = "0";
-								strP4SidePieces[11][0] = "0";
-								strP4SidePieces[12][0] = "0";
-								strP4SidePieces[13][0] = "0";
-							}else if(intPiece == 11){
-								strP4SidePieces[11][2] = "0";
-								strP4SidePieces[12][2] = "0";
-								strP4SidePieces[13][2] = "0";
-								strP4SidePieces[14][2] = "0";
-								strP4SidePieces[14][3] = "0";
-							}else if(intPiece == 12){
-								strP4SidePieces[11][4] = "0";
-								strP4SidePieces[11][5] = "0";
-								strP4SidePieces[11][6] = "0";
-								strP4SidePieces[10][6] = "0";
-								strP4SidePieces[10][7] = "0";
-							}else if(intPiece == 13){
-								strP4SidePieces[14][5] = "0";
-								strP4SidePieces[14][6] = "0";
-								strP4SidePieces[14][7] = "0";
-								strP4SidePieces[13][6] = "0";
-								strP4SidePieces[13][7] = "0";
-							}else if(intPiece == 14){
-								strP4SidePieces[12][15] = "0";
-								strP4SidePieces[13][15] = "0";
-								strP4SidePieces[14][15] = "0";
-								strP4SidePieces[14][14] = "0";
-								strP4SidePieces[14][13] = "0";
-							}else if(intPiece == 15){
-								strP4SidePieces[6][11] = "0";
-								strP4SidePieces[5][11] = "0";
-								strP4SidePieces[5][12] = "0";
-								strP4SidePieces[4][12] = "0";
-								strP4SidePieces[4][13] = "0";
-							}else if(intPiece == 16){
-								strP4SidePieces[2][13] = "0";
-								strP4SidePieces[1][13] = "0";
-								strP4SidePieces[1][14] = "0";
-								strP4SidePieces[1][15] = "0";
-								strP4SidePieces[0][15] = "0";
-							}else if(intPiece == 17){
-								strP4SidePieces[0][8] = "0";
-								strP4SidePieces[0][9] = "0";
-								strP4SidePieces[0][10] = "0";
-								strP4SidePieces[1][8] = "0";
-								strP4SidePieces[1][10] = "0";
-							}else if(intPiece == 18){
-								strP4SidePieces[10][10] = "0";
-								strP4SidePieces[11][10] = "0";
-								strP4SidePieces[12][10] = "0";
-								strP4SidePieces[13][10] = "0";
-								strP4SidePieces[11][9] = "0";
-							}else if(intPiece == 19){
-								strP4SidePieces[6][8] = "0";
-								strP4SidePieces[7][7] = "0";
-								strP4SidePieces[7][8] = "0";
-								strP4SidePieces[7][9] = "0";
-								strP4SidePieces[8][8] = "0";
-							}else if(intPiece == 20){
-								strP4SidePieces[3][7] = "0";
-								strP4SidePieces[4][6] = "0";
-								strP4SidePieces[4][7] = "0";
-								strP4SidePieces[4][8] = "0";
-								strP4SidePieces[5][6] = "0";
-							}else if(intPiece == 21){
-								strP4SidePieces[6][14] = "0";
-								strP4SidePieces[7][14] = "0";
-								strP4SidePieces[8][14] = "0";
-								strP4SidePieces[8][13] = "0";
-								strP4SidePieces[8][15] = "0";
-							}
-						}
-						
-						for(intCount = 0;intCount < 15;intCount++){
-							System.out.println();
-							for(intCount2 = 0;intCount2 < 16; intCount2++){
-								if(intTurn == 1){
-									System.out.print(strP1SidePieces[intCount][intCount2]);
-								}else if(intTurn == 2){
-									System.out.print(strP2SidePieces[intCount][intCount2]);
-								}else if(intTurn == 3){
-									System.out.print(strP3SidePieces[intCount][intCount2]);
-								}else if(intTurn == 4){
-									System.out.print(strP4SidePieces[intCount][intCount2]);
-								}
-							}
-						}
-						System.out.println();
-						System.out.println("intRowDrop: "+intRowDrop);
-						System.out.println("intColDrop: "+intColDrop);
-						System.out.println("intTurn: "+intTurn);
-						System.out.println("intPiece: "+intPiece);
-						
-						/*if(intTurn == 1){
-							boolP1Turn = true;
-						}else if(intTurn == 2){
-							boolP2Turn = true;
-						}else if(intTurn == 3){
-							boolP3Turn = true;
-						}else if(intTurn == 4){ 
-							boolP4Turn = true;
-						}*/
-						
-						boolFirstTime = false;
-						
-						intTurn++;
-						if(intTurn > 4){
-							intTurn = 1;
-						}
-						boolNewTurn = true;
-						
-						/*if(boolP1Turn == true && boolP2Turn == true && boolP3Turn == true && boolP4Turn == true){
-							boolFirstTime = false;
-						}*/
-						
-						
-						checkPieces = true;
-					}else{
-						PieceTaken[intTurn][intPiece] = 1;
-					}
+				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
+				if(mouseX < 369 || mouseX > 910){
+					boolDropped = false;
+				}else if(mouseY < 26 || mouseY > 657){
 					boolDropped = false;
 				}else{
-					boolOverlap = false;	
-					
-					for(intCount = 0; intCount < 5; intCount++){
-						for(intCount2 = 0; intCount2 < 5; intCount2++){
-							if(PieceGrid[intCount][intCount2] == 1){
-							//determine row & column based on mouse drop (x,y) coordinates.
-								//build from intRow & intCol
-								if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "1"){
-									boolOverlap = true;
-								}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "2"){
-									boolOverlap = true;
-								}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "3"){
-									boolOverlap = true;
-								}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "4"){
-									boolOverlap = true;
-								}
-							}
-						}
-					}
-					if(boolOverlap == false){
-						boolCorner = false;
-						boolSide = false;
+					if(boolFirstTime == true){
+						boolFirstCorner = false;
+						System.out.println("BOOLFIRSTIME STARTED");
 						for(intCount = 0; intCount < 5; intCount++){
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
 								if(PieceGrid[intCount][intCount2] == 1){
-								//determine row & column based on mouse drop (x,y) coordinates.
-									//build from intRow & intCol
+									//check for overlap
 									if(intTurn == 1){
-										if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "1"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "1"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "1"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "1"){
-											boolSide = true;
+										if(intRowDrop + intCount - 2 == 0 && intColDrop+ intCount2 - 2 == 0){
+											boolFirstCorner = true;
 										}
 									}else if(intTurn == 2){
-										if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "2"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "2"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "2"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "2"){
-											boolSide = true;
+										if(intRowDrop + intCount - 2 == 0 && intColDrop+ intCount2 - 2 == 19){
+											boolFirstCorner = true;
 										}
 									}else if(intTurn == 3){
-										if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "3"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "3"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "3"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "3"){
-											boolSide = true;
+										if(intRowDrop + intCount - 2 == 19 && intColDrop+ intCount2 - 2 == 19){
+											boolFirstCorner = true;
 										}
-									}else if(intTurn == 4){
-										if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "4"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "4"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "4"){
-											boolSide = true;
-										}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "4"){
-											boolSide = true;
+									}else if(intTurn == 4){ 
+										if(intRowDrop + intCount - 2 == 19 && intColDrop+ intCount2 - 2 == 0){
+											boolFirstCorner = true;
 										}
 									}
-								}
-							}
-						}
-						for(intCount = 0; intCount < 5; intCount++){
-							for(intCount2 = 0; intCount2 < 5; intCount2++){
-								if(PieceGrid[intCount][intCount2] == 1){
-								//determine row & column based on mouse drop (x,y) coordinates.
-									//build from intRow & intCol
-									if(intTurn == 1){
-										if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "1"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "1"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "1"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "1"){
-											boolCorner = true;
-										}	
-									}else if(intTurn == 2){
-										if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "2"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "2"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "2"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "2"){
-											boolCorner = true;
-										}	
-									}else if(intTurn == 3){
-										if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "3"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "3"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "3"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "3"){
-											boolCorner = true;
-										}	
-									}else if(intTurn == 4){
-										if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "4"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "4"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "4"){
-											boolCorner = true;
-										}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "4"){
-											boolCorner = true;
-										}	
-									}
+									
+									
 								}
 							}
 						}
 						
-						if(boolCorner == true && boolSide == false){
+						if(boolFirstCorner == true){
+							System.out.println("boolFirstCorner started");
 							for(intCount = 0; intCount < 5; intCount++){
 								for(intCount2 = 0; intCount2 < 5; intCount2++){
 									if(PieceGrid[intCount][intCount2] == 1){
@@ -1247,7 +610,7 @@ public class BlokusPanel extends JPanel{
 											strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "1";
 										}else if(intTurn == 2){
 											strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "2";
-										}else if(intTurn == 3){
+										}else if(intTurn ==3){
 											strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "3";
 										}else if(intTurn == 4){
 											strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "4";
@@ -1255,11 +618,9 @@ public class BlokusPanel extends JPanel{
 									}
 								}
 							}
-							turnOver = true;
-							//System.out.println("intPiece: "+intPiece);
 							PieceTaken[intTurn][intPiece] = 0;
-														
-							//System.out.println("changed side array");	
+							
+							// Calculate Pieces for FIRST TIME
 							if(intTurn == 1){
 								if(intPiece == 1){
 									strP1SidePieces[0][0] = "0";
@@ -1710,35 +1071,678 @@ public class BlokusPanel extends JPanel{
 								}
 							}
 							
-							PieceTaken[intTurn][intPiece] = 0;
-							//System.out.println();
-							//System.out.println("Piece Taken: " + PieceTaken[intTurn][intPiece]);
+							for(intCount = 0;intCount < 15;intCount++){
+								System.out.println();
+								for(intCount2 = 0;intCount2 < 16; intCount2++){
+									if(intTurn == 1){
+										System.out.print(strP1SidePieces[intCount][intCount2]);
+									}else if(intTurn == 2){
+										System.out.print(strP2SidePieces[intCount][intCount2]);
+									}else if(intTurn == 3){
+										System.out.print(strP3SidePieces[intCount][intCount2]);
+									}else if(intTurn == 4){
+										System.out.print(strP4SidePieces[intCount][intCount2]);
+									}
+								}
+							}
+							System.out.println();
+							System.out.println("intRowDrop: "+intRowDrop);
+							System.out.println("intColDrop: "+intColDrop);
+							System.out.println("intTurn: "+intTurn);
+							System.out.println("intPiece: "+intPiece);
+							
+							/*if(intTurn == 1){
+								boolP1Turn = true;
+							}else if(intTurn == 2){
+								boolP2Turn = true;
+							}else if(intTurn == 3){
+								boolP3Turn = true;
+							}else if(intTurn == 4){ 
+								boolP4Turn = true;
+							}*/
+							
+							boolFirstTime = false;
+							
 							intTurn++;
 							if(intTurn > 4){
 								intTurn = 1;
 							}
 							boolNewTurn = true;
+							
+							/*if(boolP1Turn == true && boolP2Turn == true && boolP3Turn == true && boolP4Turn == true){
+								boolFirstTime = false;
+							}*/
+							
+							
 							checkPieces = true;
-							newPiece = true;
-						}
-					
-						//System.out.println("board array");
-						
-						for(intRow = 0; intRow <24; intRow++){
-							////System.out.println("");
-							for(intCol = 0; intCol <24; intCol++){
-								//System.out.print(strBoard[intRow][intCol]);
-							}
+						}else{
+							PieceTaken[intTurn][intPiece] = 1;
 						}
 						boolDropped = false;
+					}else{
+						boolOverlap = false;	
+						
+						for(intCount = 0; intCount < 5; intCount++){
+							for(intCount2 = 0; intCount2 < 5; intCount2++){
+								if(PieceGrid[intCount][intCount2] == 1){
+								//determine row & column based on mouse drop (x,y) coordinates.
+									//build from intRow & intCol
+									if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "1"){
+										boolOverlap = true;
+									}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "2"){
+										boolOverlap = true;
+									}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "3"){
+										boolOverlap = true;
+									}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] == "4"){
+										boolOverlap = true;
+									}
+								}
+							}
+						}
+						if(boolOverlap == false){
+							boolCorner = false;
+							boolSide = false;
+							for(intCount = 0; intCount < 5; intCount++){
+								for(intCount2 = 0; intCount2 < 5; intCount2++){
+									if(PieceGrid[intCount][intCount2] == 1){
+									//determine row & column based on mouse drop (x,y) coordinates.
+										//build from intRow & intCol
+										if(intTurn == 1){
+											if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "1"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "1"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "1"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "1"){
+												boolSide = true;
+											}
+										}else if(intTurn == 2){
+											if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "2"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "2"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "2"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "2"){
+												boolSide = true;
+											}
+										}else if(intTurn == 3){
+											if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "3"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "3"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "3"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "3"){
+												boolSide = true;
+											}
+										}else if(intTurn == 4){
+											if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2] == "4"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2] == "4"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2+1] == "4"){
+												boolSide = true;
+											}else if(strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2-1] == "4"){
+												boolSide = true;
+											}
+										}
+									}
+								}
+							}
+							for(intCount = 0; intCount < 5; intCount++){
+								for(intCount2 = 0; intCount2 < 5; intCount2++){
+									if(PieceGrid[intCount][intCount2] == 1){
+									//determine row & column based on mouse drop (x,y) coordinates.
+										//build from intRow & intCol
+										if(intTurn == 1){
+											if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "1"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "1"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "1"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "1"){
+												boolCorner = true;
+											}	
+										}else if(intTurn == 2){
+											if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "2"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "2"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "2"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "2"){
+												boolCorner = true;
+											}	
+										}else if(intTurn == 3){
+											if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "3"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "3"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "3"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "3"){
+												boolCorner = true;
+											}	
+										}else if(intTurn == 4){
+											if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2-1] == "4"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2+1] == "4"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount-1][(intColDrop)+intCount2+1] == "4"){
+												boolCorner = true;
+											}else if(strBoard[(intRowDrop)+intCount+1][(intColDrop)+intCount2-1] == "4"){
+												boolCorner = true;
+											}	
+										}
+									}
+								}
+							}
+							
+							if(boolCorner == true && boolSide == false){
+								for(intCount = 0; intCount < 5; intCount++){
+									for(intCount2 = 0; intCount2 < 5; intCount2++){
+										if(PieceGrid[intCount][intCount2] == 1){
+										//determine row & column based on mouse drop (x,y) coordinates.
+											//build from intRow & intCol
+											if(intTurn == 1){
+												strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "1";
+											}else if(intTurn == 2){
+												strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "2";
+											}else if(intTurn == 3){
+												strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "3";
+											}else if(intTurn == 4){
+												strBoard[(intRowDrop)+intCount][(intColDrop)+intCount2] = "4";
+											}
+										}
+									}
+								}
+								turnOver = true;
+								//System.out.println("intPiece: "+intPiece);
+								PieceTaken[intTurn][intPiece] = 0;
+															
+								//System.out.println("changed side array");	
+								if(intTurn == 1){
+									if(intPiece == 1){
+										strP1SidePieces[0][0] = "0";
+									}else if(intPiece == 2){
+										strP1SidePieces[2][0] = "0";
+										strP1SidePieces[3][0] = "0";
+									}else if(intPiece == 3){
+										strP1SidePieces[5][0] = "0";
+										strP1SidePieces[6][0] = "0";
+										strP1SidePieces[7][0] = "0";
+									}else if(intPiece == 4){
+										strP1SidePieces[1][5] = "0";
+										strP1SidePieces[1][6] = "0";
+										strP1SidePieces[0][6] = "0";						
+									}else if(intPiece == 5){
+										strP1SidePieces[6][2] = "0";
+										strP1SidePieces[7][2] = "0";
+										strP1SidePieces[8][2] = "0";
+										strP1SidePieces[9][2] = "0";
+									}else if(intPiece == 6){
+										strP1SidePieces[6][4] = "0";
+										strP1SidePieces[7][4] = "0";
+										strP1SidePieces[8][4] = "0";
+										strP1SidePieces[8][5] = "0";								
+									}else if(intPiece == 7){
+										strP1SidePieces[10][12] = "0";
+										strP1SidePieces[10][13] = "0";
+										strP1SidePieces[11][13] = "0";
+										strP1SidePieces[10][14] = "0";								
+									}else if(intPiece == 8){
+										strP1SidePieces[0][2] = "0";
+										strP1SidePieces[1][2] = "0";
+										strP1SidePieces[0][3] = "0";
+										strP1SidePieces[1][3] = "0";							
+									}else if(intPiece == 9){
+										strP1SidePieces[4][2] = "0";
+										strP1SidePieces[4][3] = "0";
+										strP1SidePieces[3][3] = "0";
+										strP1SidePieces[3][4] = "0"; 
+									}else if(intPiece == 10){
+										strP1SidePieces[9][0] = "0";
+										strP1SidePieces[10][0] = "0";
+										strP1SidePieces[11][0] = "0";
+										strP1SidePieces[12][0] = "0";
+										strP1SidePieces[13][0] = "0";
+									}else if(intPiece == 11){
+										strP1SidePieces[11][2] = "0";
+										strP1SidePieces[12][2] = "0";
+										strP1SidePieces[13][2] = "0";
+										strP1SidePieces[14][2] = "0";
+										strP1SidePieces[14][3] = "0";
+									}else if(intPiece == 12){
+										strP1SidePieces[11][4] = "0";
+										strP1SidePieces[11][5] = "0";
+										strP1SidePieces[11][6] = "0";
+										strP1SidePieces[10][6] = "0";
+										strP1SidePieces[10][7] = "0";
+									}else if(intPiece == 13){
+										strP1SidePieces[14][5] = "0";
+										strP1SidePieces[14][6] = "0";
+										strP1SidePieces[14][7] = "0";
+										strP1SidePieces[13][6] = "0";
+										strP1SidePieces[13][7] = "0";
+									}else if(intPiece == 14){
+										strP1SidePieces[12][15] = "0";
+										strP1SidePieces[13][15] = "0";
+										strP1SidePieces[14][15] = "0";
+										strP1SidePieces[14][14] = "0";
+										strP1SidePieces[14][13] = "0";
+									}else if(intPiece == 15){
+										strP1SidePieces[6][11] = "0";
+										strP1SidePieces[5][11] = "0";
+										strP1SidePieces[5][12] = "0";
+										strP1SidePieces[4][12] = "0";
+										strP1SidePieces[4][13] = "0";
+									}else if(intPiece == 16){
+										strP1SidePieces[2][13] = "0";
+										strP1SidePieces[1][13] = "0";
+										strP1SidePieces[1][14] = "0";
+										strP1SidePieces[1][15] = "0";
+										strP1SidePieces[0][15] = "0";
+									}else if(intPiece == 17){
+										strP1SidePieces[0][8] = "0";
+										strP1SidePieces[0][9] = "0";
+										strP1SidePieces[0][10] = "0";
+										strP1SidePieces[1][8] = "0";
+										strP1SidePieces[1][10] = "0";
+									}else if(intPiece == 18){
+										strP1SidePieces[10][10] = "0";
+										strP1SidePieces[11][10] = "0";
+										strP1SidePieces[12][10] = "0";
+										strP1SidePieces[13][10] = "0";
+										strP1SidePieces[11][9] = "0";
+									}else if(intPiece == 19){
+										strP1SidePieces[6][8] = "0";
+										strP1SidePieces[7][7] = "0";
+										strP1SidePieces[7][8] = "0";
+										strP1SidePieces[7][9] = "0";
+										strP1SidePieces[8][8] = "0";
+									}else if(intPiece == 20){
+										strP1SidePieces[3][7] = "0";
+										strP1SidePieces[4][6] = "0";
+										strP1SidePieces[4][7] = "0";
+										strP1SidePieces[4][8] = "0";
+										strP1SidePieces[5][6] = "0";
+									}else if(intPiece == 21){
+										strP1SidePieces[6][14] = "0";
+										strP1SidePieces[7][14] = "0";
+										strP1SidePieces[8][14] = "0";
+										strP1SidePieces[8][13] = "0";
+										strP1SidePieces[8][15] = "0";
+									}
+								}else if(intTurn == 2){
+									if(intPiece == 1){
+										strP2SidePieces[0][0] = "0";
+									}else if(intPiece == 2){
+										strP2SidePieces[2][0] = "0";
+										strP2SidePieces[3][0] = "0";
+									}else if(intPiece == 3){
+										strP2SidePieces[5][0] = "0";
+										strP2SidePieces[6][0] = "0";
+										strP2SidePieces[7][0] = "0";
+									}else if(intPiece == 4){
+										strP2SidePieces[1][5] = "0";
+										strP2SidePieces[1][6] = "0";
+										strP2SidePieces[0][6] = "0";						
+									}else if(intPiece == 5){
+										strP2SidePieces[6][2] = "0";
+										strP2SidePieces[7][2] = "0";
+										strP2SidePieces[8][2] = "0";
+										strP2SidePieces[9][2] = "0";
+									}else if(intPiece == 6){
+										strP2SidePieces[6][4] = "0";
+										strP2SidePieces[7][4] = "0";
+										strP2SidePieces[8][4] = "0";
+										strP2SidePieces[8][5] = "0";								
+									}else if(intPiece == 7){
+										strP2SidePieces[10][12] = "0";
+										strP2SidePieces[10][13] = "0";
+										strP2SidePieces[11][13] = "0";
+										strP2SidePieces[10][14] = "0";								
+									}else if(intPiece == 8){
+										strP2SidePieces[0][2] = "0";
+										strP2SidePieces[1][2] = "0";
+										strP2SidePieces[0][3] = "0";
+										strP2SidePieces[1][3] = "0";							
+									}else if(intPiece == 9){
+										strP2SidePieces[4][2] = "0";
+										strP2SidePieces[4][3] = "0";
+										strP2SidePieces[3][3] = "0";
+										strP2SidePieces[3][4] = "0"; 
+									}else if(intPiece == 10){
+										strP2SidePieces[9][0] = "0";
+										strP2SidePieces[10][0] = "0";
+										strP2SidePieces[11][0] = "0";
+										strP2SidePieces[12][0] = "0";
+										strP2SidePieces[13][0] = "0";
+									}else if(intPiece == 11){
+										strP2SidePieces[11][2] = "0";
+										strP2SidePieces[12][2] = "0";
+										strP2SidePieces[13][2] = "0";
+										strP2SidePieces[14][2] = "0";
+										strP2SidePieces[14][3] = "0";
+									}else if(intPiece == 12){
+										strP2SidePieces[11][4] = "0";
+										strP2SidePieces[11][5] = "0";
+										strP2SidePieces[11][6] = "0";
+										strP2SidePieces[10][6] = "0";
+										strP2SidePieces[10][7] = "0";
+									}else if(intPiece == 13){
+										strP2SidePieces[14][5] = "0";
+										strP2SidePieces[14][6] = "0";
+										strP2SidePieces[14][7] = "0";
+										strP2SidePieces[13][6] = "0";
+										strP2SidePieces[13][7] = "0";
+									}else if(intPiece == 14){
+										strP2SidePieces[12][15] = "0";
+										strP2SidePieces[13][15] = "0";
+										strP2SidePieces[14][15] = "0";
+										strP2SidePieces[14][14] = "0";
+										strP2SidePieces[14][13] = "0";
+									}else if(intPiece == 15){
+										strP2SidePieces[6][11] = "0";
+										strP2SidePieces[5][11] = "0";
+										strP2SidePieces[5][12] = "0";
+										strP2SidePieces[4][12] = "0";
+										strP2SidePieces[4][13] = "0";
+									}else if(intPiece == 16){
+										strP2SidePieces[2][13] = "0";
+										strP2SidePieces[1][13] = "0";
+										strP2SidePieces[1][14] = "0";
+										strP2SidePieces[1][15] = "0";
+										strP2SidePieces[0][15] = "0";
+									}else if(intPiece == 17){
+										strP2SidePieces[0][8] = "0";
+										strP2SidePieces[0][9] = "0";
+										strP2SidePieces[0][10] = "0";
+										strP2SidePieces[1][8] = "0";
+										strP2SidePieces[1][10] = "0";
+									}else if(intPiece == 18){
+										strP2SidePieces[10][10] = "0";
+										strP2SidePieces[11][10] = "0";
+										strP2SidePieces[12][10] = "0";
+										strP2SidePieces[13][10] = "0";
+										strP2SidePieces[11][9] = "0";
+									}else if(intPiece == 19){
+										strP2SidePieces[6][8] = "0";
+										strP2SidePieces[7][7] = "0";
+										strP2SidePieces[7][8] = "0";
+										strP2SidePieces[7][9] = "0";
+										strP2SidePieces[8][8] = "0";
+									}else if(intPiece == 20){
+										strP2SidePieces[3][7] = "0";
+										strP2SidePieces[4][6] = "0";
+										strP2SidePieces[4][7] = "0";
+										strP2SidePieces[4][8] = "0";
+										strP2SidePieces[5][6] = "0";
+									}else if(intPiece == 21){
+										strP2SidePieces[6][14] = "0";
+										strP2SidePieces[7][14] = "0";
+										strP2SidePieces[8][14] = "0";
+										strP2SidePieces[8][13] = "0";
+										strP2SidePieces[8][15] = "0";
+									}
+								}else if(intTurn == 3){
+									if(intPiece == 1){
+										strP3SidePieces[0][0] = "0";
+									}else if(intPiece == 2){
+										strP3SidePieces[2][0] = "0";
+										strP3SidePieces[3][0] = "0";
+									}else if(intPiece == 3){
+										strP3SidePieces[5][0] = "0";
+										strP3SidePieces[6][0] = "0";
+										strP3SidePieces[7][0] = "0";
+									}else if(intPiece == 4){
+										strP3SidePieces[1][5] = "0";
+										strP3SidePieces[1][6] = "0";
+										strP3SidePieces[0][6] = "0";						
+									}else if(intPiece == 5){
+										strP3SidePieces[6][2] = "0";
+										strP3SidePieces[7][2] = "0";
+										strP3SidePieces[8][2] = "0";
+										strP3SidePieces[9][2] = "0";
+									}else if(intPiece == 6){
+										strP3SidePieces[6][4] = "0";
+										strP3SidePieces[7][4] = "0";
+										strP3SidePieces[8][4] = "0";
+										strP3SidePieces[8][5] = "0";								
+									}else if(intPiece == 7){
+										strP3SidePieces[10][12] = "0";
+										strP3SidePieces[10][13] = "0";
+										strP3SidePieces[11][13] = "0";
+										strP3SidePieces[10][14] = "0";								
+									}else if(intPiece == 8){
+										strP3SidePieces[0][2] = "0";
+										strP3SidePieces[1][2] = "0";
+										strP3SidePieces[0][3] = "0";
+										strP3SidePieces[1][3] = "0";							
+									}else if(intPiece == 9){
+										strP3SidePieces[4][2] = "0";
+										strP3SidePieces[4][3] = "0";
+										strP3SidePieces[3][3] = "0";
+										strP3SidePieces[3][4] = "0"; 
+									}else if(intPiece == 10){
+										strP3SidePieces[9][0] = "0";
+										strP3SidePieces[10][0] = "0";
+										strP3SidePieces[11][0] = "0";
+										strP3SidePieces[12][0] = "0";
+										strP3SidePieces[13][0] = "0";
+									}else if(intPiece == 11){
+										strP3SidePieces[11][2] = "0";
+										strP3SidePieces[12][2] = "0";
+										strP3SidePieces[13][2] = "0";
+										strP3SidePieces[14][2] = "0";
+										strP3SidePieces[14][3] = "0";
+									}else if(intPiece == 12){
+										strP3SidePieces[11][4] = "0";
+										strP3SidePieces[11][5] = "0";
+										strP3SidePieces[11][6] = "0";
+										strP3SidePieces[10][6] = "0";
+										strP3SidePieces[10][7] = "0";
+									}else if(intPiece == 13){
+										strP3SidePieces[14][5] = "0";
+										strP3SidePieces[14][6] = "0";
+										strP3SidePieces[14][7] = "0";
+										strP3SidePieces[13][6] = "0";
+										strP3SidePieces[13][7] = "0";
+									}else if(intPiece == 14){
+										strP3SidePieces[12][15] = "0";
+										strP3SidePieces[13][15] = "0";
+										strP3SidePieces[14][15] = "0";
+										strP3SidePieces[14][14] = "0";
+										strP3SidePieces[14][13] = "0";
+									}else if(intPiece == 15){
+										strP3SidePieces[6][11] = "0";
+										strP3SidePieces[5][11] = "0";
+										strP3SidePieces[5][12] = "0";
+										strP3SidePieces[4][12] = "0";
+										strP3SidePieces[4][13] = "0";
+									}else if(intPiece == 16){
+										strP3SidePieces[2][13] = "0";
+										strP3SidePieces[1][13] = "0";
+										strP3SidePieces[1][14] = "0";
+										strP3SidePieces[1][15] = "0";
+										strP3SidePieces[0][15] = "0";
+									}else if(intPiece == 17){
+										strP3SidePieces[0][8] = "0";
+										strP3SidePieces[0][9] = "0";
+										strP3SidePieces[0][10] = "0";
+										strP3SidePieces[1][8] = "0";
+										strP3SidePieces[1][10] = "0";
+									}else if(intPiece == 18){
+										strP3SidePieces[10][10] = "0";
+										strP3SidePieces[11][10] = "0";
+										strP3SidePieces[12][10] = "0";
+										strP3SidePieces[13][10] = "0";
+										strP3SidePieces[11][9] = "0";
+									}else if(intPiece == 19){
+										strP3SidePieces[6][8] = "0";
+										strP3SidePieces[7][7] = "0";
+										strP3SidePieces[7][8] = "0";
+										strP3SidePieces[7][9] = "0";
+										strP3SidePieces[8][8] = "0";
+									}else if(intPiece == 20){
+										strP3SidePieces[3][7] = "0";
+										strP3SidePieces[4][6] = "0";
+										strP3SidePieces[4][7] = "0";
+										strP3SidePieces[4][8] = "0";
+										strP3SidePieces[5][6] = "0";
+									}else if(intPiece == 21){
+										strP3SidePieces[6][14] = "0";
+										strP3SidePieces[7][14] = "0";
+										strP3SidePieces[8][14] = "0";
+										strP3SidePieces[8][13] = "0";
+										strP3SidePieces[8][15] = "0";
+									}
+								}else if(intTurn == 4){
+									if(intPiece == 1){
+										strP4SidePieces[0][0] = "0";
+									}else if(intPiece == 2){
+										strP4SidePieces[2][0] = "0";
+										strP4SidePieces[3][0] = "0";
+									}else if(intPiece == 3){
+										strP4SidePieces[5][0] = "0";
+										strP4SidePieces[6][0] = "0";
+										strP4SidePieces[7][0] = "0";
+									}else if(intPiece == 4){
+										strP4SidePieces[1][5] = "0";
+										strP4SidePieces[1][6] = "0";
+										strP4SidePieces[0][6] = "0";						
+									}else if(intPiece == 5){
+										strP4SidePieces[6][2] = "0";
+										strP4SidePieces[7][2] = "0";
+										strP4SidePieces[8][2] = "0";
+										strP4SidePieces[9][2] = "0";
+									}else if(intPiece == 6){
+										strP4SidePieces[6][4] = "0";
+										strP4SidePieces[7][4] = "0";
+										strP4SidePieces[8][4] = "0";
+										strP4SidePieces[8][5] = "0";								
+									}else if(intPiece == 7){
+										strP4SidePieces[10][12] = "0";
+										strP4SidePieces[10][13] = "0";
+										strP4SidePieces[11][13] = "0";
+										strP4SidePieces[10][14] = "0";								
+									}else if(intPiece == 8){
+										strP4SidePieces[0][2] = "0";
+										strP4SidePieces[1][2] = "0";
+										strP4SidePieces[0][3] = "0";
+										strP4SidePieces[1][3] = "0";							
+									}else if(intPiece == 9){
+										strP4SidePieces[4][2] = "0";
+										strP4SidePieces[4][3] = "0";
+										strP4SidePieces[3][3] = "0";
+										strP4SidePieces[3][4] = "0"; 
+									}else if(intPiece == 10){
+										strP4SidePieces[9][0] = "0";
+										strP4SidePieces[10][0] = "0";
+										strP4SidePieces[11][0] = "0";
+										strP4SidePieces[12][0] = "0";
+										strP4SidePieces[13][0] = "0";
+									}else if(intPiece == 11){
+										strP4SidePieces[11][2] = "0";
+										strP4SidePieces[12][2] = "0";
+										strP4SidePieces[13][2] = "0";
+										strP4SidePieces[14][2] = "0";
+										strP4SidePieces[14][3] = "0";
+									}else if(intPiece == 12){
+										strP4SidePieces[11][4] = "0";
+										strP4SidePieces[11][5] = "0";
+										strP4SidePieces[11][6] = "0";
+										strP4SidePieces[10][6] = "0";
+										strP4SidePieces[10][7] = "0";
+									}else if(intPiece == 13){
+										strP4SidePieces[14][5] = "0";
+										strP4SidePieces[14][6] = "0";
+										strP4SidePieces[14][7] = "0";
+										strP4SidePieces[13][6] = "0";
+										strP4SidePieces[13][7] = "0";
+									}else if(intPiece == 14){
+										strP4SidePieces[12][15] = "0";
+										strP4SidePieces[13][15] = "0";
+										strP4SidePieces[14][15] = "0";
+										strP4SidePieces[14][14] = "0";
+										strP4SidePieces[14][13] = "0";
+									}else if(intPiece == 15){
+										strP4SidePieces[6][11] = "0";
+										strP4SidePieces[5][11] = "0";
+										strP4SidePieces[5][12] = "0";
+										strP4SidePieces[4][12] = "0";
+										strP4SidePieces[4][13] = "0";
+									}else if(intPiece == 16){
+										strP4SidePieces[2][13] = "0";
+										strP4SidePieces[1][13] = "0";
+										strP4SidePieces[1][14] = "0";
+										strP4SidePieces[1][15] = "0";
+										strP4SidePieces[0][15] = "0";
+									}else if(intPiece == 17){
+										strP4SidePieces[0][8] = "0";
+										strP4SidePieces[0][9] = "0";
+										strP4SidePieces[0][10] = "0";
+										strP4SidePieces[1][8] = "0";
+										strP4SidePieces[1][10] = "0";
+									}else if(intPiece == 18){
+										strP4SidePieces[10][10] = "0";
+										strP4SidePieces[11][10] = "0";
+										strP4SidePieces[12][10] = "0";
+										strP4SidePieces[13][10] = "0";
+										strP4SidePieces[11][9] = "0";
+									}else if(intPiece == 19){
+										strP4SidePieces[6][8] = "0";
+										strP4SidePieces[7][7] = "0";
+										strP4SidePieces[7][8] = "0";
+										strP4SidePieces[7][9] = "0";
+										strP4SidePieces[8][8] = "0";
+									}else if(intPiece == 20){
+										strP4SidePieces[3][7] = "0";
+										strP4SidePieces[4][6] = "0";
+										strP4SidePieces[4][7] = "0";
+										strP4SidePieces[4][8] = "0";
+										strP4SidePieces[5][6] = "0";
+									}else if(intPiece == 21){
+										strP4SidePieces[6][14] = "0";
+										strP4SidePieces[7][14] = "0";
+										strP4SidePieces[8][14] = "0";
+										strP4SidePieces[8][13] = "0";
+										strP4SidePieces[8][15] = "0";
+									}
+								}
+								
+								PieceTaken[intTurn][intPiece] = 0;
+								//System.out.println();
+								//System.out.println("Piece Taken: " + PieceTaken[intTurn][intPiece]);
+								intTurn++;
+								if(intTurn > 4){
+									intTurn = 1;
+								}
+								boolNewTurn = true;
+								checkPieces = true;
+							}
+						
+							//System.out.println("board array");
+							
+							for(intRow = 0; intRow <24; intRow++){
+								////System.out.println("");
+								for(intCol = 0; intCol <24; intCol++){
+									//System.out.print(strBoard[intRow][intCol]);
+								}
+							}
+							boolDropped = false;
+						}
+						//System.out.println();
+						//System.out.println();
+						//System.out.println("Piece Taken: " + PieceTaken[intTurn][intPiece]);
+						//System.out.println();
+						//System.out.println("intPlayerCount: " + intTurn);
+						//System.out.println("intPiece: " + intPiece);
+						
 					}
-					//System.out.println();
-					//System.out.println();
-					//System.out.println("Piece Taken: " + PieceTaken[intTurn][intPiece]);
-					//System.out.println();
-					//System.out.println("intPlayerCount: " + intTurn);
-					//System.out.println("intPiece: " + intPiece);
-					
 				}
 			}		
 		}else{

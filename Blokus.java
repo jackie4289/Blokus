@@ -257,6 +257,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					if(theGamePanel.intTurn > 4){
 						theGamePanel.intTurn = 1;
 					}
+					theGamePanel.boolNewTurn = true;
+					theGamePanel.checkPieces = true;
 				}
 				if(strMsgSplit[0].equals("Board")){
 					theGamePanel.strBoard[Integer.parseInt(strMsgSplit[2])][Integer.parseInt(strMsgSplit[3])] = strMsgSplit[1];
@@ -271,7 +273,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					}else if(strMsgSplit[1].equals("4")){
 						theGamePanel.strP4SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
 					}
+					
 				}
+				
 				
 			//SERVER SIDE MESSAGES LOGIN
 			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
@@ -454,7 +458,10 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		}
 	}
 	public void mouseClicked(MouseEvent evt){
-
+		if(evt.getSource() == theGamePanel){
+			System.out.println("TURN: "+ theGamePanel.intTurn);
+			System.out.println("TURN#: "+ theGamePanel.intPlayerTurnNumber);
+		}
 	}
 	public void mouseMoved(MouseEvent evt){
 		if(theGamePanel.boolStartGame == true){
