@@ -499,7 +499,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	}
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyCode() == 32){
-			//theGamePanel.boolRotate = true;
+			theGamePanel.boolRotate = true;
 			theHelpPanel.boolRotate = true;
 			System.out.println("ROTATE");
 		}
