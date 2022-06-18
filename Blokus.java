@@ -69,6 +69,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			if(theGamePanel.boolStartGame == true){
 				//detect 
 				if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
+					//theGamePanel.requestFocusInWindow();
 					boolTurn = true;
 					theGamePanel.boolHideSkip = false;
 				}else if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn-1 || theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn+3){
