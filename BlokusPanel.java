@@ -48,11 +48,6 @@ public class BlokusPanel extends JPanel{
 	boolean boolRepaint = true;
 	boolean checkPieces = false;
 	boolean sidePieceCode = true;
-	boolean turnOver = false;
-	boolean boolP1Turn = false;
-	boolean boolP2Turn = false;
-	boolean boolP3Turn = false;
-	boolean boolP4Turn = false;
 	boolean boolEndGame = false;
 	//booleans in main for compile
 	boolean boolYourTurn;
@@ -567,9 +562,9 @@ public class BlokusPanel extends JPanel{
 				
 				//Draw Pieces
 				System.out.println("Column"+intColDrop+" | Row " +intRowDrop);
-				if(mouseX < 369 || mouseX > 910){
+				if(intDropX < 369 || intDropX > 910){
 					boolDropped = false;
-				}else if(mouseY < 26 || mouseY > 657){
+				}else if(intDropY < 26 || intDropY > 657){
 					boolDropped = false;
 				}else{
 					if(boolFirstTime == true){
@@ -1124,7 +1119,7 @@ public class BlokusPanel extends JPanel{
 						boolDropped = false;
 					}else{
 						boolOverlap = false;	
-						
+						System.out.println("this thing started");
 						for(intCount = 0; intCount < 5; intCount++){
 							for(intCount2 = 0; intCount2 < 5; intCount2++){
 								if(PieceGrid[intCount][intCount2] == 1){
@@ -1262,7 +1257,6 @@ public class BlokusPanel extends JPanel{
 										}
 									}
 								}
-								turnOver = true;
 								//System.out.println("intPiece: "+intPiece);
 								PieceTaken[intTurn][intPiece] = 0;
 															
@@ -1718,7 +1712,7 @@ public class BlokusPanel extends JPanel{
 								}
 								
 								PieceTaken[intTurn][intPiece] = 0;
-								//System.out.println();
+								System.out.println("Piece Played");
 								//System.out.println("Piece Taken: " + PieceTaken[intTurn][intPiece]);
 								intTurn++;
 								if(intTurn > 4){
@@ -1728,14 +1722,7 @@ public class BlokusPanel extends JPanel{
 								checkPieces = true;
 							}
 						
-							//System.out.println("board array");
-							
-							for(intRow = 0; intRow <24; intRow++){
-								////System.out.println("");
-								for(intCol = 0; intCol <24; intCol++){
-									//System.out.print(strBoard[intRow][intCol]);
-								}
-							}
+						
 							boolDropped = false;
 						}
 						//System.out.println();
