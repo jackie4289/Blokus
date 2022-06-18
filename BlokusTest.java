@@ -42,7 +42,7 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 			theGamePanel.intPickX = evt.getX();
 			theGamePanel.intPickY = evt.getY();
 			theGamePanel.sidePieceCode = true;
-			System.out.println("START");
+			System.out.println(theGamePanel.intTurn);
 			theGamePanel.repaint();
 			theFrame.requestFocus();
 		}
@@ -70,7 +70,7 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
 			theGamePanel.boolDragAndDrop = true;
-			System.out.println("START");
+			//System.out.println("START");
 			theGamePanel.repaint();
 			theFrame.requestFocus();
 			
