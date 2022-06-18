@@ -27,6 +27,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
+	boolean boolTurn = false;
 
 	//J Properties
 	BlokusPanel theGamePanel = new BlokusPanel();
@@ -63,15 +64,27 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theGamePanel.repaint();
 			theHelpPanel.repaint();
 			theLoginPanel.repaint();
-			//refresh skip button
-			if(theGamePanel.intTurn == 1){
-				skipButton.setLocation(250, 0);
-			}else if(theGamePanel.intTurn == 2){
-				skipButton.setLocation(1180, 0);		
-			}else if(theGamePanel.intTurn == 3){
-				skipButton.setLocation(1180, 680);
-			}else if(theGamePanel.intTurn == 4){
-				skipButton.setLocation(250, 680);
+			if(theGamePanel.boolStartGame == true){
+				//detect 
+				if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
+					boolTurn = true;
+				}else if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn-1){
+					if(boolTurn == true){
+						ssm.sendText("turnAdd");
+						System.out.println("next turn via placement");
+						boolTurn = false;
+					}
+				}
+				//refresh skip button
+				if(theGamePanel.intTurn == 1){
+					skipButton.setLocation(250, 0);
+				}else if(theGamePanel.intTurn == 2){
+					skipButton.setLocation(1180, 0);		
+				}else if(theGamePanel.intTurn == 3){
+					skipButton.setLocation(1180, 680);
+				}else if(theGamePanel.intTurn == 4){
+					skipButton.setLocation(250, 680);
+				}
 			}
 		}else if(evt.getSource() == quitButton){
 			//quit
@@ -213,7 +226,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					chatArea.append(strMsgSplit[1] + "\n");
 					chatArea.setCaretPosition(chatArea.getDocument().getLength());
 				}
-				
+				//next turns
+				if(strMsgSplit[0].equals("turnAdd")){
+					System.out.println("recieved next turn signal");
+					theGamePanel.intTurn++;
+				}
 			//SERVER SIDE MESSAGES LOGIN
 			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
 				//Recieve name from client to server
@@ -296,7 +313,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					}
 				}
 			}
-			
 		}else if(evt.getSource() == startButton){
 			//Start Game, display game panel
 			//server send start signal to client
@@ -337,20 +353,25 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			helpTextField.setFocusable(true);
 					
 		}else if(evt.getSource() == skipButton){
-			//When skip is equal to 4 then end game
+			//turns++
 			if(theGamePanel.intTurn < 4){
 				theGamePanel.intTurn++;
+				ssm.sendText("turnAdd");
+				System.out.println("next turn via skip button");
 			}else{
 				theGamePanel.intTurn = 1;
 			}
 			theGamePanel.intSkip++;
 			System.out.println("Turn: " + theGamePanel.intTurn);
+			/*
+			//End Game if skip = 4
 			if(theGamePanel.intSkip >= 4){
 				theGamePanel.setVisible(false);
 				theGameOverPanel.add(backButton);
 				theGameOverPanel.setVisible(true);
 				theFrame.setContentPane(theGameOverPanel);
 			}
+			*/
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -361,14 +382,16 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	}
 	public void mousePressed(MouseEvent evt){
 		if(evt.getSource()==theGamePanel){
-			theGamePanel.mouseX = evt.getX();
-			theGamePanel.mouseY = evt.getY();
-			theGamePanel.intPickX = evt.getX();
-			theGamePanel.intPickY = evt.getY();
-			theGamePanel.sidePieceCode = true;
-			System.out.println(theGamePanel.intTurn);
-			theGamePanel.repaint();
-			theFrame.requestFocus();
+			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
+				theGamePanel.mouseX = evt.getX();
+				theGamePanel.mouseY = evt.getY();
+				theGamePanel.intPickX = evt.getX();
+				theGamePanel.intPickY = evt.getY();
+				theGamePanel.sidePieceCode = true;
+				System.out.println(theGamePanel.intTurn);
+				theGamePanel.repaint();
+				theFrame.requestFocus();
+			}
 		}
 	}
 	public void mouseReleased(MouseEvent evt){
@@ -377,23 +400,25 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theHelpPanel.intDropY = evt.getY();
 			System.out.println("DROP | x: "+theHelpPanel.intDropX+" | y: "+theHelpPanel.intDropY);
 		}else if(evt.getSource() == theGamePanel){
-			theGamePanel.boolDragAndDrop = false;
-			theGamePanel.intDropX = evt.getX();
-			theGamePanel.intDropY = evt.getY();
-			if(theGamePanel.intPiece > 22){
-				theGamePanel.intPiece = 0;
+			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
+				theGamePanel.boolDragAndDrop = false;
+				theGamePanel.intDropX = evt.getX();
+				theGamePanel.intDropY = evt.getY();
+				if(theGamePanel.intPiece > 22){
+					theGamePanel.intPiece = 0;
+				}
+				theGamePanel.boolDropped = true;
+				theGamePanel.repaint();
+				theFrame.requestFocus();
 			}
-			theGamePanel.boolDropped = true;
-			theGamePanel.repaint();
-			theFrame.requestFocus();
 		}
 	}
 	public void mouseClicked(MouseEvent evt){
 
 	}
 	public void mouseMoved(MouseEvent evt){
-		if(theGamePanel.boolYourTurn == true){
-			if(theGamePanel.boolStartGame == true){
+		if(theGamePanel.boolStartGame == true){
+			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
 				theGamePanel.mouseX = evt.getX();
 				theGamePanel.mouseY = evt.getY();
 			}
@@ -405,13 +430,14 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theHelpPanel.mouseY = evt.getY();
 			System.out.println("mouse | x: "+theHelpPanel.mouseX+" | y: "+theHelpPanel.mouseY);
 		}else if(evt.getSource()==theGamePanel){
-			theGamePanel.mouseX = evt.getX();
-			theGamePanel.mouseY = evt.getY();
-			theGamePanel.boolDragAndDrop = true;
-			//System.out.println("START");
-
-			theGamePanel.repaint();
-			theFrame.requestFocus();
+			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
+				theGamePanel.mouseX = evt.getX();
+				theGamePanel.mouseY = evt.getY();
+				theGamePanel.boolDragAndDrop = true;
+				//System.out.println("START");
+				theGamePanel.repaint();
+				theFrame.requestFocus();
+			}
 		}
 	}
 	public void keyReleased(KeyEvent evt){
