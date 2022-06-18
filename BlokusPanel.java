@@ -64,6 +64,11 @@ public class BlokusPanel extends JPanel{
 	int intPickY = 0;
 	int intSkip = 0;
 	int intPlayerTurnNumber;
+	
+	int intP1Score;
+	int intP2Score;
+	int intP3Score;
+	int intP4Score;
 	//Player coords
 	int P1X;
 	int P1Y;
@@ -742,6 +747,19 @@ public class BlokusPanel extends JPanel{
 									strP1SidePieces[8][13] = "0";
 									strP1SidePieces[8][15] = "0";
 								}
+								
+								if(intPiece == 1){
+									intP1Score = intP1Score +1;
+								}else if(intPiece == 2){
+									intP1Score = intP1Score +2;
+								}else if(intPiece == 3 || intPiece == 4 ){
+									intP1Score = intP1Score +3;
+								}else if(intPiece > 4 && intPiece < 10 ){
+									intP1Score = intP1Score +4;
+								}else if(intPiece > 9 && intPiece < 22){
+									intP1Score = intP1Score + 5;
+								}
+								System.out.println("player 1 score: "+intP1Score);
 							}else if(intTurn == 2){
 								if(intPiece == 1){
 									strP2SidePieces[0][0] = "0";
@@ -854,6 +872,20 @@ public class BlokusPanel extends JPanel{
 									strP2SidePieces[8][13] = "0";
 									strP2SidePieces[8][15] = "0";
 								}
+								
+								if(intPiece == 1){
+									intP2Score = intP2Score +1;
+								}else if(intPiece == 2){
+									intP2Score = intP2Score +2;
+								}else if(intPiece == 3 || intPiece == 4 ){
+									intP2Score = intP2Score +3;
+								}else if(intPiece > 4 && intPiece < 10 ){
+									intP2Score = intP2Score +4;
+								}else if(intPiece > 9 && intPiece < 22){
+									intP2Score = intP2Score + 5;
+								}
+								
+								System.out.println("player 2 score: "+intP2Score);
 							}else if(intTurn == 3){
 								if(intPiece == 1){
 									strP3SidePieces[0][0] = "0";
@@ -966,6 +998,20 @@ public class BlokusPanel extends JPanel{
 									strP3SidePieces[8][13] = "0";
 									strP3SidePieces[8][15] = "0";
 								}
+								
+								if(intPiece == 1){
+									intP3Score = intP3Score +1;
+								}else if(intPiece == 2){
+									intP3Score = intP3Score +2;
+								}else if(intPiece == 3 || intPiece == 4 ){
+									intP3Score = intP3Score +3;
+								}else if(intPiece > 4 && intPiece < 10 ){
+									intP3Score = intP3Score +4;
+								}else if(intPiece > 9 && intPiece < 22){
+									intP3Score = intP3Score + 5;
+								}
+								System.out.println("player 3 score: "+intP3Score);
+	
 							}else if(intTurn == 4){
 								if(intPiece == 1){
 									strP4SidePieces[0][0] = "0";
@@ -1078,6 +1124,19 @@ public class BlokusPanel extends JPanel{
 									strP4SidePieces[8][13] = "0";
 									strP4SidePieces[8][15] = "0";
 								}
+								
+								if(intPiece == 1){
+									intP4Score = intP4Score +1;
+								}else if(intPiece == 2){
+									intP4Score = intP4Score +2;
+								}else if(intPiece == 3 || intPiece == 4 ){
+									intP4Score = intP4Score +3;
+								}else if(intPiece > 4 && intPiece < 10 ){
+									intP4Score = intP4Score +4;
+								}else if(intPiece > 9 && intPiece < 22){
+									intP4Score = intP4Score + 5;
+								}
+								System.out.println("player 4 score: "+intP4Score);
 							}
 							
 							for(intCount = 0;intCount < 15;intCount++){
@@ -1111,6 +1170,8 @@ public class BlokusPanel extends JPanel{
 							}*/
 							
 							boolFirstTime = false;
+							
+							
 							
 							intTurn++;
 							if(intTurn > 4){
