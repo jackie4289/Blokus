@@ -82,6 +82,20 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 							}
 						}
 						
+						for(intRow = 0;intRow < 15;intRow++){
+							for(intCol = 0;intCol < 16;intCol++){
+								if(theGamePanel.intPlayerTurnNumber == 1){
+									ssm.sendText("SidePieces," + theGamePanel.intPlayerTurnNumber + "," + theGamePanel.strP1SidePieces[intRow][intCol] + "," + intRow + "," + intCol);
+								}else if(theGamePanel.intPlayerTurnNumber == 2){
+									ssm.sendText("SidePieces," + theGamePanel.intPlayerTurnNumber + "," + theGamePanel.strP2SidePieces[intRow][intCol] + "," + intRow + "," + intCol);
+								}else if(theGamePanel.intPlayerTurnNumber == 3){
+									ssm.sendText("SidePieces," + theGamePanel.intPlayerTurnNumber + "," + theGamePanel.strP3SidePieces[intRow][intCol] + "," + intRow + "," + intCol);
+								}else if(theGamePanel.intPlayerTurnNumber == 4){
+									ssm.sendText("SidePieces," + theGamePanel.intPlayerTurnNumber + "," + theGamePanel.strP4SidePieces[intRow][intCol] + "," + intRow + "," + intCol);
+								}
+							}
+						}
+						
 						boolTurn = false;
 					}
 				}
@@ -243,6 +257,17 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				}
 				if(strMsgSplit[0].equals("Board")){
 					theGamePanel.strBoard[Integer.parseInt(strMsgSplit[2])][Integer.parseInt(strMsgSplit[3])] = strMsgSplit[1];
+				}
+				if(strMsgSplit[0].equals("SidePieces")){
+					if(strMsgSplit[1].equals("1")){
+						theGamePanel.strP1SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
+					}else if(strMsgSplit[1].equals("2")){
+						theGamePanel.strP2SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
+					}else if(strMsgSplit[1].equals("3")){
+						theGamePanel.strP3SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
+					}else if(strMsgSplit[1].equals("4")){
+						theGamePanel.strP4SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
+					}
 				}
 				
 			//SERVER SIDE MESSAGES LOGIN
