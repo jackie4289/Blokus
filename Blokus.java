@@ -384,6 +384,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				theGamePanel.intPiece = 0;
 			}
 			theGamePanel.boolDropped = true;
+			theGamePanel.repaint();
 			theFrame.requestFocus();
 		}
 	}
@@ -408,6 +409,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theGamePanel.mouseY = evt.getY();
 			theGamePanel.boolDragAndDrop = true;
 			//System.out.println("START");
+
 			theGamePanel.repaint();
 			theFrame.requestFocus();
 		}

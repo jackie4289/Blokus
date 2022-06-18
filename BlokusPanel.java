@@ -81,7 +81,7 @@ public class BlokusPanel extends JPanel{
 	int mouseX = 0;
 	int mouseY = 0;
 	int intPiece = 0;
-	int intTurn = 1;
+	int intTurn = 2;
 	int intDropX;
 	int intDropY;
 	int intColDrop;
@@ -264,6 +264,7 @@ public class BlokusPanel extends JPanel{
 					}
 					if(strP2SidePieces[intRow][intCol].equals("1")){ // Player 2
 						g.drawImage(sgreen,943+(intCol*20),49+(intRow*20),null);
+						
 					}
 					if(strP3SidePieces[intRow][intCol].equals("1")){ // Player 3 
 						g.drawImage(sblue,943+(intCol*20),368+(intRow*20),null);
