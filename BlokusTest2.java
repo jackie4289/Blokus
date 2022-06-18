@@ -27,7 +27,6 @@ public class BlokusTest2 implements ActionListener, MouseListener, MouseMotionLi
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			theGamePanel.repaint();
-			System.out.println(theGamePanel.boolCorner);
 		}
 	}
 	public void mouseExited(MouseEvent evt){

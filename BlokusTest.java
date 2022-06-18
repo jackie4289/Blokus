@@ -27,9 +27,6 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
 			theGamePanel.repaint();
-			System.out.println(theGamePanel.boolFirstTime);
-				System.out.println(theGamePanel.boolRealFirstTime);
-				System.out.println(theGamePanel.intTurn);
 		}
 	}
 	public void mouseExited(MouseEvent evt){

@@ -1,9 +1,4 @@
-// Blokus Main Program
-// Authors: Lucas Moran, Kelsie Fung, Jackie Lin
-// ICS 4U1
-// June 16, 2022
-// Version 1.231
-
+//
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -12,16 +7,14 @@ import java.io.*;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Blokus implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
+public class Test implements ActionListener, MouseListener, MouseMotionListener, KeyListener{
 	//Properties
 	Timer theTimer = new Timer(1000/60, this);
 	SuperSocketMaster ssm;
-	Blok BlokModel;
+	BlokTest2 BlokModel;
 	int intPort;
 	int intConnected = 0;
 	int intServerTurn = 0;
-	int intRow = 0;
-	int intCol = 0;
 	String strIp;
 	String strRecieve;
 	String strMsgSplit[];
@@ -29,10 +22,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	boolean boolPort = false;
 	boolean boolIp = false;
 	boolean boolUsername = false;
-	boolean boolTurn = false;
 
 	//J Properties
-	BlokusPanel theGamePanel = new BlokusPanel();
+	BlokusPanelTest3 theGamePanel = new BlokusPanelTest3();
 	JFrame theFrame = new JFrame("Blokus");
 	JTextField sendTextField = new JTextField();
 	JTextArea chatArea = new JTextArea();
@@ -66,57 +58,15 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theGamePanel.repaint();
 			theHelpPanel.repaint();
 			theLoginPanel.repaint();
-			if(theGamePanel.boolStartGame == true){
-				//detect 
-				if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
-					//theGamePanel.requestFocusInWindow();
-					boolTurn = true;
-					theGamePanel.boolHideSkip = false;
-				}else if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn-1 || theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn+3){
-					if(boolTurn == true){
-						ssm.sendText("turnAdd");
-						System.out.println("next turn via placement");
-						
-						//test
-						for(intRow = 2; intRow <22; intRow++){
-							for(intCol = 2; intCol <22; intCol++){
-								ssm.sendText("Board," + theGamePanel.strBoard[intRow][intCol] + "," + intRow + "," + intCol);
-							}
-						}
-						
-						for(intRow = 0;intRow < 15;intRow++){
-							for(intCol = 0;intCol < 16;intCol++){
-								if(theGamePanel.intPlayerTurnNumber == 1){
-									ssm.sendText("SidePieces," + theGamePanel.intPlayerTurnNumber + "," + theGamePanel.strP1SidePieces[intRow][intCol] + "," + intRow + "," + intCol);
-								}else if(theGamePanel.intPlayerTurnNumber == 2){
-									ssm.sendText("SidePieces," + theGamePanel.intPlayerTurnNumber + "," + theGamePanel.strP2SidePieces[intRow][intCol] + "," + intRow + "," + intCol);
-								}else if(theGamePanel.intPlayerTurnNumber == 3){
-									ssm.sendText("SidePieces," + theGamePanel.intPlayerTurnNumber + "," + theGamePanel.strP3SidePieces[intRow][intCol] + "," + intRow + "," + intCol);
-								}else if(theGamePanel.intPlayerTurnNumber == 4){
-									ssm.sendText("SidePieces," + theGamePanel.intPlayerTurnNumber + "," + theGamePanel.strP4SidePieces[intRow][intCol] + "," + intRow + "," + intCol);
-								}
-							}
-						}
-						
-						boolTurn = false;
-						theGamePanel.boolHideSkip = true;
-					}
-				}
-				//refresh skip button
-				if(theGamePanel.boolHideSkip == false){
-					skipButton.setVisible(true);
-					if(theGamePanel.intTurn == 1){
-						skipButton.setLocation(250, 0);
-					}else if(theGamePanel.intTurn == 2){
-						skipButton.setLocation(1180, 0);		
-					}else if(theGamePanel.intTurn == 3){
-						skipButton.setLocation(1180, 680);
-					}else if(theGamePanel.intTurn == 4){
-						skipButton.setLocation(250, 680);
-					}
-				}else{
-					skipButton.setVisible(false);
-				}
+			//refresh skip button
+			if(theGamePanel.intTurn == 1){
+				skipButton.setLocation(250, 0);
+			}else if(theGamePanel.intTurn == 2){
+				skipButton.setLocation(1180, 0);		
+			}else if(theGamePanel.intTurn == 3){
+				skipButton.setLocation(1180, 680);
+			}else if(theGamePanel.intTurn == 4){
+				skipButton.setLocation(250, 680);
 			}
 		}else if(evt.getSource() == quitButton){
 			//quit
@@ -128,6 +78,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theHelpPanel.setVisible(true);
 			theFrame.setContentPane(theHelpPanel);	
 			theHelpPanel.requestFocusInWindow();
+			
 		}else if(evt.getSource() == highscoreButton){
 			//High Score Panel Visible
 			theMenuPanel.setVisible(false);
@@ -191,7 +142,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						clientRButton.setEnabled(false);
 						//send name to server
 						ssm.sendText(theGamePanel.strUsername);
-						System.out.println("Username sent to server!");
 					}else{
 						System.out.println("Client connect failed!");
 					}
@@ -215,10 +165,10 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						startButton.setEnabled(false);
 						theLoginPanel.strName[0] = theGamePanel.strUsername;
 						theGamePanel.strName[0] = theGamePanel.strUsername;
-						theGamePanel.intPlayerTurnNumber = 1;
 						theLoginPanel.boolisServer = true;
 						theLoginPanel.strAddress = ssm.getMyAddress();
 						intConnected++;
+						
 					}else{
 						System.out.println("Server connect failed!");
 					}
@@ -257,32 +207,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					chatArea.append(strMsgSplit[1] + "\n");
 					chatArea.setCaretPosition(chatArea.getDocument().getLength());
 				}
-				//next turns
-				if(strMsgSplit[0].equals("turnAdd")){
-					System.out.println("recieved next turn signal");
-					theGamePanel.intTurn++;
-					if(theGamePanel.intTurn > 4){
-						theGamePanel.intTurn = 1;
-					}
-					theGamePanel.boolNewTurn = true;
-					theGamePanel.checkPieces = true;
-				}
-				if(strMsgSplit[0].equals("Board")){
-					theGamePanel.strBoard[Integer.parseInt(strMsgSplit[2])][Integer.parseInt(strMsgSplit[3])] = strMsgSplit[1];
-				}
-				if(strMsgSplit[0].equals("SidePieces")){
-					if(strMsgSplit[1].equals("1")){
-						theGamePanel.strP1SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
-					}else if(strMsgSplit[1].equals("2")){
-						theGamePanel.strP2SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
-					}else if(strMsgSplit[1].equals("3")){
-						theGamePanel.strP3SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
-					}else if(strMsgSplit[1].equals("4")){
-						theGamePanel.strP4SidePieces[Integer.parseInt(strMsgSplit[3])][Integer.parseInt(strMsgSplit[4])] = strMsgSplit[2];
-					}
-					
-				}
-				
 				
 			//SERVER SIDE MESSAGES LOGIN
 			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
@@ -291,7 +215,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				theGamePanel.strName[intConnected] = ssm.readText();
 				intConnected++;
 				System.out.println("playerCount: " + intConnected);
-				if(intConnected == 4){
+				if(intConnected == 2){
 					startButton.setEnabled(true);
 				}
 				
@@ -310,6 +234,23 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					ssm.sendText("P4," + theLoginPanel.strName[3]);
 				}
 					System.out.println("SENT Names");
+			//SERVER SIDE MESSAGES GAME
+			if(serverRButton.isSelected() && theGamePanel.boolStartGame == true){
+				if(theGamePanel.intTurn == 1){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
+					intServerTurn = 1;
+				}else if(theGamePanel.intTurn == 2){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",1," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
+					intServerTurn = 0;
+				}else if(theGamePanel.intTurn == 3){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",1," + theGamePanel.strName[3] + ",0");
+					intServerTurn = 0;
+				}else if(theGamePanel.intTurn == 4){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",1");	
+					intServerTurn = 0;
+				}
+				System.out.println("TURNS SENT rbutton");
+			}
 			//CLIENT SIDE MESSAGES LOGIN
 			}else if(clientRButton.isSelected() && theGamePanel.boolStartGame == false){
 				//insert names to client array
@@ -342,36 +283,66 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			}
 			if(clientRButton.isSelected()){
 				//Client checking turns
-				if(strMsgSplit[0].equals("inital")){
+				if(strMsgSplit[0].equals("turn")){
 					System.out.println("TURN Recieved");
 					//Check
+					if(strMsgSplit[1].equals(theGamePanel.strUsername)){
+						System.out.println("Name Read: "+ strMsgSplit[1] + " " + theGamePanel.strName[0]);
+						if(strMsgSplit[2].equals("1")){
+							System.out.println("turn Read 1");
+							theGamePanel.boolYourTurn = true;
+						}else if(strMsgSplit[2].equals("0")){
+							System.out.println("turn Read 0");
+							theGamePanel.boolYourTurn = false;
+						}
+					}
 					if(strMsgSplit[3].equals(theGamePanel.strUsername)){
 						System.out.println("Name Read: "+ strMsgSplit[3] + " " + theGamePanel.strName[1]);
-						if(strMsgSplit[4].equals("2")){
-							theGamePanel.intPlayerTurnNumber = 2;
-							System.out.println("Im player 2");
+						if(strMsgSplit[4].equals("1")){
+							System.out.println("turn Read 1");
+							theGamePanel.boolYourTurn = true;
+						}else if(strMsgSplit[4].equals("0")){
+							System.out.println("turn Read 0");
+							theGamePanel.boolYourTurn = false;
 						}
-					}else if(strMsgSplit[5].equals(theGamePanel.strUsername)){
+					}
+					if(strMsgSplit[5].equals(theGamePanel.strUsername)){
 						System.out.println("Name Read: "+ strMsgSplit[5] + " " + theGamePanel.strName[2]);
-						if(strMsgSplit[6].equals("3")){
-							theGamePanel.intPlayerTurnNumber = 3;
-							System.out.println("Im player 3");
+						if(strMsgSplit[6].equals("1")){
+							System.out.println("turn Read 1");
+							theGamePanel.boolYourTurn = true;
+						}else if(strMsgSplit[6].equals("0")){
+							System.out.println("turn Read 0");
+							theGamePanel.boolYourTurn = false;
 						}
-					}else if(strMsgSplit[7].equals(theGamePanel.strUsername)){
+					}
+					if(strMsgSplit[7].equals(theGamePanel.strUsername)){
 						System.out.println("Name Read: "+ strMsgSplit[7] + " " + theGamePanel.strName[3]);
-						if(strMsgSplit[8].equals("4")){
-							theGamePanel.intPlayerTurnNumber = 4;
-							System.out.println("Im player 4");
+						if(strMsgSplit[8].equals("1")){
+							System.out.println("turn Read 1");
+							theGamePanel.boolYourTurn = true;
+						}else if(strMsgSplit[8].equals("0")){
+							System.out.println("turn Read 0");
+							theGamePanel.boolYourTurn = false;
 						}
 					}
 				}
+			}
+			if(serverRButton.isSelected()){
+				//server checking turns
+				if(intServerTurn == 1){
+					System.out.println("turn Read 1");
+					theGamePanel.boolYourTurn = true;
+				}else if(intServerTurn == 0){
+					System.out.println("turn Read 0");
+					theGamePanel.boolYourTurn = false;
+				}			
 			}
 		}else if(evt.getSource() == startButton){
 			//Start Game, display game panel
 			//server send start signal to client
 			if(theGamePanel.boolStartGame == false){
 				ssm.sendText("ssmStart,");
-				System.out.println("Im player 1");
 			}
 			theLoginPanel.setVisible(false);
 			theGamePanel.setVisible(true);
@@ -380,15 +351,24 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			System.out.println("STARTS");
 			//Initial turn send
 			if(serverRButton.isSelected() && theGamePanel.boolStartGame == true){
-				ssm.sendText("inital," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",2," + theGamePanel.strName[2] + ",3," + theGamePanel.strName[3] + ",4");
+				if(theGamePanel.intTurn == 1){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
+					intServerTurn = 1;
+				}else if(theGamePanel.intTurn == 2){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",1," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",0");
+					intServerTurn = 0;
+				}else if(theGamePanel.intTurn == 3){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",1," + theGamePanel.strName[3] + ",0");
+					intServerTurn = 0;
+				}else if(theGamePanel.intTurn == 4){
+					ssm.sendText("turn," + theGamePanel.strName[0] + ",0," + theGamePanel.strName[1] + ",0," + theGamePanel.strName[2] + ",0," + theGamePanel.strName[3] + ",1");	
+					intServerTurn = 0;
+				}	
 				System.out.println("INITIAL TURNS SENT");
+				
+				chatArea.append(" GAMEPLAY | Turn: P" +theGamePanel.intTurn+ " "+theGamePanel.strUsername + ", Turn #" + theGamePanel.intTurn);
 			}
-			chatArea.append(" GAMEPLAY | Turn: P" +theGamePanel.intTurn+ " "+theGamePanel.strUsername + ", Turn #" + theGamePanel.intTurn);
 		}else if(evt.getSource() ==  backButton){
-			//Back Button
-			theHighScorePanel.setVisible(false);
-			theLoginPanel.setVisible(false);
-			theGamePanel.setVisible(false);
 			theHelpPanel.setVisible(false);
 			theFrame.setContentPane(theMenuPanel);		
 			theMenuPanel.setVisible(true);
@@ -406,7 +386,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			helpTextField.setFocusable(true);
 					
 		}else if(evt.getSource() == skipButton){
-			//turns++
+			//When skip is equal to 4 then end game
 			if(theGamePanel.intTurn < 4){
 				theGamePanel.intTurn++;
 			}else{
@@ -414,15 +394,12 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			}
 			theGamePanel.intSkip++;
 			System.out.println("Turn: " + theGamePanel.intTurn);
-			/*
-			//End Game if skip = 4
 			if(theGamePanel.intSkip >= 4){
 				theGamePanel.setVisible(false);
 				theGameOverPanel.add(backButton);
 				theGameOverPanel.setVisible(true);
 				theFrame.setContentPane(theGameOverPanel);
 			}
-			*/
 		}
 	}
 	public void mouseExited(MouseEvent evt){
@@ -433,77 +410,65 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	}
 	public void mousePressed(MouseEvent evt){
 		if(evt.getSource()==theGamePanel){
-			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
-				theGamePanel.mouseX = evt.getX();
-				theGamePanel.mouseY = evt.getY();
-				theGamePanel.intPickX = evt.getX();
-				theGamePanel.intPickY = evt.getY();
-				theGamePanel.sidePieceCode = true;
-				System.out.println(theGamePanel.intTurn);
-				theGamePanel.repaint();
-				theFrame.requestFocus();
-			}
+			theGamePanel.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+			theGamePanel.intPickX = evt.getX();
+			theGamePanel.intPickY = evt.getY();
+			theGamePanel.sidePieceCode = true;
+			System.out.println("START");
+			theGamePanel.repaint();
+			theFrame.requestFocus();
 		}
 	}
 	public void mouseReleased(MouseEvent evt){
-		if(evt.getSource() == theHelpPanel){
-			theHelpPanel.intDropX = evt.getX();
-			theHelpPanel.intDropY = evt.getY();
-			System.out.println("DROP | x: "+theHelpPanel.intDropX+" | y: "+theHelpPanel.intDropY);
-		}else if(evt.getSource() == theGamePanel){
-			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
-				theGamePanel.boolDragAndDrop = false;
-				theGamePanel.intDropX = evt.getX();
-				theGamePanel.intDropY = evt.getY();
-				if(theGamePanel.intPiece > 22){
-					theGamePanel.intPiece = 0;
-				}
-				theGamePanel.boolDropped = true;
-				theGamePanel.repaint();
-				theFrame.requestFocus();
+		if(evt.getSource() == theGamePanel){
+			theGamePanel.boolDragAndDrop = false;
+			theGamePanel.intDropX = evt.getX();
+			theGamePanel.intDropY = evt.getY();
+			if(theGamePanel.intPiece > 22){
+				theGamePanel.intPiece = 0;
 			}
+			theGamePanel.boolDropped = true;
+			theFrame.requestFocus();
 		}
+		theHelpPanel.intDropX = evt.getX();
+		theHelpPanel.intDropY = evt.getY();
+		System.out.println("DROP | x: "+theHelpPanel.intDropX+" | y: "+theHelpPanel.intDropY);
 	}
 	public void mouseClicked(MouseEvent evt){
-		if(evt.getSource() == theGamePanel){
-			System.out.println("TURN: "+ theGamePanel.intTurn);
-			System.out.println("TURN#: "+ theGamePanel.intPlayerTurnNumber);
-		}
+
 	}
 	public void mouseMoved(MouseEvent evt){
-		if(theGamePanel.boolStartGame == true){
-			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
+		if(theGamePanel.boolYourTurn == true){
+			if(theGamePanel.boolStartGame == true){
 				theGamePanel.mouseX = evt.getX();
 				theGamePanel.mouseY = evt.getY();
 			}
 		}		
 	}
 	public void mouseDragged(MouseEvent evt){
-		if(evt.getSource() == theHelpPanel){
-			theHelpPanel.mouseX = evt.getX();
-			theHelpPanel.mouseY = evt.getY();
-			System.out.println("mouse | x: "+theHelpPanel.mouseX+" | y: "+theHelpPanel.mouseY);
-		}else if(evt.getSource()==theGamePanel){
-			if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
-				theGamePanel.mouseX = evt.getX();
-				theGamePanel.mouseY = evt.getY();
-				theGamePanel.boolDragAndDrop = true;
-				//System.out.println("START");
-				theGamePanel.repaint();
-				theFrame.requestFocus();
-			}
+		if(evt.getSource()==theGamePanel){
+			theGamePanel.mouseX = evt.getX();
+			theGamePanel.mouseY = evt.getY();
+			theGamePanel.boolDragAndDrop = true;
+			System.out.println("START");
+			theGamePanel.repaint();
+			theFrame.requestFocus();
+			
 		}
+		theHelpPanel.mouseX = evt.getX();
+		theHelpPanel.mouseY = evt.getY();
+		System.out.println("mouse | x: "+theHelpPanel.mouseX+" | y: "+theHelpPanel.mouseY);
 	}
 	public void keyReleased(KeyEvent evt){
 	
 	}
 	public void keyPressed(KeyEvent evt){
 		if(evt.getKeyCode() == 32){
-			//theGamePanel.boolRotate = true;
+			theGamePanel.boolRotate = true;
 			theHelpPanel.boolRotate = true;
 			System.out.println("ROTATE");
 		}
-
 	}
 	public void keyTyped(KeyEvent evt){
 		
@@ -511,7 +476,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	
 	
 	//Constuctor
-	public Blokus(){
+	public Test(){
 		//Game panel
 		theGamePanel.setLayout(null);
 		theGamePanel.setPreferredSize(new Dimension(1280, 720));
@@ -601,7 +566,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		
 		//Skip Button Game
 		skipButton.setSize(100,40);
-		skipButton.setVisible(false);
 		skipButton.addActionListener(this);
 		theGamePanel.add(skipButton);
 		
@@ -678,10 +642,11 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		theFrame.setVisible(true);
 		theTimer.start();
 		theFrame.requestFocus();
+
 	}
 
 	//Main Program
 	public static void main(String[] args){
-		Blokus Block = new Blokus();
+		Test Block = new Test();
 	}
 }

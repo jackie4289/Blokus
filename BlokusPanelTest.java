@@ -259,16 +259,11 @@ public class BlokusPanelTest extends JPanel{
 			//Logo
 			g.drawString("BLOKUS", 588, 23);
 			
-			//Draw Turn Dots
-			if(intTurn == 1){
-				g.fillOval(4,10,20,20);
-			}else if(intTurn == 2){
-				g.fillOval(934,10,20,20);
-			}else if(intTurn == 3){
-				g.fillOval(934,690,20,20);
-			}else if(intTurn == 4){
-				g.fillOval(4,690,20,20);
-			}
+			//draw turn dots
+			g.fillOval(4,10,20,20);
+			g.fillOval(4,690,20,20);
+			g.fillOval(934,10,20,20);
+			g.fillOval(934,690,20,20);
 		
 			// Draw side pieces	
 			for(intRow = 0;intRow < 15;intRow++){
