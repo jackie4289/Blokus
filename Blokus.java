@@ -20,6 +20,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	int intPort;
 	int intConnected = 0;
 	int intServerTurn = 0;
+	int intRow = 0;
+	int intCol = 0;
 	String strIp;
 	String strRecieve;
 	String strMsgSplit[];
@@ -72,6 +74,14 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					if(boolTurn == true){
 						ssm.sendText("turnAdd");
 						System.out.println("next turn via placement");
+						
+						//test
+						for(intRow = 2; intRow <22; intRow++){
+							for(intCol = 2; intCol <22; intCol++){
+								ssm.sendText("Board," + theGamePanel.strBoard[intRow][intCol] + "," + intRow + "," + intCol);
+							}
+						}
+						
 						boolTurn = false;
 					}
 				}
@@ -231,6 +241,10 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 					System.out.println("recieved next turn signal");
 					theGamePanel.intTurn++;
 				}
+				if(strMsgSplit[0].equals("Board")){
+					theGamePanel.strBoard[Integer.parseInt(strMsgSplit[2])][Integer.parseInt(strMsgSplit[3])] = strMsgSplit[1];
+				}
+				
 			//SERVER SIDE MESSAGES LOGIN
 			}else if(serverRButton.isSelected() && theGamePanel.boolStartGame == false){
 				//Recieve name from client to server
@@ -356,8 +370,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			//turns++
 			if(theGamePanel.intTurn < 4){
 				theGamePanel.intTurn++;
-				ssm.sendText("turnAdd");
-				System.out.println("next turn via skip button");
 			}else{
 				theGamePanel.intTurn = 1;
 			}
