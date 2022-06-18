@@ -1,4 +1,9 @@
-//
+// Blokus Game Panel
+// Authors: Lucas Moran, Kelsie Fung, Jackie Lin
+// ICS 4U1
+// June 16, 2022
+// Version 1.231
+
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
