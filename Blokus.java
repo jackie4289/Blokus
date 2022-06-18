@@ -70,6 +70,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				//detect 
 				if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
 					boolTurn = true;
+					theGamePanel.boolHideSkip = false;
 				}else if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn-1 || theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn+3){
 					if(boolTurn == true){
 						ssm.sendText("turnAdd");
@@ -97,17 +98,23 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						}
 						
 						boolTurn = false;
+						theGamePanel.boolHideSkip = true;
 					}
 				}
 				//refresh skip button
-				if(theGamePanel.intTurn == 1){
-					skipButton.setLocation(250, 0);
-				}else if(theGamePanel.intTurn == 2){
-					skipButton.setLocation(1180, 0);		
-				}else if(theGamePanel.intTurn == 3){
-					skipButton.setLocation(1180, 680);
-				}else if(theGamePanel.intTurn == 4){
-					skipButton.setLocation(250, 680);
+				if(theGamePanel.boolHideSkip == false){
+					skipButton.setVisible(true);
+					if(theGamePanel.intTurn == 1){
+						skipButton.setLocation(250, 0);
+					}else if(theGamePanel.intTurn == 2){
+						skipButton.setLocation(1180, 0);		
+					}else if(theGamePanel.intTurn == 3){
+						skipButton.setLocation(1180, 680);
+					}else if(theGamePanel.intTurn == 4){
+						skipButton.setLocation(250, 680);
+					}
+				}else{
+					skipButton.setVisible(false);
 				}
 			}
 		}else if(evt.getSource() == quitButton){
@@ -120,7 +127,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 			theHelpPanel.setVisible(true);
 			theFrame.setContentPane(theHelpPanel);	
 			theHelpPanel.requestFocusInWindow();
-			
 		}else if(evt.getSource() == highscoreButton){
 			//High Score Panel Visible
 			theMenuPanel.setVisible(false);
@@ -594,6 +600,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 		
 		//Skip Button Game
 		skipButton.setSize(100,40);
+		skipButton.setVisible(false);
 		skipButton.addActionListener(this);
 		theGamePanel.add(skipButton);
 		
