@@ -1103,6 +1103,7 @@ public class BlokusPanelTest extends JPanel{
 						if(intTurn > 4){
 							intTurn = 1;
 						}
+						boolNewTurn = true;
 						if(boolP1Turn == true && boolP2Turn == true && boolP3Turn == true && boolP4Turn == true){
 							boolFirstTime = false;
 						}
