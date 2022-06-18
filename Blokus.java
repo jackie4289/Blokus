@@ -70,7 +70,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				//detect 
 				if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn){
 					boolTurn = true;
-				}else if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn-1){
+				}else if(theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn-1 || theGamePanel.intPlayerTurnNumber == theGamePanel.intTurn+3){
 					if(boolTurn == true){
 						ssm.sendText("turnAdd");
 						System.out.println("next turn via placement");
@@ -254,6 +254,9 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				if(strMsgSplit[0].equals("turnAdd")){
 					System.out.println("recieved next turn signal");
 					theGamePanel.intTurn++;
+					if(theGamePanel.intTurn > 4){
+						theGamePanel.intTurn = 1;
+					}
 				}
 				if(strMsgSplit[0].equals("Board")){
 					theGamePanel.strBoard[Integer.parseInt(strMsgSplit[2])][Integer.parseInt(strMsgSplit[3])] = strMsgSplit[1];
@@ -277,7 +280,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				theGamePanel.strName[intConnected] = ssm.readText();
 				intConnected++;
 				System.out.println("playerCount: " + intConnected);
-				if(intConnected == 2){
+				if(intConnected == 4){
 					startButton.setEnabled(true);
 				}
 				
@@ -339,13 +342,13 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 						}
 					}else if(strMsgSplit[5].equals(theGamePanel.strUsername)){
 						System.out.println("Name Read: "+ strMsgSplit[5] + " " + theGamePanel.strName[2]);
-						if(strMsgSplit[6].equals("1")){
+						if(strMsgSplit[6].equals("3")){
 							theGamePanel.intPlayerTurnNumber = 3;
 							System.out.println("Im player 3");
 						}
 					}else if(strMsgSplit[7].equals(theGamePanel.strUsername)){
 						System.out.println("Name Read: "+ strMsgSplit[7] + " " + theGamePanel.strName[3]);
-						if(strMsgSplit[8].equals("1")){
+						if(strMsgSplit[8].equals("4")){
 							theGamePanel.intPlayerTurnNumber = 4;
 							System.out.println("Im player 4");
 						}
