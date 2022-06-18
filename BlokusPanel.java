@@ -1089,7 +1089,8 @@ public class BlokusPanel extends JPanel{
 						System.out.println("intColDrop: "+intColDrop);
 						System.out.println("intTurn: "+intTurn);
 						System.out.println("intPiece: "+intPiece);
-						if(intTurn == 1){
+						
+						/*if(intTurn == 1){
 							boolP1Turn = true;
 						}else if(intTurn == 2){
 							boolP2Turn = true;
@@ -1097,15 +1098,21 @@ public class BlokusPanel extends JPanel{
 							boolP3Turn = true;
 						}else if(intTurn == 4){ 
 							boolP4Turn = true;
-						}
+						}*/
+						
+						boolFirstTime = false;
+						
 						intTurn++;
 						if(intTurn > 4){
 							intTurn = 1;
 						}
 						boolNewTurn = true;
-						if(boolP1Turn == true && boolP2Turn == true && boolP3Turn == true && boolP4Turn == true){
+						
+						/*if(boolP1Turn == true && boolP2Turn == true && boolP3Turn == true && boolP4Turn == true){
 							boolFirstTime = false;
-						}
+						}*/
+						
+						
 						checkPieces = true;
 					}else{
 						PieceTaken[intTurn][intPiece] = 1;
