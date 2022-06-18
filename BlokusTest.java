@@ -39,7 +39,9 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 		if(evt.getSource()==theGamePanel){
 			theGamePanel.mouseX = evt.getX();
 			theGamePanel.mouseY = evt.getY();
-			theGamePanel.boolDragAndDrop = true;
+			theGamePanel.intPickX = evt.getX();
+			theGamePanel.intPickY = evt.getY();
+			theGamePanel.sidePieceCode = true;
 			System.out.println("START");
 			theGamePanel.repaint();
 			theFrame.requestFocus();

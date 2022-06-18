@@ -515,6 +515,7 @@ public class BlokusPanelTest2 extends JPanel{
 						}
 						PieceTaken[intPlayerCount][intPiece] = 0;
 						
+						// Calculate Pieces for FIRST TIME
 						if(intPlayerCount == 0){
 								if(intPiece == 1){
 									strP1SidePieces[0][0] = "0";
