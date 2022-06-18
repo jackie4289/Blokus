@@ -107,8 +107,6 @@ public class BlokusPanel extends JPanel{
 	BufferedImage sgreen = null;
 	BufferedImage syellow = null;
 
-
-	//Methods
 	//Methods
 	public void paintComponent(/*graphics variable*/Graphics g){
 		BlokTest BlokObject = new BlokTest();
@@ -192,7 +190,6 @@ public class BlokusPanel extends JPanel{
 		
 		
 		//GAME
-		boolStartGame = true;
 		if(boolStartGame == true){
 			//REMOVE LINE BELOW WHEN INTEGRATING
 			// UI
