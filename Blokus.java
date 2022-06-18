@@ -59,6 +59,7 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 	JScrollPane helpChatScroll = new JScrollPane(helpChatArea);
 	BlokusHighSPanel theHighScorePanel = new BlokusHighSPanel();
 	BlokusGameOverPanel theGameOverPanel = new BlokusGameOverPanel();
+	
 	//Methods
 	public void actionPerformed(ActionEvent evt){
 		if(evt.getSource() == theTimer){
@@ -236,8 +237,8 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				LocalTime localTime = LocalTime.now();
 				
 				//Send with name + time
-				ssm.sendText("chat, CHAT | "+dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText());
-				chatArea.append(" CHAT | "+dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText() + "\n");
+				ssm.sendText("chat,"+dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText());
+				chatArea.append(dtf.format(localTime)+ " " + theGamePanel.strUsername + ": " + sendTextField.getText() + "\n");
 				sendTextField.setText("");
 				
 				//Focus cycle
@@ -383,7 +384,6 @@ public class Blokus implements ActionListener, MouseListener, MouseMotionListene
 				ssm.sendText("inital," + theGamePanel.strName[0] + ",1," + theGamePanel.strName[1] + ",2," + theGamePanel.strName[2] + ",3," + theGamePanel.strName[3] + ",4");
 				System.out.println("INITIAL TURNS SENT");
 			}
-			chatArea.append(" GAMEPLAY | Turn: P" +theGamePanel.intTurn+ " "+theGamePanel.strUsername + ", Turn #" + theGamePanel.intTurn);
 		}else if(evt.getSource() ==  backButton){
 			//Back Button
 			theHighScorePanel.setVisible(false);

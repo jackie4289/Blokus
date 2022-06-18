@@ -51,7 +51,7 @@ public class BlokusHelpPanel extends JPanel{
 	//Methods
 	
 	public void paintComponent(Graphics g){
-		BlokTest2 BlokObject = new BlokTest2();
+		Blok BlokObject = new Blok();
 		super.paintComponent(g);
 		g.drawImage(help, 0, 0, null);
 		

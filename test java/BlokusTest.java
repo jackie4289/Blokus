@@ -12,7 +12,7 @@ public class BlokusTest implements ActionListener, MouseListener, MouseMotionLis
 	BlokusPanelTest theGamePanel = new BlokusPanelTest();
 
 	Timer theTimer = new Timer(1000/60, this);
-	Block BlockModel;
+	BlokTest BlockModel;
 
 	//J Properties
 

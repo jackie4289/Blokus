@@ -105,7 +105,7 @@ public class BlokusPanel extends JPanel{
 
 	//Methods
 	public void paintComponent(/*graphics variable*/Graphics g){
-		BlokTest BlokObject = new BlokTest();
+		Blok BlokObject = new Blok();
 		super.paintComponent(g);
 		
 		
@@ -1752,6 +1752,9 @@ public class BlokusPanel extends JPanel{
 	}
 
 	//Constructor
+	/**
+	 * This is to import images from the Assets folder
+	 */
 	public BlokusPanel(){
 		super();
 		//import images

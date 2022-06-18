@@ -12,19 +12,22 @@ public class Blok{
 	int rotation;
 	int intCount;
 	int intCount2;
-	int intBoard[][] = new int[4][4];
-	int tempBoard[][] = new int[4][4];
+	int intBoard[][] = new int[5][5];
+	int tempBoard[][] = new int[5][5];
 	
 	
 	//Methods
-	public void Read_ResetBoard(){
-
-	}
+	/**
+	 * This is to set pieces into an array and is numbered from 1-21
+	 */	
 	public int[][] PickPiece(int pieceType){
-		for(intCount = 0;intCount < 4;intCount++){
-			for(intCount2 = 0;intCount2 < 4; intCount++){
+		for(intCount = 0;intCount < 5;intCount++){
+			for(intCount2 = 0;intCount2 < 5; intCount2++){
 				intBoard[intCount][intCount2] = 0;
 			}
+		}
+		if(pieceType < 0 || pieceType > 21){
+			pieceType = 1;
 		}
 		
 		//One 1-square piece
@@ -154,9 +157,13 @@ public class Blok{
 		}
 		return intBoard;
 	}
-	public void rotatePiece(){
-		for(intCount = 0;intCount < 4;intCount++){
-			for(intCount2 = 0;intCount2 < 4; intCount++){
+	
+	/**
+	 * This is to rotate the pieces by 90 degrees each run
+	 */
+	public int[][] rotatePiece(int intBoard[][]){
+		for(intCount = 0;intCount < 5;intCount++){
+			for(intCount2 = 0;intCount2 < 5; intCount2++){
 				tempBoard[intCount][intCount2] = 0;
 			}
 		}
@@ -170,18 +177,18 @@ public class Blok{
 		 */
 		 
 		//rotate loop
-		for(intCount2 = 0;intCount < 4;intCount++){
-			for(intCount = 0;intCount < 4;intCount++){
+		for(intCount2 = 0;intCount2 < 5;intCount2++){
+			for(intCount = 0;intCount < 5;intCount++){
 				tempBoard[intCount][intCount2] = intBoard[intCount2][4-intCount];
 			}
 		}
-		for(intCount = 0;intCount < 4;intCount++){
-			for(intCount2 = 0;intCount2 < 4; intCount++){
+		for(intCount = 0;intCount < 5;intCount++){
+			for(intCount2 = 0;intCount2 < 5; intCount2++){
 				intBoard[intCount][intCount2] = tempBoard[intCount][intCount2];
 			}
 		}
-		
-		
+
+		return intBoard;
 		
 		
 	}

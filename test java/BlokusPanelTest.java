@@ -132,7 +132,7 @@ public class BlokusPanelTest extends JPanel{
 				BufferedReader board = null;
 				BufferedReader sideLayout = null;
 				try{
-					board = new BufferedReader(new FileReader("Data_Files/board.csv"));
+					board = new BufferedReader(new FileReader("board.csv"));
 				}catch(FileNotFoundException e){
 					//System.out.println("File not found!!!");
 				}
@@ -159,7 +159,7 @@ public class BlokusPanelTest extends JPanel{
 				}
 				BufferedReader sidepieces = null;
 				try{
-					sidepieces = new BufferedReader(new FileReader("Data_Files/sidepieces.csv"));
+					sidepieces = new BufferedReader(new FileReader("sidepieces.csv"));
 				}catch(FileNotFoundException e){
 					//System.out.println("File not found!!!");
 				}
@@ -1755,51 +1755,51 @@ public class BlokusPanelTest extends JPanel{
 		super();
 		//import images
 		try{
-			white = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/whiteblock.png"));
+			white = ImageIO.read(this.getClass().getResourceAsStream("whiteblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(whiteblock.png)");
 		}
 		try{
-			red = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/redblock.png"));
+			red = ImageIO.read(this.getClass().getResourceAsStream("redblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(redblock.png)");
 		}
 		try{
-			blue = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/blueblock.png"));
+			blue = ImageIO.read(this.getClass().getResourceAsStream("blueblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(blueblock.png)");
 		}
 		try{
-			yellow = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/yellowblock.png"));
+			yellow = ImageIO.read(this.getClass().getResourceAsStream("yellowblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(yellowblock.png)");
 		}
 		try{
-			green = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/greenblock.png"));
+			green = ImageIO.read(this.getClass().getResourceAsStream("greenblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(greenblock.png)");
 		}try{
-			swhite = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/swhiteblock.png"));
+			swhite = ImageIO.read(this.getClass().getResourceAsStream("swhiteblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(swhiteblock.png)");
 		}
 		try{
-			sred = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sredblock.png"));
+			sred = ImageIO.read(this.getClass().getResourceAsStream("sredblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(sredblock.png)");
 		}
 		try{
-			sblue = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sblueblock.png"));
+			sblue = ImageIO.read(this.getClass().getResourceAsStream("sblueblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(sblueblock.png)");
 		}
 		try{
-			syellow = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/syellowblock.png"));
+			syellow = ImageIO.read(this.getClass().getResourceAsStream("syellowblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(syellowblock.png)");
 		}
 		try{
-			sgreen = ImageIO.read(this.getClass().getResourceAsStream("Assets/blocks/sgreenblock.png"));
+			sgreen = ImageIO.read(this.getClass().getResourceAsStream("sgreenblock.png"));
 		}catch(IOException e){
 			//System.out.println("Invalid picture(sgreenblock.png)");
 		}
