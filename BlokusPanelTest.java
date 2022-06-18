@@ -280,8 +280,19 @@ public class BlokusPanelTest extends JPanel{
 			
 			//Drag & Drop
 			if(boolDragAndDrop == true){ // this will be set by mousepressed or mouse released
-				intColPick = Math.round((intPickX-12)/20);
-				intRowPick = Math.round((intPickY-49)/20); 
+				if(intTurn == 1){
+					intColPick = Math.round((intPickX-12)/20);
+					intRowPick = Math.round((intPickY-49)/20); 
+				}else if(intTurn == 2){
+					intColPick = Math.round((intPickX-943)/20);
+					intRowPick = Math.round((intPickY-49)/20); 
+				}else if(intTurn == 3){
+					intColPick = Math.round((intPickX-943)/20);
+					intRowPick = Math.round((intPickY-368)/20); 
+				}else if(intTurn == 4){
+					intColPick = Math.round((intPickX-12)/20);
+					intRowPick = Math.round((intPickY-358)/20); 
+				}
 				
 				System.out.println(intColPick +"," + intRowPick);
 				
